@@ -38,3 +38,4 @@ tzdata==2024.2
 ultralytics==8.3.37
 ultralytics-thop==2.0.12
 urllib3==2.2.3
+
