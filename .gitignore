@@ -187,3 +187,4 @@ pyrightconfig.json
 # Own ignores
 data/videos
 data/output_frames
+data/data_faster_rcnn
