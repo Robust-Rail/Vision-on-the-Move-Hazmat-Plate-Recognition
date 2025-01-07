@@ -188,3 +188,4 @@ pyrightconfig.json
 data/videos
 data/output_frames
 runs
+data/yolo
