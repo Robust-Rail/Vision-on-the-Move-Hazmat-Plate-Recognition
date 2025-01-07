@@ -188,3 +188,6 @@ pyrightconfig.json
 data/videos
 data/output_frames
 data/data_faster_rcnn
+
+# Checkpoints
+/checkpoints
