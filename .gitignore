@@ -187,3 +187,5 @@ pyrightconfig.json
 # Own ignores
 data/videos
 data/output_frames
+runs
+data/yolo
