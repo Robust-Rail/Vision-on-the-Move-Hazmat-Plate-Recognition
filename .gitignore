@@ -189,6 +189,16 @@ data/videos
 data/output_frames
 data/data_faster_rcnn
 data/frames_videos
+best_model.pth
+latest_checkpoint.pth
+fasterrcnn_resnet101_coco_finetuned.pth
+data/frames
+data/models
+data/resnet101-63fe2227.pth
+data/resnet101-63fe2227.pth.1
+data/cvat-for-video-dataset-hazmat-codes/
+data/hazmat-detection.zip
+data/yolo/
 
 # Checkpoints
 /checkpoints
