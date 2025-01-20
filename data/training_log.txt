@@ -1,0 +1,72 @@
+Epoch 5 | Time: 12m 34s | LR: 0.000123
+Train Loss: 0.5678 | Classifier: 0.1234 | Box Reg: 0.2345
+Objectness: 0.3456 | RPN Box Reg: 0.4567
+Validation Metrics | mAP@IoU=0.50:0.95: 0.6543 | mAP@IoU=0.50: 0.8765 | mAP@IoU=0.75: 0.7654
+Small mAP: 0.1234 | Medium mAP: 0.2345 | Large mAP: 0.3456
+
+Epoch 5 | Time: 12m 34s | LR: 0.000123
+Train Loss: 0.5678 | Classifier: 0.1234 | Box Reg: 0.2345
+Objectness: 0.3456 | RPN Box Reg: 0.4567
+Validation Metrics: | mAP@IoU=0.50:0.95: 0.6543 | mAP@IoU=0.50: 0.8765 | mAP@IoU=0.75: 0.7654
+Small mAP: 0.1234 | Medium mAP: 0.2345 | Large mAP: 0.3456
+
+Epoch 5 | Time: 12m 34s | LR: 0.0001230000
+Train Loss: 0.5678 | Classifier: 0.1234 | Box Reg: 0.2345
+Objectness: 0.3456 | RPN Box Reg: 0.4567
+Validation Metrics: | mAP@IoU=0.50:0.95: 0.6543 | mAP@IoU=0.50: 0.8765 | mAP@IoU=0.75: 0.7654
+Small mAP: 0.1234 | Medium mAP: 0.2345 | Large mAP: 0.3456
+
+Epoch 5 | Time: 12m 34s | LR: 0.0001230000
+Train Loss: 0.5678 | Classifier: 0.1234 | Box Reg: 0.2345
+Objectness: 0.3456 | RPN Box Reg: 0.4567
+Validation Metrics: | mAP@IoU=0.50:0.95: 0.6543 | mAP@IoU=0.50: 0.8765 | mAP@IoU=0.75: 0.7654
+Small mAP: 0.1234 | Medium mAP: 0.2345 | Large mAP: 0.3456
+
+Epoch 5 | Time: 12m 34s | LR: 0.0001230000
+Train Loss: 0.5678 | Classifier: 0.1234 | Box Reg: 0.2345
+Objectness: 0.3456 | RPN Box Reg: 0.4567
+Validation Metrics: | mAP@IoU=0.50:0.95: 0.6543 | mAP@IoU=0.50: 0.8765 | mAP@IoU=0.75: 0.7654
+Small mAP: 0.1234 | Medium mAP: 0.2345 | Large mAP: 0.3456
+
+Epoch 5 | Time: 12m 34s | LR: 0.0001230000
+Train Loss: 0.5678 | Classifier: 0.1234 | Box Reg: 0.2345
+Objectness: 0.3456 | RPN Box Reg: 0.4567
+Validation Metrics: | mAP@IoU=0.50:0.95: 0.6543 | mAP@IoU=0.50: 0.8765 | mAP@IoU=0.75: 0.7654
+Small mAP: 0.1234 | Medium mAP: 0.2345 | Large mAP: 0.3456
+
+Epoch 5 | Time: 12m 34s | LR: 0.0001230000
+Train Loss: 0.5678 | Classifier: 0.1234 | Box Reg: 0.2345
+Objectness: 0.3456 | RPN Box Reg: 0.4567
+Validation Metrics: | mAP@IoU=0.50:0.95: 0.6543 | mAP@IoU=0.50: 0.8765 | mAP@IoU=0.75: 0.7654
+Small mAP: 0.1234 | Medium mAP: 0.2345 | Large mAP: 0.3456
+
+Epoch 5 | Time: 12m 34s | LR: 0.0001230000
+Train Loss: 0.5678 | Classifier: 0.1234 | Box Reg: 0.2345
+Objectness: 0.3456 | RPN Box Reg: 0.4567
+Validation Metrics: | mAP@IoU=0.50:0.95: 0.6543 | mAP@IoU=0.50: 0.8765 | mAP@IoU=0.75: 0.7654
+Small mAP: 0.1234 | Medium mAP: 0.2345 | Large mAP: 0.3456
+
+Epoch 5 | Time: 12m 34s | LR: 0.0001230000
+Train Loss: 0.5678 | Classifier: 0.1234 | Box Reg: 0.2345
+Objectness: 0.3456 | RPN Box Reg: 0.4567
+Validation Metrics: | mAP@IoU=0.50:0.95: 0.6543 | mAP@IoU=0.50: 0.8765 | mAP@IoU=0.75: 0.7654
+Small mAP: 0.1234 | Medium mAP: 0.2345 | Large mAP: 0.3456
+
+Epoch 5 | Time: 12m 34s | LR: 0.0001230000
+Train Loss: 0.5678 | Classifier: 0.1234 | Box Reg: 0.2345
+Objectness: 0.3456 | RPN Box Reg: 0.4567
+Validation Metrics: | mAP@IoU=0.50:0.95: 0.6543 | mAP@IoU=0.50: 0.8765 | mAP@IoU=0.75: 0.7654
+Small mAP: 0.1234 | Medium mAP: 0.2345 | Large mAP: 0.3456
+
+Epoch 5 | Time: 12m 34s | LR: 0.0001230000
+Train Loss: 0.5678 | Classifier: 0.1234 | Box Reg: 0.2345
+Objectness: 0.3456 | RPN Box Reg: 0.4567
+Validation Metrics: | mAP@IoU=0.50:0.95: 0.6543 | mAP@IoU=0.50: 0.8765 | mAP@IoU=0.75: 0.7654
+Small mAP: 0.1234 | Medium mAP: 0.2345 | Large mAP: 0.3456
+
+Epoch 5 | Time: 12m 34s | LR: 0.0001230000
+Train Loss: 0.5678 | Classifier: 0.1234 | Box Reg: 0.2345
+Objectness: 0.3456 | RPN Box Reg: 0.4567
+Validation Metrics: | mAP@IoU=0.50:0.95: 0.6543 | mAP@IoU=0.50: 0.8765 | mAP@IoU=0.75: 0.7654
+Small mAP: 0.1234 | Medium mAP: 0.2345 | Large mAP: 0.3456
+
