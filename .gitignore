@@ -199,6 +199,7 @@ data/resnet101-63fe2227.pth.1
 data/cvat-for-video-dataset-hazmat-codes/
 data/hazmat-detection.zip
 data/yolo/
+data/augmented_images/
 
 # Checkpoints
 /checkpoints
