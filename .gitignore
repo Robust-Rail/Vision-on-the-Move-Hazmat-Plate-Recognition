@@ -203,3 +203,6 @@ data/augmented_images/
 
 # Checkpoints
 /checkpoints
+
+runs
+data/yolo
