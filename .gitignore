@@ -189,3 +189,4 @@ data/videos
 data/output_frames
 runs
 data/yolo
+data/augmented_images
