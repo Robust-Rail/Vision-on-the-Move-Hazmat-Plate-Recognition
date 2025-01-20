@@ -206,3 +206,4 @@ data/augmented_images/
 
 runs
 data/yolo
+data/augmented_images
