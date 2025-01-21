@@ -187,3 +187,9 @@ pyrightconfig.json
 # Own ignores
 data/videos
 data/output_frames
+data/data_faster_rcnn/
+data/augmented_images/
+data/frames_videos
+data/models
+data/un_numbers/un/
+checkpoints
