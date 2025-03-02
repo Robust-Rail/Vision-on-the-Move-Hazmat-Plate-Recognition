@@ -1,0 +1,1627 @@
+<?xml version="1.0" encoding="utf-8"?>
+<annotations>
+  <version>1.1</version>
+  <meta>
+    <project>
+      <id>9</id>
+      <name>Label hazmat numbers</name>
+      <bugtracker></bugtracker>
+      <created>2025-02-20 10:02:04.837633+00:00</created>
+      <updated>2025-03-02 10:53:40.356714+00:00</updated>
+      <tasks>
+        <task>
+          <id>226</id>
+          <name>Public dataset hazmat signs</name>
+          <size>206</size>
+          <mode>annotation</mode>
+          <overlap>0</overlap>
+          <bugtracker></bugtracker>
+          <created>2025-02-23 09:24:16.074710+00:00</created>
+          <updated>2025-02-23 10:47:17.157032+00:00</updated>
+          <subset>default</subset>
+          <start_frame>0</start_frame>
+          <stop_frame>205</stop_frame>
+          <frame_filter></frame_filter>
+          <segments>
+            <segment>
+              <id>222</id>
+              <start>0</start>
+              <stop>205</stop>
+              <url>http://ut145166.eemcs.utwente.nl:8080/api/jobs/222</url>
+            </segment>
+          </segments>
+          <owner>
+            <username>s.levendeev@student.utwente.nl</username>
+            <email>s.levendeev@student.utwente.nl</email>
+          </owner>
+          <assignee>
+            <username>s.levendeev@student.utwente.nl</username>
+            <email>s.levendeev@student.utwente.nl</email>
+          </assignee>
+        </task>
+        <task>
+          <id>228</id>
+          <name>Sinanli public dataset + own images</name>
+          <size>77</size>
+          <mode>annotation</mode>
+          <overlap>0</overlap>
+          <bugtracker></bugtracker>
+          <created>2025-03-02 10:40:45.690270+00:00</created>
+          <updated>2025-03-02 10:53:47.806463+00:00</updated>
+          <subset>default</subset>
+          <start_frame>0</start_frame>
+          <stop_frame>76</stop_frame>
+          <frame_filter></frame_filter>
+          <segments>
+            <segment>
+              <id>224</id>
+              <start>0</start>
+              <stop>76</stop>
+              <url>http://ut145166.eemcs.utwente.nl:8080/api/jobs/224</url>
+            </segment>
+          </segments>
+          <owner>
+            <username>s.levendeev@student.utwente.nl</username>
+            <email>s.levendeev@student.utwente.nl</email>
+          </owner>
+          <assignee>
+            <username>s.levendeev@student.utwente.nl</username>
+            <email>s.levendeev@student.utwente.nl</email>
+          </assignee>
+        </task>
+      </tasks>
+      <subsets>default</subsets>
+      <owner>
+        <username>django</username>
+        <email>m.l.tijink@utwente.nl</email>
+      </owner>
+      <assignee></assignee>
+      <labels>
+        <label>
+          <name>hazmat_sign</name>
+          <color>#b4a293</color>
+          <type>rectangle</type>
+          <attributes>
+            <attribute>
+              <name>code</name>
+              <mutable>True</mutable>
+              <input_type>text</input_type>
+              <default_value></default_value>
+              <values></values>
+            </attribute>
+            <attribute>
+              <name>issue</name>
+              <mutable>True</mutable>
+              <input_type>text</input_type>
+              <default_value></default_value>
+              <values></values>
+            </attribute>
+          </attributes>
+        </label>
+      </labels>
+    </project>
+    <dumped>2025-03-02 11:30:08.626286+00:00</dumped>
+  </meta>
+  <image id="0" name="images/10.png" subset="default" task_id="226" width="1000" height="668">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="825.87" ytl="413.29" xbr="855.01" ybr="437.19" z_order="0">
+      <attribute name="code">90/3082</attribute>
+      <attribute name="issue">low quality</attribute>
+    </box>
+  </image>
+  <image id="1" name="images/100.png" subset="default" task_id="226" width="809" height="1080">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="187.30" ytl="571.99" xbr="248.56" ybr="618.26" z_order="0">
+      <attribute name="code">22/1965</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="2" name="images/101.png" subset="default" task_id="226" width="812" height="1080">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="541.74" ytl="507.06" xbr="654.83" ybr="606.01" z_order="0">
+      <attribute name="code">23/1049</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="3" name="images/102.png" subset="default" task_id="226" width="810" height="1079">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="426.69" ytl="474.05" xbr="566.98" ybr="576.68" z_order="0">
+      <attribute name="code">23/1049</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="4" name="images/103.png" subset="default" task_id="226" width="808" height="1080">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="320.08" ytl="722.87" xbr="451.08" ybr="840.67" z_order="0">
+      <attribute name="code">30/1202</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="5" name="images/104.png" subset="default" task_id="226" width="808" height="1080">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="516.11" ytl="489.15" xbr="621.65" ybr="577.74" z_order="0">
+      <attribute name="code">23/1049</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="6" name="images/105.png" subset="default" task_id="226" width="809" height="1080">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="476.62" ytl="488.12" xbr="529.39" ybr="542.87" z_order="0">
+      <attribute name="code">22/2107</attribute>
+      <attribute name="issue">rotated</attribute>
+    </box>
+  </image>
+  <image id="7" name="images/106.png" subset="default" task_id="226" width="4272" height="2848">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="2106.09" ytl="1610.29" xbr="2362.06" ybr="1819.05" z_order="0">
+      <attribute name="code">30/1202</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="8" name="images/107.png" subset="default" task_id="226" width="4272" height="2848">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="2292.47" ytl="1458.70" xbr="2657.79" ybr="1724.61" z_order="0">
+      <attribute name="code">30/1202</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="9" name="images/108.png" subset="default" task_id="226" width="768" height="1024">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="390.24" ytl="455.74" xbr="444.75" ybr="497.74" z_order="0">
+      <attribute name="code">223/1972</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="10" name="images/109.png" subset="default" task_id="226" width="768" height="1024">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="291.95" ytl="455.74" xbr="375.95" ybr="520.08" z_order="0">
+      <attribute name="code">223/1972</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="11" name="images/11.png" subset="default" task_id="226" width="1000" height="668">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="360.13" ytl="479.16" xbr="388.69" ybr="507.14" z_order="0">
+      <attribute name="code">33/1203</attribute>
+      <attribute name="issue">low quality</attribute>
+    </box>
+  </image>
+  <image id="12" name="images/110.png" subset="default" task_id="226" width="768" height="1024">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="209.75" ytl="441.44" xbr="254.43" ybr="475.40" z_order="0">
+      <attribute name="code">223/1972</attribute>
+      <attribute name="issue">low quality</attribute>
+    </box>
+  </image>
+  <image id="13" name="images/111.png" subset="default" task_id="226" width="768" height="1024">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="196.23" ytl="526.57" xbr="245.31" ybr="564.57" z_order="0">
+      <attribute name="code">223/1972</attribute>
+      <attribute name="issue">low quality</attribute>
+    </box>
+  </image>
+  <image id="14" name="images/112.png" subset="default" task_id="226" width="768" height="1024">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="262.45" ytl="586.71" xbr="323.21" ybr="634.07" z_order="0">
+      <attribute name="code">223/1972</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="15" name="images/113.png" subset="default" task_id="226" width="768" height="1024">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="324.93" ytl="386.34" xbr="405.08" ybr="447.96" z_order="0">
+      <attribute name="code">223/1972</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="16" name="images/114.png" subset="default" task_id="226" width="960" height="720">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="248.50" ytl="414.93" xbr="304.56" ybr="473.71" z_order="0">
+      <attribute name="code">80/2582</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="17" name="images/115.png" subset="default" task_id="226" width="4272" height="2848">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="2174.94" ytl="1759.91" xbr="2423.02" ybr="1954.06" z_order="0">
+      <attribute name="code">30/1202</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="18" name="images/116.png" subset="default" task_id="226" width="4272" height="2848">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="1641.60" ytl="1884.39" xbr="1900.27" ybr="2071.15" z_order="0">
+      <attribute name="code">30/1202</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="19" name="images/117.png" subset="default" task_id="226" width="4272" height="2848">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="2032.10" ytl="1689.63" xbr="2259.81" ybr="1866.41" z_order="0">
+      <attribute name="code">33/1173</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="20" name="images/118.png" subset="default" task_id="226" width="4272" height="2848">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="1919.24" ytl="1952.30" xbr="2088.03" ybr="2080.14" z_order="0">
+      <attribute name="code">30/1202</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="21" name="images/119.png" subset="default" task_id="226" width="4272" height="2848">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="2191.90" ytl="1363.05" xbr="2326.73" ybr="1470.91" z_order="0">
+      <attribute name="code">22/2187</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="22" name="images/12.png" subset="default" task_id="226" width="1000" height="659">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="357.88" ytl="389.93" xbr="390.70" ybr="416.51" z_order="0">
+      <attribute name="code">33/1203</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="23" name="images/120.png" subset="default" task_id="226" width="4272" height="2848">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="2306.91" ytl="1525.30" xbr="2576.14" ybr="1732.39" z_order="0">
+      <attribute name="code">22/2187</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="24" name="images/121.png" subset="default" task_id="226" width="4272" height="2848">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="2974.80" ytl="1436.28" xbr="3425.11" ybr="1788.18" z_order="0">
+      <attribute name="code">22/2187</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="25" name="images/122.png" subset="default" task_id="226" width="960" height="762">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="134.75" ytl="475.22" xbr="195.39" ybr="541.45" z_order="0">
+      <attribute name="code">80/2582</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="26" name="images/123.png" subset="default" task_id="226" width="4272" height="2848">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="1686.19" ytl="1646.53" xbr="1842.20" ybr="1780.70" z_order="0">
+      <attribute name="code">23/1965</attribute>
+      <attribute name="issue">low quality</attribute>
+    </box>
+  </image>
+  <image id="27" name="images/124.png" subset="default" task_id="226" width="4272" height="2848">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="2361.96" ytl="1310.73" xbr="2591.59" ybr="1483.70" z_order="0">
+      <attribute name="code">22/2187</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="28" name="images/125.png" subset="default" task_id="226" width="4272" height="2848">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="1882.42" ytl="1722.13" xbr="2076.26" ybr="1986.80" z_order="0">
+      <attribute name="code">22/2187</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="29" name="images/126.png" subset="default" task_id="226" width="868" height="960">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="286.58" ytl="583.87" xbr="388.77" ybr="664.29" z_order="0">
+      <attribute name="code">80/2582</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="30" name="images/127.png" subset="default" task_id="226" width="4272" height="2848">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="2630.46" ytl="1153.02" xbr="3038.02" ybr="1473.61" z_order="0">
+      <attribute name="code">22/2187</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="31" name="images/128.png" subset="default" task_id="226" width="4272" height="2848">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="2787.02" ytl="1165.45" xbr="3264.17" ybr="1587.93" z_order="0">
+      <attribute name="code">22/2187</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="32" name="images/129.png" subset="default" task_id="226" width="4272" height="2848">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="2429.16" ytl="1600.35" xbr="2777.08" ybr="1886.15" z_order="0">
+      <attribute name="code">80/3264</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="33" name="images/13.png" subset="default" task_id="226" width="1000" height="667">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="268.34" ytl="8.47" xbr="855.02" ybr="651.55" z_order="0">
+      <attribute name="code">30/3271</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="34" name="images/130.png" subset="default" task_id="226" width="4272" height="2848">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="1827.75" ytl="1918.46" xbr="2046.44" ybr="2084.96" z_order="0">
+      <attribute name="code">23/1965</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="35" name="images/131.png" subset="default" task_id="226" width="4272" height="2848">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="1671.18" ytl="2159.52" xbr="2066.32" ybr="2465.19" z_order="0">
+      <attribute name="code">23/1965</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="36" name="images/132.png" subset="default" task_id="226" width="4272" height="2848">
+  </image>
+  <image id="37" name="images/133.png" subset="default" task_id="226" width="1536" height="2048">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="599.76" ytl="1434.66" xbr="656.64" ybr="1473.96" z_order="0">
+      <attribute name="code">30/1962</attribute>
+      <attribute name="issue">low quality</attribute>
+    </box>
+  </image>
+  <image id="38" name="images/134.png" subset="default" task_id="226" width="4272" height="2848">
+  </image>
+  <image id="39" name="images/135.png" subset="default" task_id="226" width="4272" height="2848">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="2105.09" ytl="1662.48" xbr="2266.63" ybr="1779.29" z_order="0">
+      <attribute name="code">33/1170</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="40" name="images/136.png" subset="default" task_id="226" width="4272" height="2848">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="1898.82" ytl="1687.33" xbr="2159.76" ybr="1898.57" z_order="0">
+      <attribute name="code">33/1170</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="41" name="images/137.png" subset="default" task_id="226" width="4272" height="2848">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="1960.95" ytl="1528.28" xbr="2132.43" ybr="1674.91" z_order="0">
+      <attribute name="code">225/1073</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="42" name="images/138.png" subset="default" task_id="226" width="960" height="918">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="684.67" ytl="382.03" xbr="771.98" ybr="477.36" z_order="0">
+      <attribute name="code">80/1791</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="43" name="images/139.png" subset="default" task_id="226" width="4272" height="2848">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="1898.57" ytl="1540.71" xbr="2231.59" ybr="1789.23" z_order="0">
+      <attribute name="code">225/1073</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="44" name="images/14.png" subset="default" task_id="226" width="1000" height="667">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="149.88" ytl="36.24" xbr="615.03" ybr="461.59" z_order="0">
+      <attribute name="code">80/1830</attribute>
+      <attribute name="issue">rotated</attribute>
+    </box>
+  </image>
+  <image id="45" name="images/140.png" subset="default" task_id="226" width="4272" height="2848">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="1842.76" ytl="2002.01" xbr="2033.62" ybr="2145.15" z_order="0">
+      <attribute name="code">23/1965</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="46" name="images/141.png" subset="default" task_id="226" width="4272" height="2848">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="2072.39" ytl="1876.75" xbr="2367.62" ybr="2091.47" z_order="0">
+      <attribute name="code">23/1965</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="47" name="images/142.png" subset="default" task_id="226" width="1200" height="630">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="447.44" ytl="350.53" xbr="536.50" ybr="411.88" z_order="0">
+      <attribute name="code">23/1965</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="48" name="images/143.png" subset="default" task_id="226" width="576" height="384">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="260.97" ytl="190.32" xbr="304.79" ybr="223.29" z_order="0">
+      <attribute name="code">30/1202</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="49" name="images/144.png" subset="default" task_id="226" width="1536" height="2048">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="607.31" ytl="1518.26" xbr="702.97" ybr="1588.93" z_order="0">
+      <attribute name="code">30/1863</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="50" name="images/145.png" subset="default" task_id="226" width="960" height="720">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="111.04" ytl="296.47" xbr="138.61" ybr="314.95" z_order="0">
+      <attribute name="code">30/1203</attribute>
+      <attribute name="issue">low quality</attribute>
+    </box>
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="649.02" ytl="344.89" xbr="732.71" ybr="422.54" z_order="0">
+      <attribute name="code">33/1203</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="51" name="images/146.png" subset="default" task_id="226" width="768" height="1024">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="253.41" ytl="606.39" xbr="381.00" ybr="701.82" z_order="0">
+      <attribute name="code">30/1202</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="52" name="images/147.png" subset="default" task_id="226" width="768" height="1024">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="90.42" ytl="381.22" xbr="233.03" ybr="478.79" z_order="0">
+      <attribute name="code">20/1046</attribute>
+      <attribute name="issue">damaged</attribute>
+    </box>
+  </image>
+  <image id="53" name="images/148.png" subset="default" task_id="226" width="768" height="1024">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="197.65" ytl="431.61" xbr="273.78" ybr="486.30" z_order="0">
+      <attribute name="code">23/1965</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="54" name="images/149.png" subset="default" task_id="226" width="768" height="1024">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="274.85" ytl="545.27" xbr="350.98" ybr="604.25" z_order="0">
+      <attribute name="code">23/1965</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="55" name="images/15.png" subset="default" task_id="226" width="1000" height="667">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="115.30" ytl="45.39" xbr="773.23" ybr="639.76" z_order="0">
+      <attribute name="code">30/3271</attribute>
+      <attribute name="issue">rotated</attribute>
+    </box>
+  </image>
+  <image id="56" name="images/150.png" subset="default" task_id="226" width="960" height="859">
+  </image>
+  <image id="57" name="images/151.png" subset="default" task_id="226" width="768" height="1024">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="121.20" ytl="529.73" xbr="271.31" ybr="640.17" z_order="0">
+      <attribute name="code">22/1977</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="58" name="images/152.png" subset="default" task_id="226" width="768" height="1024">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="189.07" ytl="477.72" xbr="265.20" ybr="534.55" z_order="0">
+      <attribute name="code">225/1073</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="59" name="images/153.png" subset="default" task_id="226" width="960" height="720">
+  </image>
+  <image id="60" name="images/154.png" subset="default" task_id="226" width="768" height="1024">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="312.38" ytl="468.07" xbr="436.76" ybr="558.14" z_order="0">
+      <attribute name="code">33/1203</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="61" name="images/155.png" subset="default" task_id="226" width="1536" height="2048">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="924.96" ytl="1502.26" xbr="1075.07" ybr="1615.92" z_order="0">
+      <attribute name="code">30/1863</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="62" name="images/156.png" subset="default" task_id="226" width="924" height="1024">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="112.62" ytl="575.30" xbr="176.95" ybr="636.41" z_order="0">
+      <attribute name="code">30/1202</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="63" name="images/157.png" subset="default" task_id="226" width="768" height="1024">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="305.95" ytl="656.79" xbr="411.03" ybr="742.57" z_order="0">
+      <attribute name="code">30/1202</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="64" name="images/158.png" subset="default" task_id="226" width="768" height="1024">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="254.48" ytl="660.00" xbr="343.50" ybr="732.90" z_order="0">
+      <attribute name="code">33/1203</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="65" name="images/159.png" subset="default" task_id="226" width="768" height="1024">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="335.97" ytl="651.43" xbr="419.61" ybr="721.12" z_order="0">
+      <attribute name="code">33/1203</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="66" name="images/16.png" subset="default" task_id="226" width="1000" height="667">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="314.36" ytl="189.27" xbr="776.72" ybr="569.91" z_order="0">
+      <attribute name="code">23/1965</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="67" name="images/160.png" subset="default" task_id="226" width="768" height="1024">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="342.40" ytl="688.95" xbr="423.89" ybr="753.29" z_order="0">
+      <attribute name="code">33/1203</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="68" name="images/161.png" subset="default" task_id="226" width="768" height="1024">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="338.12" ytl="660.00" xbr="410.00" ybr="717.90" z_order="0">
+      <attribute name="code">33/1203</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="69" name="images/162.png" subset="default" task_id="226" width="1511" height="2015">
+  </image>
+  <image id="70" name="images/163.png" subset="default" task_id="226" width="768" height="1024">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="182.64" ytl="678.23" xbr="294.15" ybr="757.58" z_order="0">
+      <attribute name="code">23/1965</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="71" name="images/164.png" subset="default" task_id="226" width="768" height="1024">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="253.41" ytl="690.03" xbr="384.22" ybr="782.24" z_order="0">
+      <attribute name="code">23/1965</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="72" name="images/165.png" subset="default" task_id="226" width="1409" height="623">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="1146.23" ytl="351.20" xbr="1201.00" ybr="391.31" z_order="0">
+      <attribute name="code">60/2811</attribute>
+      <attribute name="issue">low quality</attribute>
+    </box>
+  </image>
+  <image id="73" name="images/166.png" subset="default" task_id="226" width="1536" height="2048">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="555.38" ytl="1097.62" xbr="632.95" ybr="1152.92" z_order="0">
+      <attribute name="code">40/1361</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="74" name="images/167.png" subset="default" task_id="226" width="1600" height="780">
+  </image>
+  <image id="75" name="images/168.png" subset="default" task_id="226" width="1600" height="783">
+  </image>
+  <image id="76" name="images/169.png" subset="default" task_id="226" width="1600" height="787">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="1310.55" ytl="399.69" xbr="1340.47" ybr="430.67" z_order="0">
+      <attribute name="code">22/1951</attribute>
+      <attribute name="issue">low quality</attribute>
+    </box>
+  </image>
+  <image id="77" name="images/17.png" subset="default" task_id="226" width="1000" height="667">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="23.28" ytl="115.31" xbr="280.58" ybr="485.75" z_order="0">
+      <attribute name="code">30/1202</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="78" name="images/170.png" subset="default" task_id="226" width="960" height="721">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="392.29" ytl="373.80" xbr="498.28" ybr="449.00" z_order="0">
+      <attribute name="code">33/1203</attribute>
+      <attribute name="issue">damaged</attribute>
+    </box>
+  </image>
+  <image id="79" name="images/171.png" subset="default" task_id="226" width="713" height="960">
+  </image>
+  <image id="80" name="images/172.png" subset="default" task_id="226" width="720" height="960">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="305.76" ytl="485.49" xbr="363.66" ybr="530.13" z_order="0">
+      <attribute name="code">30/1202</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="81" name="images/173.png" subset="default" task_id="226" width="960" height="721">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="746.16" ytl="408.14" xbr="824.98" ybr="493.30" z_order="0">
+      <attribute name="code">33/1203</attribute>
+      <attribute name="issue">damaged</attribute>
+    </box>
+  </image>
+  <image id="82" name="images/174.png" subset="default" task_id="226" width="1536" height="2048">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="707.63" ytl="1522.67" xbr="816.22" ybr="1607.48" z_order="0">
+      <attribute name="code">30/1863</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="83" name="images/175.png" subset="default" task_id="226" width="829" height="911">
+  </image>
+  <image id="84" name="images/176.png" subset="default" task_id="226" width="852" height="640">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="746.60" ytl="362.09" xbr="786.46" ybr="397.37" z_order="0">
+      <attribute name="code">30/1202</attribute>
+      <attribute name="issue">low quality</attribute>
+    </box>
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="473.51" ytl="350.78" xbr="498.83" ybr="383.91" z_order="0">
+      <attribute name="code">30/1202</attribute>
+      <attribute name="issue">low quality</attribute>
+    </box>
+  </image>
+  <image id="85" name="images/177.png" subset="default" task_id="226" width="1536" height="2048">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="645.26" ytl="1058.11" xbr="737.31" ybr="1128.44" z_order="0">
+      <attribute name="code">40/1361</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="86" name="images/178.png" subset="default" task_id="226" width="720" height="960">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="245.30" ytl="513.90" xbr="324.77" ybr="574.52" z_order="0">
+      <attribute name="code">99/3257</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="87" name="images/179.png" subset="default" task_id="226" width="1405" height="632">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="904.22" ytl="367.93" xbr="942.05" ybr="397.23" z_order="0">
+      <attribute name="code">60/2811</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="88" name="images/18.png" subset="default" task_id="226" width="1000" height="667">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="52.70" ytl="314.95" xbr="418.12" ybr="624.21" z_order="0">
+      <attribute name="code">30/1202</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="89" name="images/180.png" subset="default" task_id="226" width="720" height="960">
+  </image>
+  <image id="90" name="images/181.png" subset="default" task_id="226" width="720" height="960">
+  </image>
+  <image id="91" name="images/182.png" subset="default" task_id="226" width="1600" height="524">
+  </image>
+  <image id="92" name="images/183.png" subset="default" task_id="226" width="1105" height="477">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="453.89" ytl="228.43" xbr="490.19" ybr="259.29" z_order="0">
+      <attribute name="code">2YE/1978</attribute>
+      <attribute name="issue">consists letter</attribute>
+    </box>
+  </image>
+  <image id="93" name="images/184.png" subset="default" task_id="226" width="1211" height="617">
+  </image>
+  <image id="94" name="images/185.png" subset="default" task_id="226" width="1208" height="616">
+  </image>
+  <image id="95" name="images/186.png" subset="default" task_id="226" width="1212" height="608">
+  </image>
+  <image id="96" name="images/187.png" subset="default" task_id="226" width="1215" height="615">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="878.21" ytl="307.05" xbr="922.11" ybr="338.98" z_order="0">
+      <attribute name="code">3Y/1223</attribute>
+      <attribute name="issue">consists letter</attribute>
+    </box>
+  </image>
+  <image id="97" name="images/188.png" subset="default" task_id="226" width="1536" height="2048">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="1127.18" ytl="973.21" xbr="1290.17" ybr="1099.73" z_order="0">
+      <attribute name="code">40/1363</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="98" name="images/189.png" subset="default" task_id="226" width="1212" height="612">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="425.14" ytl="237.17" xbr="485.52" ybr="287.60" z_order="0">
+      <attribute name="code">3Y/1223</attribute>
+      <attribute name="issue">consists letter</attribute>
+    </box>
+  </image>
+  <image id="99" name="images/19.png" subset="default" task_id="226" width="1000" height="666">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="243.71" ytl="135.83" xbr="639.76" ybr="557.74" z_order="0">
+      <attribute name="code">30/1866</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="100" name="images/190.png" subset="default" task_id="226" width="1207" height="543">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="509.65" ytl="295.16" xbr="564.49" ybr="345.38" z_order="0">
+      <attribute name="code">90/3082</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="101" name="images/191.png" subset="default" task_id="226" width="1213" height="548">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="416.55" ytl="278.83" xbr="475.65" ybr="328.63" z_order="0">
+      <attribute name="code">90/3082</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="102" name="images/192.png" subset="default" task_id="226" width="1212" height="546">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="766.85" ytl="374.72" xbr="807.32" ybr="415.19" z_order="0">
+      <attribute name="code">90/3082</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="103" name="images/193.png" subset="default" task_id="226" width="1212" height="550">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="570.45" ytl="268.56" xbr="622.87" ybr="309.03" z_order="0">
+      <attribute name="code">33/1203</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="104" name="images/194.png" subset="default" task_id="226" width="1100" height="608">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="891.52" ytl="285.05" xbr="947.55" ybr="342.35" z_order="0">
+      <attribute name="code">30/1202</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="105" name="images/195.png" subset="default" task_id="226" width="1920" height="827">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="1693.26" ytl="546.00" xbr="1744.35" ybr="598.92" z_order="0">
+      <attribute name="code">226/1230</attribute>
+      <attribute name="issue">low quality</attribute>
+    </box>
+  </image>
+  <image id="106" name="images/196.png" subset="default" task_id="226" width="1920" height="822">
+  </image>
+  <image id="107" name="images/197.png" subset="default" task_id="226" width="1536" height="2048">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="860.62" ytl="998.09" xbr="989.29" ybr="1094.59" z_order="0">
+      <attribute name="code">40/1361</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="108" name="images/198.png" subset="default" task_id="226" width="1920" height="827">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="1303.19" ytl="486.12" xbr="1349.31" ybr="520.08" z_order="0">
+      <attribute name="code">68/1750</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="109" name="images/199.png" subset="default" task_id="226" width="1536" height="2048">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="613.45" ytl="1466.90" xbr="677.29" ybr="1514.78" z_order="0">
+      <attribute name="code">30/1863</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="110" name="images/2.png" subset="default" task_id="226" width="1000" height="667">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="158.67" ytl="186.83" xbr="368.87" ybr="337.69" z_order="0">
+      <attribute name="code">33/1993</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="111" name="images/20.png" subset="default" task_id="226" width="1000" height="667">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="38.99" ytl="268.29" xbr="542.86" ybr="581.08" z_order="0">
+      <attribute name="code">30/1866</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="112" name="images/200.png" subset="default" task_id="226" width="1920" height="870">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="1352.91" ytl="537.27" xbr="1404.61" ybr="573.26" z_order="0">
+      <attribute name="code">223/1972</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="113" name="images/201.png" subset="default" task_id="226" width="1536" height="2048">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="757.60" ytl="1370.84" xbr="958.33" ybr="1525.25" z_order="0">
+      <attribute name="code">30/1202</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="114" name="images/202.png" subset="default" task_id="226" width="1536" height="2048">
+  </image>
+  <image id="115" name="images/203.png" subset="default" task_id="226" width="1536" height="2048">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="816.79" ytl="1224.16" xbr="994.35" ybr="1368.27" z_order="0">
+      <attribute name="code">30/1202</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="116" name="images/204.png" subset="default" task_id="226" width="1536" height="2048">
+  </image>
+  <image id="117" name="images/205.png" subset="default" task_id="226" width="4272" height="2848">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="2368.58" ytl="1741.96" xbr="2561.82" ybr="1888.68" z_order="0">
+      <attribute name="code">90/3082</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="118" name="images/206.png" subset="default" task_id="226" width="4272" height="2848">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="2608.35" ytl="1770.59" xbr="2891.06" ybr="1992.46" z_order="0">
+      <attribute name="code">90/3082</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="119" name="images/207.png" subset="default" task_id="226" width="1155" height="1198">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="709.18" ytl="670.94" xbr="819.07" ybr="761.26" z_order="0">
+      <attribute name="code">80/1824</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="120" name="images/21.png" subset="default" task_id="226" width="1000" height="667">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="194.93" ytl="18.67" xbr="836.09" ybr="640.55" z_order="0">
+      <attribute name="code">33/3295</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="121" name="images/22.png" subset="default" task_id="226" width="1000" height="667">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="176.49" ytl="72.31" xbr="822.68" ybr="614.57" z_order="0">
+      <attribute name="code">23/1965</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="122" name="images/23.png" subset="default" task_id="226" width="1000" height="667">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="353.33" ytl="309.50" xbr="520.95" ybr="431.02" z_order="0">
+      <attribute name="code">59/2426</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="123" name="images/24.png" subset="default" task_id="226" width="1000" height="665">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="581.85" ytl="242.51" xbr="794.09" ybr="436.37" z_order="0">
+      <attribute name="code">223/1972</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="124" name="images/25.png" subset="default" task_id="226" width="1000" height="667">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="355.85" ytl="228.20" xbr="674.33" ybr="470.42" z_order="0">
+      <attribute name="code">23/1965</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="125" name="images/26.png" subset="default" task_id="226" width="1000" height="667">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="244.38" ytl="313.69" xbr="529.30" ybr="566.00" z_order="0">
+      <attribute name="code">30/1202</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="126" name="images/27.png" subset="default" task_id="226" width="1000" height="667">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="121.17" ytl="442.76" xbr="157.21" ybr="476.28" z_order="0">
+      <attribute name="code">33/1203</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="127" name="images/28.png" subset="default" task_id="226" width="1000" height="562">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="74.51" ytl="335.84" xbr="102.89" ybr="365.64" z_order="0">
+      <attribute name="code">33/1203</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="128" name="images/29.png" subset="default" task_id="226" width="1000" height="667">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="380.84" ytl="238.30" xbr="746.52" ybr="530.37" z_order="0">
+      <attribute name="code">99/3257</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="129" name="images/3.png" subset="default" task_id="226" width="1000" height="750">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="194.92" ytl="415.31" xbr="295.34" ybr="495.37" z_order="0">
+      <attribute name="code">30/1202</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="130" name="images/30.png" subset="default" task_id="226" width="1000" height="667">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="297.56" ytl="214.17" xbr="645.14" ybr="579.85" z_order="0">
+      <attribute name="code">80/3264</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="131" name="images/31.png" subset="default" task_id="226" width="1000" height="665">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="123.61" ytl="131.79" xbr="532.72" ybr="521.65" z_order="0">
+      <attribute name="code">40/1361</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="132" name="images/32.png" subset="default" task_id="226" width="1000" height="667">
+  </image>
+  <image id="133" name="images/33.png" subset="default" task_id="226" width="1000" height="665">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="332.22" ytl="182.31" xbr="720.27" ybr="600.45" z_order="0">
+      <attribute name="code">33/1203</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="134" name="images/34.png" subset="default" task_id="226" width="1000" height="667">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="380.03" ytl="244.16" xbr="675.72" ybr="456.37" z_order="0">
+      <attribute name="code">33/1090</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="135" name="images/35.png" subset="default" task_id="226" width="1000" height="665">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="382.35" ytl="169.27" xbr="746.34" ybr="536.27" z_order="0">
+      <attribute name="code">22/1977</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="136" name="images/36.png" subset="default" task_id="226" width="1000" height="667">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="54.17" ytl="243.15" xbr="434.34" ybr="516.71" z_order="0">
+      <attribute name="code">23/1965</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="137" name="images/37.png" subset="default" task_id="226" width="1000" height="667">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="862.79" ytl="494.59" xbr="989.51" ybr="584.10" z_order="0">
+      <attribute name="code">90/3082</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="138" name="images/38.png" subset="default" task_id="226" width="1000" height="667">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="329.75" ytl="233.09" xbr="399.14" ybr="426.20" z_order="0">
+      <attribute name="code">33/1208</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="139" name="images/39.png" subset="default" task_id="226" width="1000" height="667">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="688.79" ytl="8.81" xbr="956.32" ybr="667.00" z_order="0">
+      <attribute name="code">33/1203</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="140" name="images/4.png" subset="default" task_id="226" width="1000" height="668">
+  </image>
+  <image id="141" name="images/40.png" subset="default" task_id="226" width="1000" height="667">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="753.16" ytl="388.98" xbr="860.78" ybr="465.42" z_order="0">
+      <attribute name="code">90/3082</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="142" name="images/41.png" subset="default" task_id="226" width="1000" height="667">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="850.72" ytl="415.13" xbr="923.13" ybr="477.49" z_order="0">
+      <attribute name="code">90/3082</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="143" name="images/42.png" subset="default" task_id="226" width="1000" height="667">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="806.47" ytl="419.16" xbr="908.04" ybr="490.56" z_order="0">
+      <attribute name="code">90/3082</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="144" name="images/43.png" subset="default" task_id="226" width="1000" height="667">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="61.21" ytl="417.14" xbr="152.74" ybr="480.51" z_order="0">
+      <attribute name="code">90/3082</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="145" name="images/44.png" subset="default" task_id="226" width="1000" height="667">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="713.94" ytl="418.15" xbr="818.53" ybr="499.61" z_order="0">
+      <attribute name="code">90/3082</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="146" name="images/45.png" subset="default" task_id="226" width="1000" height="667">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="774.44" ytl="522.06" xbr="800.38" ybr="546.31" z_order="0">
+      <attribute name="code">90/3082</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="147" name="images/46.png" subset="default" task_id="226" width="1000" height="667">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="778.17" ytl="413.17" xbr="869.53" ybr="477.71" z_order="0">
+      <attribute name="code">90/3082</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="148" name="images/47.png" subset="default" task_id="226" width="1000" height="667">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="265.41" ytl="383.75" xbr="343.36" ybr="580.71" z_order="0">
+      <attribute name="code">90/3082</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="149" name="images/48.png" subset="default" task_id="226" width="1000" height="667">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="111.00" ytl="337.62" xbr="158.29" ybr="374.81" z_order="0">
+      <attribute name="code">90/3082</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="150" name="images/49.png" subset="default" task_id="226" width="1000" height="667">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="93.70" ytl="346.34" xbr="148.70" ybr="397.60" z_order="0">
+      <attribute name="code">90/3082</attribute>
+      <attribute name="issue">bad illuminatio</attribute>
+    </box>
+  </image>
+  <image id="151" name="images/5.png" subset="default" task_id="226" width="1000" height="668">
+  </image>
+  <image id="152" name="images/50.png" subset="default" task_id="226" width="1000" height="667">
+  </image>
+  <image id="153" name="images/51.png" subset="default" task_id="226" width="1000" height="667">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="41.40" ytl="0.00" xbr="298.87" ybr="667.00" z_order="0">
+      <attribute name="code">90/3082</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="154" name="images/52.png" subset="default" task_id="226" width="1000" height="667">
+  </image>
+  <image id="155" name="images/53.png" subset="default" task_id="226" width="1000" height="676">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="626.70" ytl="366.40" xbr="672.40" ybr="401.10" z_order="0">
+      <attribute name="code">23/1965</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="156" name="images/54.png" subset="default" task_id="226" width="1000" height="667">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="501.02" ytl="407.59" xbr="567.40" ybr="458.88" z_order="0">
+      <attribute name="code">30/1202</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="157" name="images/55.png" subset="default" task_id="226" width="1000" height="646">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="657.85" ytl="349.46" xbr="736.75" ybr="405.95" z_order="0">
+      <attribute name="code">90/3082</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="158" name="images/56.png" subset="default" task_id="226" width="1000" height="635">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="565.14" ytl="365.03" xbr="617.81" ybr="404.29" z_order="0">
+      <attribute name="code">90/3082</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="159" name="images/57.png" subset="default" task_id="226" width="1000" height="655">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="683.71" ytl="450.63" xbr="748.90" ybr="501.00" z_order="0">
+      <attribute name="code">33/1203</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="160" name="images/58.png" subset="default" task_id="226" width="1000" height="647">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="449.30" ytl="393.39" xbr="520.30" ybr="449.20" z_order="0">
+      <attribute name="code">30/1202</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="161" name="images/59.png" subset="default" task_id="226" width="1000" height="667">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="537.79" ytl="324.41" xbr="590.20" ybr="365.60" z_order="0">
+      <attribute name="code">33/1203</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="162" name="images/6.png" subset="default" task_id="226" width="1000" height="668">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="654.31" ytl="343.83" xbr="692.36" ybr="374.19" z_order="0">
+      <attribute name="code">60/2078</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="163" name="images/60.png" subset="default" task_id="226" width="1000" height="667">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="311.59" ytl="244.07" xbr="373.86" ybr="290.05" z_order="0">
+      <attribute name="code">23/1075</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="164" name="images/61.png" subset="default" task_id="226" width="1000" height="668">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="625.52" ytl="404.01" xbr="670.01" ybr="437.59" z_order="0">
+      <attribute name="code">33/1253</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="165" name="images/62.png" subset="default" task_id="226" width="1000" height="667">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="814.72" ytl="414.56" xbr="846.77" ybr="452.22" z_order="0">
+      <attribute name="code">99/3257</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="166" name="images/63.png" subset="default" task_id="226" width="1000" height="556">
+  </image>
+  <image id="167" name="images/64.png" subset="default" task_id="226" width="1000" height="667">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="812.28" ytl="269.60" xbr="905.30" ybr="338.30" z_order="0">
+      <attribute name="code">30/1202</attribute>
+      <attribute name="issue">snow</attribute>
+    </box>
+  </image>
+  <image id="168" name="images/65.png" subset="default" task_id="226" width="1000" height="667">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="494.64" ytl="141.37" xbr="855.03" ybr="411.24" z_order="0">
+      <attribute name="code">30/1202</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="169" name="images/66.png" subset="default" task_id="226" width="1000" height="665">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="105.22" ytl="124.19" xbr="529.70" ybr="521.10" z_order="0">
+      <attribute name="code">40/1361</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="170" name="images/67.png" subset="default" task_id="226" width="1000" height="667">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="679.50" ytl="369.60" xbr="735.18" ybr="417.11" z_order="0">
+      <attribute name="code">33/1203</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="171" name="images/68.png" subset="default" task_id="226" width="1000" height="667">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="464.38" ytl="333.64" xbr="526.40" ybr="378.06" z_order="0">
+      <attribute name="code">30/1202</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="172" name="images/69.png" subset="default" task_id="226" width="1000" height="667">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="402.00" ytl="442.16" xbr="430.30" ybr="464.85" z_order="0">
+      <attribute name="code">33/1203</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="173" name="images/7.png" subset="default" task_id="226" width="1000" height="668">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="755.23" ytl="429.78" xbr="790.20" ybr="456.98" z_order="0">
+      <attribute name="code">80/1805</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="174" name="images/70.png" subset="default" task_id="226" width="1000" height="667">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="248.20" ytl="376.40" xbr="286.94" ybr="409.51" z_order="0">
+      <attribute name="code">33/1203</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="175" name="images/71.png" subset="default" task_id="226" width="1000" height="667">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="522.30" ytl="458.84" xbr="553.82" ybr="479.86" z_order="0">
+      <attribute name="code">30/1202</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="176" name="images/72.png" subset="default" task_id="226" width="1000" height="667">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="422.38" ytl="384.55" xbr="470.08" ybr="418.91" z_order="0">
+      <attribute name="code">30/1202</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="177" name="images/73.png" subset="default" task_id="226" width="1000" height="667">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="393.68" ytl="405.57" xbr="436.53" ybr="440.73" z_order="0">
+      <attribute name="code">23/1965</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="819.98" ytl="404.72" xbr="854.74" ybr="439.07" z_order="0">
+      <attribute name="code">33/1203</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="178" name="images/74.png" subset="default" task_id="226" width="1000" height="667">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="315.84" ytl="395.92" xbr="371.71" ybr="440.74" z_order="0">
+      <attribute name="code">33/1203</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="179" name="images/75.png" subset="default" task_id="226" width="1000" height="667">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="454.41" ytl="432.95" xbr="486.38" ybr="457.51" z_order="0">
+      <attribute name="code">80/3264</attribute>
+      <attribute name="issue">low quality</attribute>
+    </box>
+  </image>
+  <image id="180" name="images/76.png" subset="default" task_id="226" width="1000" height="667">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="387.54" ytl="422.46" xbr="425.95" ybr="451.56" z_order="0">
+      <attribute name="code">60/2312</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="181" name="images/77.png" subset="default" task_id="226" width="1000" height="667">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="168.39" ytl="387.65" xbr="218.68" ybr="426.20" z_order="0">
+      <attribute name="code">99/3257</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="182" name="images/78.png" subset="default" task_id="226" width="750" height="1000">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="94.04" ytl="312.93" xbr="445.87" ybr="581.83" z_order="0">
+      <attribute name="code">33/1203</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="183" name="images/79.png" subset="default" task_id="226" width="750" height="1000">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="459.70" ytl="459.95" xbr="698.44" ybr="639.63" z_order="0">
+      <attribute name="code">30/1202</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="184" name="images/8.png" subset="default" task_id="226" width="1000" height="668">
+  </image>
+  <image id="185" name="images/80.png" subset="default" task_id="226" width="667" height="1000">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="426.27" ytl="498.90" xbr="505.50" ybr="559.40" z_order="0">
+      <attribute name="code">30/1202</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="186" name="images/81.png" subset="default" task_id="226" width="1000" height="682">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="550.63" ytl="298.45" xbr="590.80" ybr="330.19" z_order="0">
+      <attribute name="code">33/1203</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="187" name="images/82.png" subset="default" task_id="226" width="1000" height="667">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="501.48" ytl="374.55" xbr="553.38" ybr="413.35" z_order="0">
+      <attribute name="code">99/3257</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="188" name="images/83.png" subset="default" task_id="226" width="808" height="1080">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="216.34" ytl="730.18" xbr="345.13" ybr="829.14" z_order="0">
+      <attribute name="code">23/1965</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="189" name="images/84.png" subset="default" task_id="226" width="810" height="1080">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="126.26" ytl="536.20" xbr="273.12" ybr="635.94" z_order="0">
+      <attribute name="code">223/1972</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="190" name="images/85.png" subset="default" task_id="226" width="810" height="1080">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="368.93" ytl="478.87" xbr="463.95" ybr="551.91" z_order="0">
+      <attribute name="code">23/1049</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="191" name="images/86.png" subset="default" task_id="226" width="811" height="1080">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="460.89" ytl="311.60" xbr="554.35" ybr="398.77" z_order="0">
+      <attribute name="code">22/2187</attribute>
+      <attribute name="issue">rotated</attribute>
+    </box>
+  </image>
+  <image id="192" name="images/87.png" subset="default" task_id="226" width="810" height="1080">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="306.84" ytl="772.54" xbr="436.89" ybr="872.06" z_order="0">
+      <attribute name="code">33/1203</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="193" name="images/88.png" subset="default" task_id="226" width="812" height="1080">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="525.21" ytl="467.88" xbr="583.33" ybr="530.71" z_order="0">
+      <attribute name="code">22/2187</attribute>
+      <attribute name="issue">rotated</attribute>
+    </box>
+  </image>
+  <image id="194" name="images/89.png" subset="default" task_id="226" width="811" height="1080">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="488.22" ytl="351.65" xbr="555.76" ybr="430.18" z_order="0">
+      <attribute name="code">22/2187</attribute>
+      <attribute name="issue">rotated</attribute>
+    </box>
+  </image>
+  <image id="195" name="images/9.png" subset="default" task_id="226" width="1000" height="668">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="677.82" ytl="441.17" xbr="719.21" ybr="478.47" z_order="0">
+      <attribute name="code">225/1073</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="196" name="images/90.png" subset="default" task_id="226" width="807" height="1079">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="117.77" ytl="678.27" xbr="229.81" ybr="764.89" z_order="0">
+      <attribute name="code">23/1965</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="197" name="images/91.png" subset="default" task_id="226" width="811" height="1080">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="145.03" ytl="672.78" xbr="256.23" ybr="755.71" z_order="0">
+      <attribute name="code">33/1203</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="198" name="images/92.png" subset="default" task_id="226" width="810" height="1080">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="560.53" ytl="510.68" xbr="651.95" ybr="592.67" z_order="0">
+      <attribute name="code">23/1049</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="199" name="images/93.png" subset="default" task_id="226" width="808" height="1080">
+  </image>
+  <image id="200" name="images/94.png" subset="default" task_id="226" width="810" height="1079">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="244.97" ytl="552.10" xbr="398.44" ybr="676.38" z_order="0">
+      <attribute name="code">223/1972</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="201" name="images/95.png" subset="default" task_id="226" width="809" height="1080">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="218.44" ytl="625.65" xbr="323.05" ybr="706.70" z_order="0">
+      <attribute name="code">33/1203</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="202" name="images/96.png" subset="default" task_id="226" width="810" height="1080">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="586.92" ytl="324.08" xbr="689.64" ybr="419.27" z_order="0">
+      <attribute name="code">22/2187</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="203" name="images/97.png" subset="default" task_id="226" width="811" height="1080">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="258.10" ytl="754.77" xbr="375.90" ybr="855.60" z_order="0">
+      <attribute name="code">23/1965</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="204" name="images/98.png" subset="default" task_id="226" width="810" height="1080">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="641.29" ytl="495.48" xbr="668.94" ybr="542.82" z_order="0">
+      <attribute name="code">22/2187</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="205" name="images/99.png" subset="default" task_id="226" width="809" height="1080">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="481.37" ytl="506.82" xbr="576.56" ybr="583.15" z_order="0">
+      <attribute name="code">23/1049</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="206" name="208.jpg" subset="default" task_id="228" width="800" height="600">
+  </image>
+  <image id="207" name="209.jpg" subset="default" task_id="228" width="800" height="600">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="157.63" ytl="342.02" xbr="181.91" ybr="363.99" z_order="0">
+      <attribute name="code">33/1203</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="236.13" ytl="342.20" xbr="262.14" ybr="367.05" z_order="0">
+      <attribute name="code">33/1203</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="208" name="210.jpg" subset="default" task_id="228" width="800" height="600">
+  </image>
+  <image id="209" name="211.jpg" subset="default" task_id="228" width="800" height="600">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="314.74" ytl="258.38" xbr="360.98" ybr="295.95" z_order="0">
+      <attribute name="code">33/1203</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="210" name="212.jpg" subset="default" task_id="228" width="800" height="600">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="429.77" ytl="350.29" xbr="466.76" ybr="384.97" z_order="0">
+      <attribute name="code">33/1203</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="529.77" ytl="345.67" xbr="556.94" ybr="376.88" z_order="0">
+      <attribute name="code">33/1203</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="211" name="213.jpg" subset="default" task_id="228" width="800" height="600">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="474.86" ytl="301.16" xbr="506.07" ybr="335.26" z_order="0">
+      <attribute name="code">33/1203</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="563.30" ytl="297.69" xbr="585.84" ybr="327.75" z_order="0">
+      <attribute name="code">33/1203</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="212" name="214.jpg" subset="default" task_id="228" width="800" height="600">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="266.76" ytl="284.39" xbr="299.13" ybr="310.41" z_order="0">
+      <attribute name="code">33/1203</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="371.97" ytl="287.28" xbr="405.49" ybr="312.72" z_order="0">
+      <attribute name="code">33/1203</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="213" name="215.jpg" subset="default" task_id="228" width="800" height="600">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="518.79" ytl="213.87" xbr="570.81" ybr="258.96" z_order="0">
+      <attribute name="code">33/1203</attribute>
+      <attribute name="issue">low quality</attribute>
+    </box>
+  </image>
+  <image id="214" name="216.jpg" subset="default" task_id="228" width="800" height="600">
+  </image>
+  <image id="215" name="217.jpg" subset="default" task_id="228" width="449" height="599">
+  </image>
+  <image id="216" name="218.jpg" subset="default" task_id="228" width="800" height="600">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="468.50" ytl="294.80" xbr="497.98" ybr="317.92" z_order="0">
+      <attribute name="code">33/1203</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="553.47" ytl="293.64" xbr="581.21" ybr="316.19" z_order="0">
+      <attribute name="code">33/1203</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="217" name="219.jpg" subset="default" task_id="228" width="800" height="600">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="460.98" ytl="316.76" xbr="491.04" ybr="353.18" z_order="0">
+      <attribute name="code">33/1203</attribute>
+      <attribute name="issue">yellow plate</attribute>
+    </box>
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="543.64" ytl="309.83" xbr="566.19" ybr="339.31" z_order="0">
+      <attribute name="code">33/1203</attribute>
+      <attribute name="issue">yellow plate</attribute>
+    </box>
+  </image>
+  <image id="218" name="220.jpg" subset="default" task_id="228" width="800" height="600">
+  </image>
+  <image id="219" name="221.jpg" subset="default" task_id="228" width="800" height="600">
+  </image>
+  <image id="220" name="222.jpg" subset="default" task_id="228" width="800" height="600">
+  </image>
+  <image id="221" name="223.jpg" subset="default" task_id="228" width="800" height="600">
+  </image>
+  <image id="222" name="224.jpg" subset="default" task_id="228" width="800" height="600">
+  </image>
+  <image id="223" name="225.jpg" subset="default" task_id="228" width="800" height="600">
+  </image>
+  <image id="224" name="226.jpg" subset="default" task_id="228" width="800" height="600">
+  </image>
+  <image id="225" name="227.jpg" subset="default" task_id="228" width="1065" height="600">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="470.06" ytl="278.04" xbr="504.74" ybr="308.67" z_order="0">
+      <attribute name="code">33/1203</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="724.39" ytl="276.30" xbr="768.90" ybr="311.56" z_order="0">
+      <attribute name="code">33/1203</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="226" name="228.jpg" subset="default" task_id="228" width="800" height="600">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="126.88" ytl="321.97" xbr="156.94" ybr="347.40" z_order="0">
+      <attribute name="code">33/1203</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="508.96" ytl="324.86" xbr="542.49" ybr="349.13" z_order="0">
+      <attribute name="code">33/1203</attribute>
+      <attribute name="issue">sunflare</attribute>
+    </box>
+  </image>
+  <image id="227" name="229.jpg" subset="default" task_id="228" width="800" height="600">
+  </image>
+  <image id="228" name="230.jpg" subset="default" task_id="228" width="800" height="600">
+  </image>
+  <image id="229" name="231.jpg" subset="default" task_id="228" width="800" height="600">
+  </image>
+  <image id="230" name="232.jpg" subset="default" task_id="228" width="800" height="600">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="300.87" ytl="260.12" xbr="339.02" ybr="302.89" z_order="0">
+      <attribute name="code">33/1203</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="468.50" ytl="271.10" xbr="522.25" ybr="321.97" z_order="0">
+      <attribute name="code">33/1203</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="669.08" ytl="228.90" xbr="697.98" ybr="272.25" z_order="0">
+      <attribute name="code">33/1203</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="231" name="233.jpg" subset="default" task_id="228" width="800" height="600">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="441.33" ytl="312.72" xbr="483.53" ybr="349.71" z_order="0">
+      <attribute name="code">33/1203</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="232" name="234.jpg" subset="default" task_id="228" width="800" height="600">
+  </image>
+  <image id="233" name="235.jpg" subset="default" task_id="228" width="800" height="600">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="603.18" ytl="285.55" xbr="634.39" ybr="321.39" z_order="0">
+      <attribute name="code">33/1203</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="234" name="236.jpg" subset="default" task_id="228" width="800" height="600">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="273.12" ytl="356.65" xbr="302.60" ybr="390.17" z_order="0">
+      <attribute name="code">33/1203</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="569.65" ytl="294.22" xbr="597.98" ybr="328.32" z_order="0">
+      <attribute name="code">33/1203</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="235" name="237.jpg" subset="default" task_id="228" width="800" height="600">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="601.45" ytl="287.28" xbr="631.50" ybr="325.43" z_order="0">
+      <attribute name="code">33/1203</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="236" name="238.jpg" subset="default" task_id="228" width="800" height="600">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="434.39" ytl="197.11" xbr="476.01" ybr="230.06" z_order="0">
+      <attribute name="code">33/1203</attribute>
+      <attribute name="issue">orange truck</attribute>
+    </box>
+  </image>
+  <image id="237" name="239.jpg" subset="default" task_id="228" width="800" height="600">
+  </image>
+  <image id="238" name="240.jpg" subset="default" task_id="228" width="800" height="600">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="510.69" ytl="293.06" xbr="550.58" ybr="325.43" z_order="0">
+      <attribute name="code">33/1203</attribute>
+      <attribute name="issue">orange truck</attribute>
+    </box>
+  </image>
+  <image id="239" name="241.jpg" subset="default" task_id="228" width="800" height="600">
+  </image>
+  <image id="240" name="242.jpg" subset="default" task_id="228" width="800" height="600">
+  </image>
+  <image id="241" name="243.jpg" subset="default" task_id="228" width="800" height="600">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="269.65" ytl="234.68" xbr="318.79" ybr="268.21" z_order="0">
+      <attribute name="code">33/1203</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="242" name="244.jpg" subset="default" task_id="228" width="800" height="600">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="150.58" ytl="297.11" xbr="174.86" ybr="331.21" z_order="0">
+      <attribute name="code">33/1203</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="445.38" ytl="327.17" xbr="506.65" ybr="387.28" z_order="0">
+      <attribute name="code">33/1203</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="564.45" ytl="242.78" xbr="615.32" ybr="298.84" z_order="0">
+      <attribute name="code">33/1203</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="243" name="245.jpg" subset="default" task_id="228" width="800" height="600">
+  </image>
+  <image id="244" name="246.jpg" subset="default" task_id="228" width="800" height="600">
+  </image>
+  <image id="245" name="247.jpg" subset="default" task_id="228" width="800" height="600">
+  </image>
+  <image id="246" name="248.jpg" subset="default" task_id="228" width="800" height="600">
+  </image>
+  <image id="247" name="249.jpg" subset="default" task_id="228" width="800" height="600">
+  </image>
+  <image id="248" name="250.jpg" subset="default" task_id="228" width="800" height="600">
+  </image>
+  <image id="249" name="251.jpg" subset="default" task_id="228" width="800" height="600">
+  </image>
+  <image id="250" name="252.jpg" subset="default" task_id="228" width="800" height="600">
+  </image>
+  <image id="251" name="253.jpg" subset="default" task_id="228" width="800" height="600">
+  </image>
+  <image id="252" name="254.jpg" subset="default" task_id="228" width="800" height="600">
+  </image>
+  <image id="253" name="255.jpg" subset="default" task_id="228" width="800" height="600">
+  </image>
+  <image id="254" name="256.jpg" subset="default" task_id="228" width="800" height="600">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="293.35" ytl="277.46" xbr="322.83" ybr="306.94" z_order="0">
+      <attribute name="code">33/1203</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="393.35" ytl="278.61" xbr="429.19" ybr="309.25" z_order="0">
+      <attribute name="code">33/1203</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="255" name="257.jpg" subset="default" task_id="228" width="800" height="600">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="374.28" ytl="286.71" xbr="428.04" ybr="343.93" z_order="0">
+      <attribute name="code">33/1203</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="477.17" ytl="223.12" xbr="533.24" ybr="273.41" z_order="0">
+      <attribute name="code">33/1203</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="256" name="258.jpg" subset="default" task_id="228" width="800" height="600">
+  </image>
+  <image id="257" name="259.jpg" subset="default" task_id="228" width="800" height="600">
+  </image>
+  <image id="258" name="260.jpg" subset="default" task_id="228" width="800" height="600">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="540.17" ytl="321.97" xbr="576.01" ybr="361.85" z_order="0">
+      <attribute name="code">33/1203</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="684.10" ytl="313.87" xbr="711.27" ybr="349.71" z_order="0">
+      <attribute name="code">33/1203</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="259" name="261.jpg" subset="default" task_id="228" width="800" height="600">
+  </image>
+  <image id="260" name="262.jpg" subset="default" task_id="228" width="800" height="600">
+  </image>
+  <image id="261" name="263.jpg" subset="default" task_id="228" width="800" height="600">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="462.72" ytl="257.80" xbr="499.71" ybr="287.86" z_order="0">
+      <attribute name="code">33/1203</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="621.10" ytl="254.34" xbr="658.67" ybr="286.71" z_order="0">
+      <attribute name="code">33/1203</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="262" name="264.jpg" subset="default" task_id="228" width="800" height="600">
+  </image>
+  <image id="263" name="265.jpg" subset="default" task_id="228" width="800" height="600">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="374.28" ytl="301.16" xbr="413.01" ybr="331.21" z_order="0">
+      <attribute name="code">33/1203</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="553.47" ytl="292.49" xbr="596.24" ybr="323.12" z_order="0">
+      <attribute name="code">33/1203</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="264" name="266.jpg" subset="default" task_id="228" width="800" height="600">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="469.65" ytl="285.55" xbr="505.49" ybr="319.08" z_order="0">
+      <attribute name="code">33/1203</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="605.49" ytl="273.41" xbr="632.08" ybr="304.05" z_order="0">
+      <attribute name="code">33/1203</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="265" name="267.jpg" subset="default" task_id="228" width="800" height="600">
+  </image>
+  <image id="266" name="268.jpg" subset="default" task_id="228" width="800" height="600">
+  </image>
+  <image id="267" name="269.jpg" subset="default" task_id="228" width="800" height="600">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="496.24" ytl="319.65" xbr="518.79" ybr="341.04" z_order="0">
+      <attribute name="code">33/1203</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="568.50" ytl="315.61" xbr="588.15" ybr="335.84" z_order="0">
+      <attribute name="code">33/1203</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="268" name="270.jpg" subset="default" task_id="228" width="800" height="600">
+  </image>
+  <image id="269" name="271.jpg" subset="default" task_id="228" width="800" height="600">
+  </image>
+  <image id="270" name="272.jpg" subset="default" task_id="228" width="800" height="600">
+  </image>
+  <image id="271" name="273.jpg" subset="default" task_id="228" width="800" height="600">
+  </image>
+  <image id="272" name="274.jpg" subset="default" task_id="228" width="800" height="600">
+  </image>
+  <image id="273" name="275.jpg" subset="default" task_id="228" width="800" height="600">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="300.64" ytl="250.93" xbr="327.23" ybr="284.45" z_order="0">
+      <attribute name="code">33/1203</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="463.06" ytl="259.60" xbr="502.95" ybr="300.64" z_order="0">
+      <attribute name="code">33/1203</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="615.67" ytl="302.37" xbr="644.57" ybr="346.30" z_order="0">
+      <attribute name="code">33/1203</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="274" name="276.jpg" subset="default" task_id="228" width="800" height="600">
+  </image>
+  <image id="275" name="277.jpg" subset="default" task_id="228" width="800" height="600">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="256.71" ytl="304.10" xbr="280.98" ybr="331.85" z_order="0">
+      <attribute name="code">33/1203</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="336.47" ytl="306.42" xbr="364.80" ybr="336.47" z_order="0">
+      <attribute name="code">33/1203</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="639.94" ytl="302.95" xbr="668.27" ybr="342.83" z_order="0">
+      <attribute name="code">33/1203</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="276" name="278.jpg" subset="default" task_id="228" width="800" height="600">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="239.36" ytl="330.12" xbr="270.58" ybr="352.66" z_order="0">
+      <attribute name="code">33/1203</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="343.41" ytl="328.96" xbr="375.20" ybr="352.66" z_order="0">
+      <attribute name="code">33/1203</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="277" name="279.jpg" subset="default" task_id="228" width="800" height="600">
+  </image>
+  <image id="278" name="280.jpg" subset="default" task_id="228" width="800" height="600">
+  </image>
+  <image id="279" name="281.jpg" subset="default" task_id="228" width="800" height="600">
+  </image>
+  <image id="280" name="282.jpg" subset="default" task_id="228" width="3000" height="4000">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="1415.82" ytl="1861.29" xbr="1585.38" ybr="2030.85" z_order="0">
+      <attribute name="code">225/1073</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="281" name="283.jpg" subset="default" task_id="228" width="3000" height="4000">
+    <box label="hazmat_sign" source="manual" occluded="0" xtl="1585.38" ytl="1830.46" xbr="1747.23" ybr="2100.21" z_order="0">
+      <attribute name="code">225/1073</attribute>
+      <attribute name="issue"></attribute>
+    </box>
+  </image>
+  <image id="282" name="284.jpg" subset="default" task_id="228" width="3000" height="4000">
+  </image>
+</annotations>
