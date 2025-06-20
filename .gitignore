@@ -212,4 +212,8 @@ data/augmented_images/
 data/frames_videos
 data/models
 data/un_numbers/un/
+output/
+images/stock
+images/
+data/
 checkpoints
