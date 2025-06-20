@@ -1,0 +1,4 @@
+*.ipynb filter=lfs diff=lfs merge=lfs -text
+prediction_paper.ipynb filter=lfs diff=lfs merge=lfs -text
+training_faster_rcnn.ipynb filter=lfs diff=lfs merge=lfs -text
+pedrictionspaper2.ipynb filter=lfs diff=lfs merge=lfs -text

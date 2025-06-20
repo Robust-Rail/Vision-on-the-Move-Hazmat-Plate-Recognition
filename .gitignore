@@ -200,7 +200,14 @@ data/cvat-for-video-dataset-hazmat-codes/
 data/hazmat-detection.zip
 data/yolo/
 data/augmented_images/
-
+images/stock
+images/hazmat_codes_working
+images/hazmat_codes_not_working
+images/false_positives
+images/true_positives
+images/true_negatives
+images/false_negatives
+images/augmented
 # Checkpoints
 /checkpoints
 
@@ -212,4 +219,16 @@ data/augmented_images/
 data/frames_videos
 data/models
 data/un_numbers/un/
+data/public_dataset/
 checkpoints
+data/ground_truth_and_predictions/
+data/predictions/
+data/yolo_models/
+output/fog
+output/ground_truth_and_predictions
+output/prorail_pred_faster_rcnn_best_model
+output/rain
+output/shadow/
+output/sun_flare
+output/faster_rcnn_paper_examples_2
+output/visualization
