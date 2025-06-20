@@ -200,7 +200,14 @@ data/cvat-for-video-dataset-hazmat-codes/
 data/hazmat-detection.zip
 data/yolo/
 data/augmented_images/
-
+images/stock
+images/hazmat_codes_working
+images/hazmat_codes_not_working
+images/false_positives
+images/true_positives
+images/true_negatives
+images/false_negatives
+images/augmented
 # Checkpoints
 /checkpoints
 
