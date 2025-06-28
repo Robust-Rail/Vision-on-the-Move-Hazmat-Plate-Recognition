@@ -224,3 +224,20 @@ images/stock
 images/
 data/
 checkpoints
+
+
+# Environments
+.venv/
+.env
+
+# Data and Outputs (MUST be ignored)
+data/
+outputs/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# IDE files
+.vscode/
+.idea/
