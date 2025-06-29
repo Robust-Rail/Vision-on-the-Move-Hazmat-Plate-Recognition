@@ -51,8 +51,8 @@ UN-NUMBER-DETECTION/
 │   │   ├── prorail_coco_format/  # Processed data for Prorail, formatted for model training (e.g., COCO JSONs, resized images).
 │   │   └── haztruck_coco_format/ # Processed data for Haztruck, formatted for model training.
 │   └── annotations/              # Stores annotation files that may be separate from images (e.g., large COCO JSONs).
-│       ├── prorail_train_annotations.json # Training annotations for the Prorail dataset.
-│       └── ...                   # Other annotation files.
+│       ├── haztruck_annotations_yolo/ # YOLO-format annotations (one .txt per image)
+│       └── haztruck_annotations_coco.json # COCO-format annotations
 ├── notebooks/                    # Jupyter notebooks for interactive exploration, visualization, and reporting.
 │   ├── 01_data_exploration.ipynb # Notebook for initial data loading, statistics, and sanity checks.
 │   ├── 02_data_preprocessing_prorail.ipynb # Interactive steps for preprocessing the Prorail dataset.
@@ -81,6 +81,7 @@ UN-NUMBER-DETECTION/
 │   └── predictions/              # Stores example images with predictions (e.g., bounding boxes, detected text).
 ├── scripts/                      # Standalone Python scripts for repeatable, non-interactive tasks.
 │   ├── prepare_data.py           # Script to run the entire data preprocessing pipeline.
+│   ├── annotate_data.py          # Wrapper script to launch annotation logic using `annotation/cli`.
 │   ├── train.py                  # Main script to initiate model training (e.g., `python train.py --model yolo`).
 │   ├── evaluate.py               # Main script to run model evaluations and generate reports.
 │   └── run_pipeline.py           # Script to execute the full detection + OCR pipeline on new data.
@@ -111,6 +112,18 @@ UN-NUMBER-DETECTION/
 │       ├── config_utils.py       # Utilities for loading and parsing configuration files (YAML).
 │       ├── logging_utils.py      # Standardized logging setup and helper functions.
 │       └── vis_utils.py          # Utilities for creating plots and visualizations.
+├── annotation/                   # Dedicated module for handling annotation logic (multiple sources/formats)
+│   ├── __init__.py               # Makes `annotation` a Python package.
+│   ├── image_annotator.py        # Functions/classes for annotating static image datasets.
+│   ├── video_annotator.py        # Extracts frames from videos and prepares them for annotation.
+│   ├── utils.py                  # Shared utilities for annotation (e.g., filename mapping, ID correction).
+│   ├── converters/               # Modules for converting raw annotations into specific formats.
+│   │   ├── __init__.py           # Marks `converters` as a sub-package.
+│   │   ├── coco_converter.py     # Converts annotations into COCO format (JSON).
+│   │   ├── yolo_converter.py     # Converts annotations into YOLO format (TXT).
+│   │   └── labelstudio_parser.py # Parses annotations exported from Label Studio (optional).
+│   └── cli/                      # CLI interface to run annotation pipelines.
+│       └── generate_annotations.py # Scriptable entry point to orchestrate annotation workflow from CLI.
 ├── .env                          # Local environment variables (e.g., API keys); **this file is gitignored**.
 ├── .env.example                  # Example file for `.env`, showing required environment variables (committed for reference).
 ├── README.md                     # Main project overview, setup instructions, and usage guide (essential for onboarding).
