@@ -1,16 +1,15 @@
 import os
 import pandas as pd
 import cv2
-import random
 from tqdm import tqdm
 
 from annotation.video_annotator import save_frame
-from annotation.converters.coco_converter import CocoWriter
+from annotation.converters.coco_converter import CocoConverter
+from annotation.utils import get_rnd_distribution
 
-distribution = [("train", 0.8), ("test", 0.1), ("val", 0.1)]
-frames_path = "./data/data_faster_rcnn"
-video_directory = "/deepstore/datasets/dmb/ComputerVision/ProRail/Ivg/Videos"
-df = pd.read_csv("data/labels_dataframe.csv")
+frames_path = "./data/annotations/prorail_annotations_coco"
+video_directory = "./data/processed/prorail"
+df = pd.read_csv("./data/labels_dataframe.csv")
 
 videos = df["Source"].unique()
 available_videos = [
@@ -18,18 +17,7 @@ available_videos = [
 ]
 
 total_frames = df[df["Source"].isin(available_videos)]["Absolute Frame"].count()
-coco_writer = CocoWriter()
-
-
-def get_rnd_distribution():
-    new_dist = distribution.copy()
-    while new_dist:
-        dist = random.choice(new_dist)
-        required = int(total_frames * dist[1])
-        if len(coco_writer.annotations[dist[0]]) < required:
-            return dist
-        new_dist.remove(dist)
-    return distribution[0]
+coco_writer = CocoConverter()
 
 
 with tqdm(total=total_frames) as pbar:
@@ -49,7 +37,9 @@ with tqdm(total=total_frames) as pbar:
                 (df["Source"] == video) & (df["Relative Frame"] == frame_num)
             ]
             if not annotations.empty:
-                dist = get_rnd_distribution()[0]
+                dist = get_rnd_distribution(
+                    total_frames, coco_writer.annotations_count
+                )[0]
                 save_frame(frame, video_name, frame_num, frames_path, dist)
                 image_id = len(coco_writer.images[dist]) + 1
                 coco_writer.add_image(
@@ -63,6 +53,11 @@ with tqdm(total=total_frames) as pbar:
                     coco_writer.add_annotation(dist, row, image_id)
                 pbar.update(annotations.shape[0])
             frame_num += 1
+            if coco_writer.get_images_count() == total_frames:
+                break
+        if coco_writer.get_images_count() == total_frames:
+            break
         cap.release()
+
 
 coco_writer.write_json(frames_path)

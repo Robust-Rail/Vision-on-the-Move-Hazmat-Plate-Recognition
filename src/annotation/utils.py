@@ -4,6 +4,8 @@ import matplotlib.pyplot as plt
 import random
 import json
 
+distribution = [("train", 0.8), ("test", 0.1), ("val", 0.1)]
+
 
 def count_files_in_directory(directory_path):
     try:
@@ -17,6 +19,19 @@ def count_files_in_directory(directory_path):
     except Exception as e:
         print(f"Error: {e}")
         return 0
+
+
+def get_rnd_distribution(total_frames=0, annotation_dist=None):
+    new_dist = distribution.copy()
+    if annotation_dist is None or total_frames == 0:
+        return random.choice(new_dist)
+    while new_dist:
+        dist = random.choice(new_dist)
+        required = int(total_frames * dist[1])
+        if annotation_dist[dist[0]] < required:
+            return dist
+        new_dist.remove(dist)
+    return distribution[0]
 
 
 def check_images_in_annotations(annotation_file, image_dir, max_images=10):
