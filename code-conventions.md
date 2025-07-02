@@ -1,5 +1,3 @@
-
-
 # Code Conventions: UN-Number Detection Project
 
 This document outlines the essential coding standards, project structure, and workflow conventions for the `UN-NUMBER-DETECTION` project. Our goal is to maintain a **clean, efficient Git repository** that's easy to collaborate on, while minimizing unnecessary overhead.
@@ -10,18 +8,19 @@ This document outlines the essential coding standards, project structure, and wo
 
 1.  [Project Structure (The Essentials)](#1-project-structure-the-essentials)
 2.  [Tooling & Automation (Work Smarter, Not Harder)](#2-tooling--automation-work-smarter-not-harder)
-    *   [Linters & Formatters](#linters--formatters)
-    *   [Jupyter Notebook Output Stripping (`nbstripout`)](#jupyter-notebook-output-stripping-nbstripout)
+
+    - [Linters & Formatters](#linters--formatters)
+    - [Jupyter Notebook Output Stripping (`nbstripout`)](#jupyter-notebook-output-stripping-nbstripout)
 
 3.  [Coding Style Guidelines (PEP 8 & Core Readability)](#3-coding-style-guidelines-pep-8--core-readability)
-    *   [Naming Conventions](#naming-conventions)
-    *   [Line Length](#line-length)
-    *   [Imports](#imports)
-    *   [Whitespace](#whitespace)
-    *   [Comments ](#comments)
+    - [Naming Conventions](#naming-conventions)
+    - [Line Length](#line-length)
+    - [Imports](#imports)
+    - [Whitespace](#whitespace)
+    - [Comments ](#comments)
 4.  [Jupyter Notebook Workflow (For Exploration, Not Storage)](#4-jupyter-notebook-workflow-for-exploration-not-storage)
-    *   [Purpose of Notebooks](#purpose-of-notebooks)
-    *   [Refactoring Code from Notebooks](#refactoring-code-from-notebooks)
+    - [Purpose of Notebooks](#purpose-of-notebooks)
+    - [Refactoring Code from Notebooks](#refactoring-code-from-notebooks)
 5.  [General Project Workflow (Streamlined)](#5-general-project-workflow-streamlined)
 6.  [Git & Version Control (Keep it Clean)](#6-git--version-control-keep-it-clean)
 
@@ -47,12 +46,12 @@ UN-NUMBER-DETECTION/
 │   ├── raw/                      # Original, immutable datasets as initially received.
 │   │   ├── prorail_dataset/      # Raw image/data files specific to the Prorail dataset.
 │   │   └── haztruck_dataset/     # Raw image/data files specific to the Haztruck dataset.
-│   ├── processed/                # Datasets after cleaning, transformation, and splitting (e.g., converted to COCO format).
-│   │   ├── prorail_coco_format/  # Processed data for Prorail, formatted for model training (e.g., COCO JSONs, resized images).
-│   │   └── haztruck_coco_format/ # Processed data for Haztruck, formatted for model training.
+│   ├── processed/                # Datasets after cleaning, transformation, and splitting.
+│   │   ├── prorail/              # Processed data for Prorail, formatted for model training (e.g., videos and csv).
+│   │   └── haztruck/ # Processed data for Haztruck, formatted for model training.
 │   └── annotations/              # Stores annotation files that may be separate from images (e.g., large COCO JSONs).
-│       ├── prorail_train_annotations.json # Training annotations for the Prorail dataset.
-│       └── ...                   # Other annotation files.
+│       ├── haztruck_annotations_yolo/ # YOLO-format annotations (one .txt per image)
+│       └── haztruck_annotations_coco.json # COCO-format annotations
 ├── notebooks/                    # Jupyter notebooks for interactive exploration, visualization, and reporting.
 │   ├── 01_data_exploration.ipynb # Notebook for initial data loading, statistics, and sanity checks.
 │   ├── 02_data_preprocessing_prorail.ipynb # Interactive steps for preprocessing the Prorail dataset.
@@ -81,6 +80,7 @@ UN-NUMBER-DETECTION/
 │   └── predictions/              # Stores example images with predictions (e.g., bounding boxes, detected text).
 ├── scripts/                      # Standalone Python scripts for repeatable, non-interactive tasks.
 │   ├── prepare_data.py           # Script to run the entire data preprocessing pipeline.
+│   ├── annotate_data.py          # Wrapper script to launch annotation logic using `annotation/cli`.
 │   ├── train.py                  # Main script to initiate model training (e.g., `python train.py --model yolo`).
 │   ├── evaluate.py               # Main script to run model evaluations and generate reports.
 │   └── run_pipeline.py           # Script to execute the full detection + OCR pipeline on new data.
@@ -111,6 +111,18 @@ UN-NUMBER-DETECTION/
 │       ├── config_utils.py       # Utilities for loading and parsing configuration files (YAML).
 │       ├── logging_utils.py      # Standardized logging setup and helper functions.
 │       └── vis_utils.py          # Utilities for creating plots and visualizations.
+├── annotation/                   # Dedicated module for handling annotation logic (multiple sources/formats)
+│   ├── __init__.py               # Makes `annotation` a Python package.
+│   ├── image_annotator.py        # Functions/classes for annotating static image datasets.
+│   ├── video_annotator.py        # Extracts frames from videos and prepares them for annotation.
+│   ├── utils.py                  # Shared utilities for annotation (e.g., filename mapping, ID correction).
+│   ├── converters/               # Modules for converting raw annotations into specific formats.
+│   │   ├── __init__.py           # Marks `converters` as a sub-package.
+│   │   ├── coco_converter.py     # Converts annotations into COCO format (JSON).
+│   │   ├── yolo_converter.py     # Converts annotations into YOLO format (TXT).
+│   │   └── labelstudio_parser.py # Parses annotations exported from Label Studio (optional).
+│   └── cli/                      # CLI interface to run annotation pipelines.
+│       └── generate_annotations.py # Scriptable entry point to orchestrate annotation workflow from CLI.
 ├── .env                          # Local environment variables (e.g., API keys); **this file is gitignored**.
 ├── .env.example                  # Example file for `.env`, showing required environment variables (committed for reference).
 ├── README.md                     # Main project overview, setup instructions, and usage guide (essential for onboarding).
@@ -119,11 +131,11 @@ UN-NUMBER-DETECTION/
 
 **What we're omitting from Git (and how we handle it):**
 
-*   **`data/`:** **This is explicitly gitignored.** All raw and processed datasets are too large for Git. We will share these via a dedicated cloud storage solution (e.g., university shared drive, Google Drive) and provide clear download instructions in the `README.md`.
-*   **`outputs/`:** **This is explicitly gitignored.** All trained models, evaluation results, and generated plots are large and can be regenerated from code and data. These should also be managed via external storage or simply regenerated locally as needed.
-*   **`docs/`:** **This entire folder is OPTIONAL.** If you don't need extensive documentation beyond the `README.md` (e.g., formal design documents, API references), you can omit this directory.
-*   **`LICENSE`:** **This file is OPTIONAL.** For small, internal, or university projects, a formal license might not be necessary unless specifically required.
-*   **Virtual Environment (`.venv/`):** Already handled by `.gitignore`. You create it locally, but it's never committed.
+- **`data/`:** **This is explicitly gitignored.** All raw and processed datasets are too large for Git. We will share these via a dedicated cloud storage solution (e.g., university shared drive, Google Drive) and provide clear download instructions in the `README.md`.
+- **`outputs/`:** **This is explicitly gitignored.** All trained models, evaluation results, and generated plots are large and can be regenerated from code and data. These should also be managed via external storage or simply regenerated locally as needed.
+- **`docs/`:** **This entire folder is OPTIONAL.** If you don't need extensive documentation beyond the `README.md` (e.g., formal design documents, API references), you can omit this directory.
+- **`LICENSE`:** **This file is OPTIONAL.** For small, internal, or university projects, a formal license might not be necessary unless specifically required.
+- **Virtual Environment (`.venv/`):** Already handled by `.gitignore`. You create it locally, but it's never committed.
 
 ---
 
@@ -135,9 +147,9 @@ These tools automate tedious tasks, making it easier to keep the repository clea
 
 Set these up once, and they'll handle formatting automatically.
 
-*   **Black:** An uncompromising code formatter. Just run it, and your code is formatted consistently.
-*   **Flake8:** Catches common errors and enforces style guidelines.
-*   **isort:** Automatically sorts imports.
+- **Black:** An uncompromising code formatter. Just run it, and your code is formatted consistently.
+- **Flake8:** Catches common errors and enforces style guidelines.
+- **isort:** Automatically sorts imports.
 
 **Setup and Usage:**
 
@@ -166,13 +178,11 @@ The core problem with notebooks in Git is not just their total file size, but th
     ```
     This adds a Git filter so outputs are automatically stripped on `git add`.
 3.  **Commit `.gitattributes`:**
-    ```bash
-    git add .gitattributes
-    git commit -m "Configure nbstripout for Jupyter notebooks"
-    ```
-**All team members must run `nbstripout --install` once per clone** to ensure consistency.
-
-
+    `bash
+git add .gitattributes
+git commit -m "Configure nbstripout for Jupyter notebooks"
+`
+    **All team members must run `nbstripout --install` once per clone** to ensure consistency.
 
 ## 3. Coding Style Guidelines
 
@@ -180,31 +190,30 @@ We adhere to the core principles of [PEP 8](https://www.python.org/dev/peps/pep-
 
 ### Naming Conventions
 
-*   **Variables, Functions, Methods, Modules:** `lowercase_with_underscores`.
-*   **Constants:** `UPPERCASE_WITH_UNDERSCORES`.
-*   **Classes:** `PascalCase`.
+- **Variables, Functions, Methods, Modules:** `lowercase_with_underscores`.
+- **Constants:** `UPPERCASE_WITH_UNDERSCORES`.
+- **Classes:** `PascalCase`.
 
 ### Line Length
 
-*   **Follow Black:** Black will handle line wrapping. Generally aims for around 88 characters.
+- **Follow Black:** Black will handle line wrapping. Generally aims for around 88 characters.
 
 ### Imports
 
-*   **One Import Per Line.**
-*   **Grouping Order:** `isort` will handle this automatically:
-    1.  Standard library imports
-    2.  Third-party library imports
-    3.  Local application/library specific imports
-    *(Run `isort` regularly or integrate into IDE.)*
+- **One Import Per Line.**
+- **Grouping Order:** `isort` will handle this automatically:
+  1.  Standard library imports
+  2.  Third-party library imports
+  3.  Local application/library specific imports
+      _(Run `isort` regularly or integrate into IDE.)_
 
 ### Whitespace
 
-*   **Follow Black:** Black will automatically ensure consistent spacing around operators and commas.
+- **Follow Black:** Black will automatically ensure consistent spacing around operators and commas.
 
 ### Comments
 
-*   **Comments:** Use sparingly to clarify non-obvious code.
-
+- **Comments:** Use sparingly to clarify non-obvious code.
 
 ---
 
@@ -214,34 +223,36 @@ Notebooks are for interactive work, not for storing large data or production cod
 
 ### Purpose of Notebooks
 
-*   **Quick Exploration:** Data analysis, prototyping new ideas.
-*   **Visualization:** Generating temporary plots (which are then stripped by `nbstripout`).
-*   **Analysis & Reporting:** Presenting results and findings in a narrative format.
+- **Quick Exploration:** Data analysis, prototyping new ideas.
+- **Visualization:** Generating temporary plots (which are then stripped by `nbstripout`).
+- **Analysis & Reporting:** Presenting results and findings in a narrative format.
 
 ### Refactoring Code from Notebooks
 
-*   **Move Reusable Code to `src/`:** Any functions or classes that you find yourself reusing, or that represent core logic (data preprocessing, model definitions, evaluation), **must** be moved from notebooks into `.py` files within the `src/un_detector/` package.
-*   **Import in Notebooks:** Once moved, import these functions/classes into your notebooks.
-    ```python
-    import sys
-    sys.path.append('../src') # If notebooks are not running from the root
+- **Move Reusable Code to `src/`:** Any functions or classes that you find yourself reusing, or that represent core logic (data preprocessing, model definitions, evaluation), **must** be moved from notebooks into `.py` files within the `src/un_detector/` package.
+- **Import in Notebooks:** Once moved, import these functions/classes into your notebooks.
 
-    from un_detector.data.preprocessing import clean_text
-    from un_detector.models.yolo_detector import YOLOModel
-    # ... use them here ...
-    ```
-*   **Handle Large Outputs:** Instead of embedding plots or large data in notebooks, **save them to the `outputs/` directory** (which is gitignored). You can then reference them in the notebook if needed, but the main file lives outside Git.
+  ```python
+  import sys
+  sys.path.append('../src') # If notebooks are not running from the root
+
+  from un_detector.data.preprocessing import clean_text
+  from un_detector.models.yolo_detector import YOLOModel
+  # ... use them here ...
+  ```
+
+- **Handle Large Outputs:** Instead of embedding plots or large data in notebooks, **save them to the `outputs/` directory** (which is gitignored). You can then reference them in the notebook if needed, but the main file lives outside Git.
 
 ---
 
 ## 5. General Project Workflow (Streamlined)
 
 1.  **Set Up:**
-    *   Create your virtual environment (`python -m venv .venv`).
-    *   Install dependencies (`pip install -r requirements.txt`).
-    *   Install and configure `nbstripout` (`nbstripout --install`).
-    *   Install and set up `pre-commit` hooks (`pip install pre-commit && pre-commit install`).
-    *   Download required data to the `data/` folder as described in `README.md`.
+    - Create your virtual environment (`python -m venv .venv`).
+    - Install dependencies (`pip install -r requirements.txt`).
+    - Install and configure `nbstripout` (`nbstripout --install`).
+    - Install and set up `pre-commit` hooks (`pip install pre-commit && pre-commit install`).
+    - Download required data to the `data/` folder as described in `README.md`.
 2.  **Develop in Notebooks:** Use notebooks for initial ideas and interactive development.
 3.  **Refactor Code:** As soon as a piece of code becomes stable, reusable, or part of the core logic, **move it to `src/`**.
 4.  **Create Scripts:** Develop standalone scripts in `scripts/` that orchestrate the main tasks (data prep, training, evaluation, full pipeline) by importing functions from `src/`. This allows for easy, reproducible runs without a notebook environment.
@@ -251,8 +262,8 @@ Notebooks are for interactive work, not for storing large data or production cod
 
 ## 6. Git & Version Control
 
-*   **No Git LFS:** Git LFS is strictly forbidden for this project. Large files must be managed externally and added to `.gitignore`.
-*   **Branching:** Work on feature branches (`feature/your-feature-name`, `bugfix/issue-description`) off of `main`.
-*   **Commit Messages:** Write clear, concise, and descriptive commit messages.
-*   **Pull Requests (PRs):** Create PRs for all changes. Ensure your code adheres to these conventions, and that the PR description is clear.
-*   **Code Reviews:** All code should be reviewed before merging into `main`.
+- **No Git LFS:** Git LFS is strictly forbidden for this project. Large files must be managed externally and added to `.gitignore`.
+- **Branching:** Work on feature branches (`feature/your-feature-name`, `bugfix/issue-description`) off of `main`.
+- **Commit Messages:** Write clear, concise, and descriptive commit messages.
+- **Pull Requests (PRs):** Create PRs for all changes. Ensure your code adheres to these conventions, and that the PR description is clear.
+- **Code Reviews:** All code should be reviewed before merging into `main`.
