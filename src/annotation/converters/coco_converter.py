@@ -2,11 +2,12 @@ import json
 import os
 
 
-class CocoWriter:
+class CocoConverter:
     def __init__(self):
         self.categories = [{"id": 1, "name": "hazmat"}]
         self.images = {"train": [], "test": [], "val": []}
         self.annotations = {"train": [], "test": [], "val": []}
+        self.annotations_count = {"train": 0, "test": 0, "val": 0}
 
     def add_image(self, dist, image_id, filename, width, height):
         self.images[dist].append(
@@ -36,6 +37,7 @@ class CocoWriter:
                 "iscrowd": 0,
             }
         )
+        self.annotations_count[dist] += 1
 
     def write_json(self, base_path):
         for dist in ["train", "val", "test"]:
@@ -50,3 +52,6 @@ class CocoWriter:
                     },
                     f,
                 )
+
+    def get_images_count(self):
+        return {dist: len(self.images[dist]) for dist in self.images.keys()}
