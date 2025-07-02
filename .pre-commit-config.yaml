@@ -1,5 +1,15 @@
 repos:
--   repo: https://github.com/fastai/nbdev
+  - repo: https://github.com/fastai/nbdev
     rev: 2.2.10
     hooks:
-    -   id: nbdev_clean
+      - id: nbdev_clean
+  - repo: https://github.com/pycqa/isort
+    rev: 6.0.1
+    hooks:
+      - id: isort
+        name: isort (python)
+  - repo: https://github.com/psf/black
+    rev: 25.1.0
+    hooks:
+      - id: black
+        language_version: python3.11
