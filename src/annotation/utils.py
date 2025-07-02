@@ -34,6 +34,11 @@ def get_rnd_distribution(total_frames=0, annotation_dist=None):
     return distribution[0]
 
 
+def get_annotation_file_name(video_name, frame_idx):
+    formatted_frame_number = f"{frame_idx:05d}"
+    return f"{video_name}_{formatted_frame_number}"
+
+
 def check_images_in_annotations(annotation_file, image_dir, max_images=10):
     with open(annotation_file) as f:
         data = json.load(f)
