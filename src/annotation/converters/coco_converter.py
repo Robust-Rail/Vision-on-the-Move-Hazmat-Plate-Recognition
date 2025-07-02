@@ -62,9 +62,7 @@ class CocoConverter:
 
     def write_json(self):
         for dist in ["train", "val", "test"]:
-            path = os.path.join(
-                self.get_path(), CocoConverter.subpath, dist, "annotations"
-            )
+            path = os.path.join(self.get_path(), dist, "annotations")
             os.makedirs(path, exist_ok=True)
             with open(os.path.join(path, f"instances_{dist}.json"), "w") as f:
                 json.dump(
