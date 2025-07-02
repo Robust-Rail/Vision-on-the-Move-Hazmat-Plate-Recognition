@@ -36,6 +36,8 @@ with tqdm(total=total_frames) as pbar:
         total = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
         frame_num = 0
 
+        pbar.set_description(f"Processing {video_name}")
+
         while frame_num < total:
             ret, frame = cap.read()
             if not ret:
@@ -69,6 +71,7 @@ with tqdm(total=total_frames) as pbar:
                     )
 
                 pbar.update(annotations.shape[0])
+
             frame_num += 1
             if coco_writer.get_annotations_count() == total_frames:
                 break
