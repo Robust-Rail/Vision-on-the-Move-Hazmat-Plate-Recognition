@@ -68,11 +68,11 @@ with tqdm(total=total_frames) as pbar:
                         row,
                     )
 
-                pbar.update(1)
+                pbar.update(annotations.shape[0])
             frame_num += 1
-            if coco_writer.get_images_count() == total_frames:
+            if coco_writer.get_annotations_count() == total_frames:
                 break
-        if coco_writer.get_images_count() == total_frames:
+        if coco_writer.get_annotations_count() == total_frames:
             break
         cap.release()
 

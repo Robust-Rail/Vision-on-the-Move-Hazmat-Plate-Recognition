@@ -78,3 +78,6 @@ class CocoConverter:
 
     def get_images_count(self):
         return sum(len(self.images[dist]) for dist in self.images)
+
+    def get_annotations_count(self):
+        return sum(self.annotations_count[dist] for dist in self.annotations_count)
