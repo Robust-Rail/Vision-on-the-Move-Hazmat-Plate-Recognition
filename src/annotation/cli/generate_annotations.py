@@ -6,26 +6,37 @@ from tqdm import tqdm
 
 from annotation.converters.coco_converter import CocoConverter
 from annotation.converters.yolo_converter import YOLOConverter
-from annotation.utils import get_rnd_distribution
+from annotation.utils import get_annotation_file_name, get_rnd_distribution
 
-frames_path = "./data/annotations/prorail"
+print(
+    "\033[93m"
+    "Annotation files have been created, but the dataset may be incomplete.\n"
+    "Please ensure that all hazmat images are copied to 'coco/val/images' and 'yolo/images/val'\n"
+    "to finalize the dataset."
+    "\033[0m"
+)
+output_path = "./data/annotations/prorail"
 
 video_directory = "./data/processed/prorail"
-df = pd.read_csv("./data/labels_dataframe.csv")
 
-videos = df["Source"].unique()
+df_prorail = pd.read_csv("./data/labels_dataframe.csv")
+df_hazmat = pd.read_csv("./data/images_with_boxes.csv")
+
+videos = df_prorail["source"].unique()
 available_videos = [
     v for v in os.listdir(video_directory) if v.endswith(".mp4") and v in videos
 ]
 
 print(f"Available videos: {len(available_videos)}")
 
-total_frames = df[df["Source"].isin(available_videos)]["Absolute Frame"].count()
+total_frames = df_prorail[df_prorail["source"].isin(available_videos)][
+    "absolute_frame"
+].count()
 
 print(f"Total frames to process: {total_frames}")
 print("Loading COCO and YOLO converters...")
-coco_writer = CocoConverter(frames_path)
-yolo_writer = YOLOConverter(frames_path)
+coco_writer = CocoConverter(output_path)
+yolo_writer = YOLOConverter(output_path)
 
 print("Starting annotation conversion...")
 with tqdm(total=total_frames) as pbar:
@@ -43,8 +54,9 @@ with tqdm(total=total_frames) as pbar:
             ret, frame = cap.read()
             if not ret:
                 break
-            annotations = df[
-                (df["Source"] == video) & (df["Relative Frame"] == frame_num)
+            annotations = df_prorail[
+                (df_prorail["source"] == video)
+                & (df_prorail["relative_frame"] == frame_num)
             ]
             if not annotations.empty:
                 dist = get_rnd_distribution(
@@ -54,9 +66,11 @@ with tqdm(total=total_frames) as pbar:
                 coco_writer.save_frame(video_name, frame_num, frame, dist)
                 yolo_writer.save_frame(video_name, frame_num, frame, dist)
 
+                image_name = get_annotation_file_name(video_name, frame_num)
+
                 image_id = coco_writer.add_image(
                     dist,
-                    f"{video_name}_{frame_num:05d}.jpg",
+                    f"{image_name}.jpg",
                     video_w,
                     video_h,
                 )
@@ -65,8 +79,7 @@ with tqdm(total=total_frames) as pbar:
                     coco_writer.add_annotation(dist, row, image_id)
                     yolo_writer.add_annotation(
                         dist,
-                        video_name,
-                        frame_num,
+                        image_name,
                         (video_w, video_h),
                         row,
                     )
@@ -80,6 +93,33 @@ with tqdm(total=total_frames) as pbar:
             break
         cap.release()
 
+print("Finished processing videos.")
+
+print("Converting hazmat annotations...")
+
+hazmat_images = df_hazmat["image_name"].unique()
+with tqdm(total=len(hazmat_images), desc="Hazmat images") as hazmat_pbar:
+    for image_name in hazmat_images:
+        image_info = df_hazmat[df_hazmat["image_name"] == image_name].iloc[0]
+        image_id = coco_writer.add_image(
+            "val", image_name, image_info["width"], image_info["height"]
+        )
+        for _, row in df_hazmat[df_hazmat["image_name"] == image_name].iterrows():
+            coco_writer.add_annotation("val", row, image_id)
+            yolo_writer.add_annotation(
+                "val", image_name, (image_info["width"], image_info["height"]), row
+            )
+        hazmat_pbar.update(1)
+
+print("Finished converting hazmat annotations.")
+
 coco_writer.write_json()
 
 print("COCO annotations saved.")
+print(
+    "\033[93m"
+    "WARNING: Annotation files have been created, but the dataset may be incomplete.\n"
+    "Please ensure that all hazmat images are copied to 'coco/val/images' and 'yolo/images/val'\n"
+    "to finalize the dataset."
+    "\033[0m"
+)

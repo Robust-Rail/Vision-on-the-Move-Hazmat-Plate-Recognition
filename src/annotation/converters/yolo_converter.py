@@ -19,22 +19,27 @@ class YOLOConverter:
     def add_annotation(
         self,
         dist,
-        video=None,
-        frame=None,
+        filename,
         img_dimensions=(0, 0),
         annotation=None,
     ):
         img_width, img_height = img_dimensions
         annotation_path = os.path.join(self.get_path(), "labels", dist)
         os.makedirs(annotation_path, exist_ok=True)
-        label_name = f"{get_annotation_file_name(video, frame)}.txt"
+
+        if "." in filename:
+            filename = filename.split(".")[0]
+
+        label_name = f"{filename}.txt"
         label_path = os.path.join(annotation_path, label_name)
 
         lable = ""
-        x_center = (annotation["XTL"] + annotation["XBR"]) / 2 / img_width
-        y_center = (annotation["YTL"] + annotation["YBR"]) / 2 / img_height
-        width = (annotation["XBR"] - annotation["XTL"]) / img_width
-        height = (annotation["YBR"] - annotation["YTL"]) / img_height
+        x_center = (float(annotation["xtl"]) + float(annotation["xbr"])) / 2 / img_width
+        y_center = (
+            (float(annotation["ytl"]) + float(annotation["ybr"])) / 2 / img_height
+        )
+        width = (float(annotation["xbr"]) - float(annotation["xtl"])) / img_width
+        height = (float(annotation["ybr"]) - float(annotation["ytl"])) / img_height
         lable += f"0 {x_center} {y_center} {width} {height}\n"
 
         if (
