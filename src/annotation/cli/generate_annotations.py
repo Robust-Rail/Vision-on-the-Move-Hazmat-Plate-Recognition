@@ -8,13 +8,6 @@ from annotation.converters.coco_converter import CocoConverter
 from annotation.converters.yolo_converter import YOLOConverter
 from annotation.utils import get_annotation_file_name, get_rnd_distribution
 
-print(
-    "\033[93m"
-    "Annotation files have been created, but the dataset may be incomplete.\n"
-    "Please ensure that all hazmat images are copied to 'coco/val/images' and 'yolo/images/val'\n"
-    "to finalize the dataset."
-    "\033[0m"
-)
 output_path = "./data/annotations/prorail"
 
 video_directory = "./data/processed/prorail"
