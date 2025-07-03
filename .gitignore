@@ -231,7 +231,6 @@ checkpoints
 .env
 
 # Data and Outputs (MUST be ignored)
-data/
 outputs/
 
 # Python cache
