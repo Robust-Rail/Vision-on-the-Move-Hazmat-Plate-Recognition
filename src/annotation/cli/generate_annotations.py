@@ -8,111 +8,108 @@ from annotation.converters.coco_converter import CocoConverter
 from annotation.converters.yolo_converter import YOLOConverter
 from annotation.utils import get_annotation_file_name, get_rnd_distribution
 
-output_path = "./data/annotations/prorail"
 
-video_directory = "./data/processed/prorail"
+def generate_annotations(
+    output_path="./data/annotations/prorail",
+    video_directory="./data/processed/prorail",
+    df_prorail_path="./data/labels_dataframe.csv",
+    df_hazmat_path="./data/images_with_boxes.csv",
+):
+    coco_writer = CocoConverter(output_path)
+    yolo_writer = YOLOConverter(output_path)
 
-df_prorail = pd.read_csv("./data/labels_dataframe.csv")
-df_hazmat = pd.read_csv("./data/images_with_boxes.csv")
+    if video_directory is not None and df_prorail_path is not None:
+        df_prorail = pd.read_csv(df_prorail_path)
 
-videos = df_prorail["source"].unique()
-available_videos = [
-    v for v in os.listdir(video_directory) if v.endswith(".mp4") and v in videos
-]
+        videos = df_prorail["source"].unique()
+        available_videos = [
+            v for v in os.listdir(video_directory) if v.endswith(".mp4") and v in videos
+        ]
 
-print(f"Available videos: {len(available_videos)}")
+        total_frames = df_prorail[df_prorail["source"].isin(available_videos)][
+            "absolute_frame"
+        ].count()
 
-total_frames = df_prorail[df_prorail["source"].isin(available_videos)][
-    "absolute_frame"
-].count()
+        with tqdm(total=total_frames) as pbar:
+            for video in available_videos:
+                cap = cv2.VideoCapture(os.path.join(video_directory, video))
+                video_name = os.path.splitext(video)[0]
+                video_w = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
+                video_h = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
+                total = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
+                frame_num = 0
 
-print(f"Total frames to process: {total_frames}")
-print("Loading COCO and YOLO converters...")
-coco_writer = CocoConverter(output_path)
-yolo_writer = YOLOConverter(output_path)
+                pbar.set_description(f"Processing {video_name}")
 
-print("Starting annotation conversion...")
-with tqdm(total=total_frames) as pbar:
-    for video in available_videos:
-        cap = cv2.VideoCapture(os.path.join(video_directory, video))
-        video_name = os.path.splitext(video)[0]
-        video_w = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
-        video_h = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
-        total = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
-        frame_num = 0
+                while frame_num < total:
+                    ret, frame = cap.read()
+                    if not ret:
+                        break
+                    annotations = df_prorail[
+                        (df_prorail["source"] == video)
+                        & (df_prorail["relative_frame"] == frame_num)
+                    ]
+                    if not annotations.empty:
+                        dist = get_rnd_distribution(
+                            total_frames, coco_writer.annotations_count
+                        )[0]
 
-        pbar.set_description(f"Processing {video_name}")
+                        coco_writer.save_frame(video_name, frame_num, frame, dist)
+                        yolo_writer.save_frame(video_name, frame_num, frame, dist)
 
-        while frame_num < total:
-            ret, frame = cap.read()
-            if not ret:
-                break
-            annotations = df_prorail[
-                (df_prorail["source"] == video)
-                & (df_prorail["relative_frame"] == frame_num)
-            ]
-            if not annotations.empty:
-                dist = get_rnd_distribution(
-                    total_frames, coco_writer.annotations_count
-                )[0]
+                        image_name = get_annotation_file_name(video_name, frame_num)
 
-                coco_writer.save_frame(video_name, frame_num, frame, dist)
-                yolo_writer.save_frame(video_name, frame_num, frame, dist)
+                        image_id = coco_writer.add_image(
+                            dist,
+                            f"{image_name}.jpg",
+                            video_w,
+                            video_h,
+                        )
 
-                image_name = get_annotation_file_name(video_name, frame_num)
+                        for _, row in annotations.iterrows():
+                            coco_writer.add_annotation(dist, row, image_id)
+                            yolo_writer.add_annotation(
+                                dist,
+                                image_name,
+                                (video_w, video_h),
+                                row,
+                            )
 
+                        pbar.update(annotations.shape[0])
+
+                    frame_num += 1
+                    if coco_writer.get_annotations_count() == total_frames:
+                        break
+                if coco_writer.get_annotations_count() == total_frames:
+                    break
+                cap.release()
+
+    if df_hazmat_path is not None:
+        df_hazmat = pd.read_csv(df_hazmat_path)
+        hazmat_images = df_hazmat["image_name"].unique()
+        with tqdm(total=len(hazmat_images), desc="Hazmat images") as hazmat_pbar:
+            for image_name in hazmat_images:
+                image_info = df_hazmat[df_hazmat["image_name"] == image_name].iloc[0]
                 image_id = coco_writer.add_image(
-                    dist,
-                    f"{image_name}.jpg",
-                    video_w,
-                    video_h,
+                    "val", image_name, image_info["width"], image_info["height"]
                 )
-
-                for _, row in annotations.iterrows():
-                    coco_writer.add_annotation(dist, row, image_id)
+                for _, row in df_hazmat[
+                    df_hazmat["image_name"] == image_name
+                ].iterrows():
+                    coco_writer.add_annotation("val", row, image_id)
                     yolo_writer.add_annotation(
-                        dist,
+                        "val",
                         image_name,
-                        (video_w, video_h),
+                        (image_info["width"], image_info["height"]),
                         row,
                     )
-
-                pbar.update(annotations.shape[0])
-
-            frame_num += 1
-            if coco_writer.get_annotations_count() == total_frames:
-                break
-        if coco_writer.get_annotations_count() == total_frames:
-            break
-        cap.release()
-
-print("Finished processing videos.")
-
-print("Converting hazmat annotations...")
-
-hazmat_images = df_hazmat["image_name"].unique()
-with tqdm(total=len(hazmat_images), desc="Hazmat images") as hazmat_pbar:
-    for image_name in hazmat_images:
-        image_info = df_hazmat[df_hazmat["image_name"] == image_name].iloc[0]
-        image_id = coco_writer.add_image(
-            "val", image_name, image_info["width"], image_info["height"]
+                hazmat_pbar.update(1)
+        print(
+            "\033[93m"
+            "WARNING: Annotation files have been created, but the dataset may be incomplete.\n"
+            "Please ensure that all hazmat images are copied to 'coco/val/images' \n"
+            "and 'yolo/images/val' to finalize the dataset."
+            "\033[0m"
         )
-        for _, row in df_hazmat[df_hazmat["image_name"] == image_name].iterrows():
-            coco_writer.add_annotation("val", row, image_id)
-            yolo_writer.add_annotation(
-                "val", image_name, (image_info["width"], image_info["height"]), row
-            )
-        hazmat_pbar.update(1)
 
-print("Finished converting hazmat annotations.")
-
-coco_writer.write_json()
-
-print("COCO annotations saved.")
-print(
-    "\033[93m"
-    "WARNING: Annotation files have been created, but the dataset may be incomplete.\n"
-    "Please ensure that all hazmat images are copied to 'coco/val/images' and 'yolo/images/val'\n"
-    "to finalize the dataset."
-    "\033[0m"
-)
+    coco_writer.write_json()
