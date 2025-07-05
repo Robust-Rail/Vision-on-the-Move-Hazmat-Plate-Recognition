@@ -280,7 +280,12 @@ def generate_named_augmented_image(
     seed: int = None,
     quality: int = 95,
     verbose: bool = True,
-    augmentation_presets: dict = None,
+    augmentation_presets: dict = {
+        "rain": A.RandomRain(p=1),
+        "sun_flare": A.RandomSunFlare(p=1),
+        "shadow": A.RandomShadow(p=1),
+        "fog": A.RandomFog(p=1),
+    },
 ) -> str:
     """
     Generate and save a single augmented image with a specific filename.
@@ -311,15 +316,6 @@ def generate_named_augmented_image(
     # Load image
     image = cv2.cvtColor(cv2.imread(input_image_path), cv2.COLOR_BGR2RGB)
     # (The `base_name` from the input file is no longer needed for the output path)
-
-    # Initialize augmentation presets if not provided
-    if augmentation_presets is None:
-        augmentation_presets = {
-            "rain": A.RandomRain(p=1),
-            "sun_flare": A.RandomSunFlare(p=1),
-            "shadow": A.RandomShadow(p=1),
-            "fog": A.RandomFog(p=1),
-        }
 
     # Configure augmentation pipeline
     if isinstance(augmentation, str):
