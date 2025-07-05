@@ -16,13 +16,13 @@ class HazmatDataset(Dataset):
         with open(annotations_file) as f:
             data = json.load(f)
 
-        self.images = {img['id']: img for img in data['images']}
-        self.annotations = data['annotations']
+        self.images = {img["id"]: img for img in data["images"]}
+        self.annotations = data["annotations"]
 
         # Create image_id to annotations mapping
         self.img_to_anns = {}
         for ann in self.annotations:
-            img_id = ann['image_id']
+            img_id = ann["image_id"]
             if img_id not in self.img_to_anns:
                 self.img_to_anns[img_id] = []
             self.img_to_anns[img_id].append(ann)
@@ -34,8 +34,8 @@ class HazmatDataset(Dataset):
         img_info = self.images[img_id]
 
         # Load image
-        img_path = os.path.join(self.data_dir, 'images', img_info['file_name'])
-        img = Image.open(img_path).convert('RGB')
+        img_path = os.path.join(self.data_dir, "images", img_info["file_name"])
+        img = Image.open(img_path).convert("RGB")
 
         # Get annotations
         anns = self.img_to_anns.get(img_id, [])
@@ -46,7 +46,7 @@ class HazmatDataset(Dataset):
         iscrowd = []
 
         for ann in anns:
-            bbox = ann['bbox']
+            bbox = ann["bbox"]
             # Convert [x, y, w, h] to [x1, y1, x2, y2]
             x_min = bbox[0]
             y_min = bbox[1]
@@ -56,9 +56,9 @@ class HazmatDataset(Dataset):
             # Filter out degenerate boxes
             if x_max > x_min and y_max > y_min:
                 boxes.append([x_min, y_min, x_max, y_max])
-                labels.append(ann['category_id'])
-                areas.append(ann['area'])
-                iscrowd.append(ann['iscrowd'])
+                labels.append(ann["category_id"])
+                areas.append(ann["area"])
+                iscrowd.append(ann["iscrowd"])
 
         # Convert to tensor
         boxes = torch.as_tensor(boxes, dtype=torch.float32)
@@ -67,11 +67,11 @@ class HazmatDataset(Dataset):
         iscrowd = torch.as_tensor(iscrowd, dtype=torch.int64)
 
         target = {
-            'boxes': boxes,
-            'labels': labels,
-            'image_id': torch.tensor([img_id]),
-            'area': areas,
-            'iscrowd': iscrowd
+            "boxes": boxes,
+            "labels": labels,
+            "image_id": torch.tensor([img_id]),
+            "area": areas,
+            "iscrowd": iscrowd,
         }
 
         if self.transforms is not None:
