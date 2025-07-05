@@ -1,12 +1,12 @@
 import os
 
-import cv2
 import pandas as pd
 from tqdm import tqdm
 
 from annotation.converters.coco_converter import CocoConverter
 from annotation.converters.yolo_converter import YOLOConverter
 from annotation.utils import get_annotation_file_name, get_rnd_distribution
+from annotation.video_annotator import read_video
 
 
 def generate_annotations(
@@ -69,16 +69,14 @@ def generate_prorail_annotations(
 
         with tqdm(total=total_frames) as pbar:
             for video in available_videos:
-                cap = cv2.VideoCapture(os.path.join(video_directory, video))
-                video_name = os.path.splitext(video)[0]
-                video_w = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
-                video_h = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
-                total = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
+                cap, video_name, video_w, video_h, frames_count = read_video(
+                    video_directory, video
+                )
                 frame_num = 0
 
                 pbar.set_description(f"Processing {video_name}")
 
-                while frame_num < total:
+                while frame_num < frames_count:
                     ret, frame = cap.read()
                     if not ret:
                         break
