@@ -222,16 +222,14 @@ data/un_numbers/un/
 output/
 images/stock
 images/
-data/
 checkpoints
-
+/data/
 
 # Environments
 .venv/
 .env
 
 # Data and Outputs (MUST be ignored)
-data/
 outputs/
 
 # Python cache
