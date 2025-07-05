@@ -222,5 +222,20 @@ data/un_numbers/un/
 output/
 images/stock
 images/
-data/
 checkpoints
+/data/
+
+# Environments
+.venv/
+.env
+
+# Data and Outputs (MUST be ignored)
+outputs/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# IDE files
+.vscode/
+.idea/
