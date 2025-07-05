@@ -11,7 +11,7 @@ import numpy as np
 import os
 from typing import Union
 import cv2
-import albumentations as A  # type: ignore
+import albumentations as A
 
 
 # ========== Custom Transformations =========
@@ -250,30 +250,23 @@ def get_augmented_transform(train):
 
 
 def visualize_augmentations(dataset, num_samples=5):
-    fig, axes = plt.subplots(num_samples, 2, figsize=(12, 4 * num_samples))
-
-    for i in range(num_samples):
-        idx = random.randint(0, len(dataset) - 1)
-        orig_img, orig_target = dataset[idx]
-
-        if isinstance(orig_img, torch.Tensor):
-            orig_img_np = orig_img.permute(1, 2, 0).numpy()
+    fig, axes = plt.subplots(num_samples, 1, figsize=(8, 4 * num_samples))
+    samples = min(num_samples, len(dataset))
+    for idx in range(samples):
+        img, target = dataset[idx]
+        if isinstance(img, torch.Tensor):
+            img_np = img.permute(1, 2, 0).numpy()
         else:
-            orig_img_np = np.array(orig_img)
+            img_np = np.array(img)
 
-        axes[i, 0].imshow(orig_img_np)
-        axes[i, 0].set_title("Original")
-
-        aug_img, aug_target = dataset[idx]
-        aug_img_np = (
-            aug_img.permute(1, 2, 0).numpy()
-            if isinstance(aug_img, torch.Tensor)
-            else np.array(aug_img)
-        )
-
-        axes[i, 1].imshow(aug_img_np)
-        axes[i, 1].set_title("Augmented")
-
+        axes[idx].imshow(img_np)
+        axes[idx].set_title(f"Image {idx} with {len(target['boxes'])} boxes")
+        axes[idx].axis("off")
+        for box in target['boxes']:
+            x1, y1, x2, y2 = box
+            rect = plt.Rectangle((x1, y1), x2 - x1, y2 - y1,
+                                 linewidth=2, edgecolor='r', facecolor='none')
+            axes[idx].add_patch(rect)
     plt.tight_layout()
     plt.show()
 
