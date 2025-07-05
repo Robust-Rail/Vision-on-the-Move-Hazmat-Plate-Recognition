@@ -1,4 +1,3 @@
-# ========== Imports =========
 import math
 import torch
 import torchvision.transforms.functional as F
@@ -12,10 +11,6 @@ import os
 from typing import Union
 import cv2
 import albumentations as A
-
-
-# ========== Custom Transformations =========
-
 
 class Compose:
     def __init__(self, transforms):
@@ -271,7 +266,6 @@ def visualize_augmentations(dataset, num_samples=5):
     plt.show()
 
 
-# ========== Weather Augmentation =========
 def generate_named_augmented_image(
     input_image_path: str,
     output_dir: str,
