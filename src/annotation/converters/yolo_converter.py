@@ -43,7 +43,7 @@ class YOLOConverter:
         lable += f"0 {x_center} {y_center} {width} {height}\n"
 
         if (
-            os.path.exists(os.path.join(annotation_path, label_path))
+            os.path.exists(os.path.join(label_path))
             and label_path in self.created_annotations
         ):
             with open(label_path, "a") as f:
