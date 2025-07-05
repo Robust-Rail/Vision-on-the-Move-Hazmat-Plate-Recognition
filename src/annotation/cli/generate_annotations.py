@@ -14,9 +14,46 @@ def generate_annotations(
     video_directory="./data/processed/prorail",
     df_prorail_path="./data/labels_dataframe.csv",
     df_hazmat_path="./data/images_with_boxes.csv",
+    coco_writer=None,
+    yolo_writer=None,
 ):
-    coco_writer = CocoConverter(output_path)
-    yolo_writer = YOLOConverter(output_path)
+    if coco_writer is None:
+        coco_writer = CocoConverter(output_path)
+    if yolo_writer is None:
+        yolo_writer = YOLOConverter(output_path)
+
+    if not os.path.exists(output_path):
+        os.rmdir(output_path)
+    os.makedirs(output_path, exist_ok=True)
+
+    generate_prorail_annotations(
+        output_path=output_path,
+        video_directory=video_directory,
+        df_prorail_path=df_prorail_path,
+        coco_writer=coco_writer,
+        yolo_writer=yolo_writer,
+    )
+    generate_hazmat_annotations(
+        output_path=output_path,
+        df_hazmat_path=df_hazmat_path,
+        coco_writer=coco_writer,
+        yolo_writer=yolo_writer,
+    )
+
+    coco_writer.write_json()
+
+
+def generate_prorail_annotations(
+    output_path="./data/annotations/prorail",
+    video_directory="./data/processed/prorail",
+    df_prorail_path="./data/labels_dataframe.csv",
+    coco_writer=None,
+    yolo_writer=None,
+):
+    if coco_writer is None:
+        coco_writer = CocoConverter(output_path)
+    if yolo_writer is None:
+        yolo_writer = YOLOConverter(output_path)
 
     if video_directory is not None and df_prorail_path is not None:
         df_prorail = pd.read_csv(df_prorail_path)
@@ -83,6 +120,20 @@ def generate_annotations(
                 if coco_writer.get_annotations_count() == total_frames:
                     break
                 cap.release()
+
+    coco_writer.write_json()
+
+
+def generate_hazmat_annotations(
+    output_path="./data/annotations/hazmat",
+    df_hazmat_path="./data/images_with_boxes.csv",
+    coco_writer=None,
+    yolo_writer=None,
+):
+    if coco_writer is None:
+        coco_writer = CocoConverter(output_path)
+    if yolo_writer is None:
+        yolo_writer = YOLOConverter(output_path)
 
     if df_hazmat_path is not None:
         df_hazmat = pd.read_csv(df_hazmat_path)
