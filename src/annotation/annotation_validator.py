@@ -1,3 +1,4 @@
+import json
 import os
 import random
 
@@ -5,6 +6,8 @@ import matplotlib.pyplot as plt
 
 from annotation.image_annotator import read_image
 from draw.utils import draw_box
+
+subdirs = ["train", "test", "val"]
 
 
 def display_sample_annotations_yolo(
@@ -28,7 +31,6 @@ def display_sample_annotations_yolo(
         )
     images_dir = os.path.join(annotations_dir, "images")
 
-    subdirs = ["train", "test", "val"]
     images = []
     for subdir in subdirs:
         sub_images_dir = os.path.join(images_dir, subdir)
@@ -74,6 +76,67 @@ def display_sample_annotations_yolo(
                     predicted_box=None,
                     confidence=None,
                 )
+
+        plt.axis("off")
+        plt.tight_layout()
+        plt.show()
+
+
+def display_sample_annotations_coco(
+    annotations_dir: str,
+    amount: int = 5,
+):
+    images = {}
+    img_to_anns = {}
+    for subdir in subdirs:
+        sub_annotations = os.path.join(
+            annotations_dir, subdir, "annotations", f"instances_{subdir}.json"
+        )
+        with open(sub_annotations) as f:
+            data = json.load(f)
+        img_per_dir = {}
+        for img in data["images"]:
+            img["subdir"] = os.path.join(annotations_dir, subdir, "images")
+            img_per_dir[img["id"]] = img
+        images[subdir] = img_per_dir
+
+        img_to_anns_sub = {}
+
+        for ann in data["annotations"]:
+            img_id = ann["image_id"]
+            if img_id not in img_to_anns:
+                img_to_anns_sub[img_id] = []
+            img_to_anns_sub[img_id].append(ann)
+
+        img_to_anns[subdir] = img_to_anns_sub
+
+    subdir = random.choice(subdirs)
+    chosen_images = list(images[subdir].keys())
+
+    for img_id in random.sample(chosen_images, min(amount, len(chosen_images))):
+        img_info = images[subdir][img_id]
+        img_path = os.path.join(img_info["subdir"], img_info["file_name"])
+        image, image_width, image_height = read_image(img_path)
+        if image is None:
+            print(f"Image {img_path} could not be read.")
+            continue
+        plt.figure(figsize=(10, 10))
+        plt.imshow(image)
+
+        anns = img_to_anns[subdir].get(img_id, [])
+        for ann in anns:
+            bbox = ann["bbox"]
+            x_min = int(bbox[0])
+            y_min = int(bbox[1])
+            x_max = int(bbox[0] + bbox[2])
+            y_max = int(bbox[1] + bbox[3])
+            draw_box(
+                image=image,
+                ground_truth=(x_min, y_min, x_max, y_max),
+                codes=None,
+                predicted_box=None,
+                confidence=None,
+            )
 
         plt.axis("off")
         plt.tight_layout()
