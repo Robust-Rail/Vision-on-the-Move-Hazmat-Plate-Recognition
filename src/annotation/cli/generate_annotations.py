@@ -22,7 +22,7 @@ def generate_annotations(
     if yolo_writer is None:
         yolo_writer = YOLOConverter(output_path)
 
-    if not os.path.exists(output_path):
+    if os.path.exists(output_path):
         os.rmdir(output_path)
     os.makedirs(output_path, exist_ok=True)
 
