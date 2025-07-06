@@ -20,16 +20,37 @@ class CocoConverter:
         return os.path.join(self.path, CocoConverter.subpath)
 
     def add_image(self, dist, filename, width, height):
-        image_id = len(self.images[dist]) + 1
+        image_id = int(len(self.images[dist]) + 1)
+        filename = filename.split("/")[1] if "/" in filename else filename
         self.images[dist].append(
             {
                 "id": image_id,
                 "file_name": filename,
-                "width": width,
-                "height": height,
+                "width": int(width),
+                "height": int(height),
             }
         )
         return image_id
+
+    def add_annotation(self, dist, annotation, image_id):
+        bbox = [
+            float(annotation["xtl"]),
+            float(annotation["ytl"]),
+            float(annotation["xbr"]) - float(annotation["xtl"]),
+            float(annotation["ybr"]) - float(annotation["ytl"]),
+        ]
+        area = float(bbox[2] * bbox[3])
+        self.annotations[dist].append(
+            {
+                "id": int(len(self.annotations[dist]) + 1),
+                "image_id": int(image_id),
+                "category_id": 1,
+                "bbox": [float(x) for x in bbox],
+                "area": area,
+                "iscrowd": 0,
+            }
+        )
+        self.annotations_count[dist] += 1
 
     def save_frame(self, video, frame_number, frame, dist, overwrite=True):
         new_path = os.path.join(self.get_path(), dist, "images")
@@ -39,26 +60,6 @@ class CocoConverter:
         if not overwrite and os.path.exists(image_path):
             return
         cv2.imwrite(image_path, frame)
-
-    def add_annotation(self, dist, annotation, image_id):
-        bbox = [
-            annotation["XTL"],
-            annotation["YTL"],
-            annotation["XBR"] - annotation["XTL"],
-            annotation["YBR"] - annotation["YTL"],
-        ]
-        area = bbox[2] * bbox[3]
-        self.annotations[dist].append(
-            {
-                "id": len(self.annotations[dist]) + 1,
-                "image_id": image_id,
-                "category_id": 1,
-                "bbox": bbox,
-                "area": area,
-                "iscrowd": 0,
-            }
-        )
-        self.annotations_count[dist] += 1
 
     def write_json(self):
         for dist in ["train", "val", "test"]:
