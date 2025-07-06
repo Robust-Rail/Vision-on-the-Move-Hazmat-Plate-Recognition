@@ -33,24 +33,24 @@ class YOLOConverter:
         label_name = f"{filename}.txt"
         label_path = os.path.join(annotation_path, label_name)
 
-        lable = ""
+        label = ""
         x_center = (float(annotation["xtl"]) + float(annotation["xbr"])) / 2 / img_width
         y_center = (
             (float(annotation["ytl"]) + float(annotation["ybr"])) / 2 / img_height
         )
         width = (float(annotation["xbr"]) - float(annotation["xtl"])) / img_width
         height = (float(annotation["ybr"]) - float(annotation["ytl"])) / img_height
-        lable += f"0 {x_center} {y_center} {width} {height}\n"
+        label += f"0 {x_center} {y_center} {width} {height}\n"
 
         if (
             os.path.exists(os.path.join(label_path))
             and label_path in self.created_annotations
         ):
             with open(label_path, "a") as f:
-                f.write(lable)
+                f.write(label)
         else:
             with open(label_path, "w") as f:
-                f.write(lable)
+                f.write(label)
 
         self.annotations_count[dist] += 1
         self.created_annotations.append(label_path)
