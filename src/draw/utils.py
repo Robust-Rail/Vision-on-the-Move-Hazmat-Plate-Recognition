@@ -39,7 +39,7 @@ def draw_box(
                 (x_gt, y_gt),
                 w_gt,
                 h_gt,
-                edgecolor=PREDICTION_COLOR,
+                edgecolor=GROUND_TRUTH_COLOR,
                 facecolor="none",
                 linewidth=LINEWIDTH_GROUND_TRUTH,
             )
@@ -50,7 +50,7 @@ def draw_box(
             "Ground Truth",
             color="white",
             fontsize=FONT_SIZE,
-            bbox=dict(facecolor=PREDICTION_COLOR, alpha=0.7, edgecolor="none", pad=1),
+            bbox=dict(facecolor=GROUND_TRUTH_COLOR, alpha=0.7, edgecolor="none", pad=1),
         )
     if predicted_box is not None:
         x_pred, y_pred, w_pred, h_pred = get_coordinates(predicted_box)
@@ -59,7 +59,7 @@ def draw_box(
                 (x_pred, y_pred),
                 w_pred,
                 h_pred,
-                edgecolor=GROUND_TRUTH_COLOR,
+                edgecolor=PREDICTION_COLOR,
                 facecolor="none",
                 linewidth=2,
             )
@@ -69,16 +69,13 @@ def draw_box(
             text_to_display = f"RID/ADR: {codes[0]}\nUN: {codes[1]}"
         if confidence is not None:
             text_to_display += f"\nYOLO-conf: {confidence:.2f}"
-        # un_number, hin_number = get_un_number(img, bbox)
-        # desc = get_description(hin_number)
-        # tekst = f"HIN: {un_number}, UN: {hin_number}\nConfidence: {confidence:.2f}"
         plt.text(
             x_pred,
             y_pred - 5,
             text_to_display,
             color="white",
             fontsize=FONT_SIZE,
-            bbox=dict(facecolor=GROUND_TRUTH_COLOR, alpha=0.7, edgecolor="none", pad=1),
+            bbox=dict(facecolor=PREDICTION_COLOR, alpha=0.7, edgecolor="none", pad=1),
         )
 
     return image
