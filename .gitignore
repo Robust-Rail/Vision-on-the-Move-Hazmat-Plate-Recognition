@@ -223,8 +223,9 @@ output/
 images/stock
 images/
 checkpoints
-/data/
-
+!data/haztruck_dataset.csv
+/data/*
+!/data/hazmat_dataset.csv
 # Environments
 .venv/
 .env

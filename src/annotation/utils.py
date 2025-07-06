@@ -1,8 +1,9 @@
+import json
 import os
+import random
+
 import cv2
 import matplotlib.pyplot as plt
-import random
-import json
 
 distribution = [("train", 0.8), ("test", 0.1), ("val", 0.1)]
 

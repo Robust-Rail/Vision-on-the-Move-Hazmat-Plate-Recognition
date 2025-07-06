@@ -1,16 +1,17 @@
 import math
+import os
+import random
+from typing import Union
+
+import albumentations as A
+import cv2
+import matplotlib.pyplot as plt
+import numpy as np
 import torch
 import torchvision.transforms.functional as F
 from PIL import Image
-import random
 from torchvision.transforms import ColorJitter, GaussianBlur
-import matplotlib.pyplot as plt
-import numpy as np
 
-import os
-from typing import Union
-import cv2
-import albumentations as A
 
 class Compose:
     def __init__(self, transforms):
@@ -257,10 +258,11 @@ def visualize_augmentations(dataset, num_samples=5):
         axes[idx].imshow(img_np)
         axes[idx].set_title(f"Image {idx} with {len(target['boxes'])} boxes")
         axes[idx].axis("off")
-        for box in target['boxes']:
+        for box in target["boxes"]:
             x1, y1, x2, y2 = box
-            rect = plt.Rectangle((x1, y1), x2 - x1, y2 - y1,
-                                 linewidth=2, edgecolor='r', facecolor='none')
+            rect = plt.Rectangle(
+                (x1, y1), x2 - x1, y2 - y1, linewidth=2, edgecolor="r", facecolor="none"
+            )
             axes[idx].add_patch(rect)
     plt.tight_layout()
     plt.show()
@@ -314,8 +316,10 @@ def generate_named_augmented_image(
     # Configure augmentation pipeline
     if isinstance(augmentation, str):
         if augmentation not in augmentation_presets:
-            raise ValueError(f"Unknown preset: {augmentation}. "
-                             f"Available: {list(augmentation_presets.keys())}")
+            raise ValueError(
+                f"Unknown preset: {augmentation}. "
+                f"Available: {list(augmentation_presets.keys())}"
+            )
         transform = A.Compose([augmentation_presets[augmentation]])
     else:
         transform = augmentation
@@ -324,8 +328,10 @@ def generate_named_augmented_image(
     try:
         augmented = transform(image=image)["image"]
         if augmented is None:
-            raise ValueError("Augmentation returned None. Check the input image and augmentation "
-                             "parameters.")
+            raise ValueError(
+                "Augmentation returned None. Check the input image and augmentation "
+                "parameters."
+            )
         # Use the user-provided filename
         output_filename = f"{output_filename_base}.jpg"
         output_path = os.path.join(output_dir, output_filename)
@@ -346,8 +352,12 @@ def generate_named_augmented_image(
         return None
 
 
-def visualize_weather_augmentations(input_dir: str, augmentations_dir: str,
-                                    file_extension_augmentation: str = ".jpg", num_images: int = 5):
+def visualize_weather_augmentations(
+    input_dir: str,
+    augmentations_dir: str,
+    file_extension_augmentation: str = ".jpg",
+    num_images: int = 5,
+):
     """
     Visualizes weather augmentations by displaying the original image
     and its augmented versions side by side.
@@ -359,10 +369,12 @@ def visualize_weather_augmentations(input_dir: str, augmentations_dir: str,
         file_extension_augmentation (str): File extension for the augmented images. Default is ".jpg
     """
     # Get all image files in the directory
-    image_files = [f for f in os.listdir(input_dir) if f.endswith(('.jpg', '.png', '.jpeg'))]
+    image_files = [
+        f for f in os.listdir(input_dir) if f.endswith((".jpg", ".png", ".jpeg"))
+    ]
     # Limit to num_images
     image_files = image_files[:num_images]
-    possible_augmentations = ['rain', 'sun_flare', 'shadow', 'fog']
+    possible_augmentations = ["rain", "sun_flare", "shadow", "fog"]
 
     for image in image_files:
         count = 1
@@ -374,18 +386,19 @@ def visualize_weather_augmentations(input_dir: str, augmentations_dir: str,
         fig, axes = plt.subplots(1, len(possible_augmentations) + 1, figsize=(20, 5))
         # Display the original image
         axes[0].imshow(original_image)
-        axes[0].set_title('Original Image')
-        axes[0].axis('off')
+        axes[0].set_title("Original Image")
+        axes[0].axis("off")
 
         # Display each augmented image
         for i, augmentation in enumerate(possible_augmentations):
-            aug_image_path = os.path.join(augmentations_dir, augmentation,
-                                          f"{count}{file_extension_augmentation}")
+            aug_image_path = os.path.join(
+                augmentations_dir, augmentation, f"{count}{file_extension_augmentation}"
+            )
             if os.path.exists(aug_image_path):
                 aug_image = Image.open(aug_image_path)
                 axes[i + 1].imshow(aug_image)
-                axes[i + 1].set_title(f'{augmentation.capitalize()} Augmentation')
-                axes[i + 1].axis('off')
+                axes[i + 1].set_title(f"{augmentation.capitalize()} Augmentation")
+                axes[i + 1].axis("off")
             else:
                 print(f"Augmented image for {augmentation} not found: {aug_image_path}")
 
