@@ -120,6 +120,7 @@ def generate_prorail_annotations(
                 cap.release()
 
     coco_writer.write_json()
+    yolo_writer.write_dataset_yaml()
 
 
 def generate_hazmat_annotations(
@@ -162,3 +163,4 @@ def generate_hazmat_annotations(
         )
 
     coco_writer.write_json()
+    yolo_writer.write_dataset_yaml()
