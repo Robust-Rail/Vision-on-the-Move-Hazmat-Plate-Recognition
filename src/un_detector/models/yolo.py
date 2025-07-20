@@ -140,7 +140,7 @@ class UNNumberYOLO:
         """
         # Get the directory where this file is located
         current_dir = Path(__file__).parent.parent.parent.parent
-        config_dir = current_dir / "configs"
+        config_dir = current_dir / "configs" / "yolo"
         config_path = config_dir / f"{config_name}.yaml"
 
         if not config_path.exists():
@@ -160,7 +160,7 @@ class UNNumberYOLO:
             List of available configuration names.
         """
         current_dir = Path(__file__).parent.parent.parent.parent
-        config_dir = current_dir / "configs"
+        config_dir = current_dir / "configs" / "yolo"
 
         if not config_dir.exists():
             return []
