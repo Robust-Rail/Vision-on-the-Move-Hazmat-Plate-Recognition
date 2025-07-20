@@ -1,6 +1,7 @@
 import os
 
 import cv2
+import yaml
 
 from annotation.utils import get_annotation_file_name
 
@@ -61,3 +62,17 @@ class YOLOConverter:
         filename = get_annotation_file_name(video_name, frame_num)
         frame_name = f"{filename}.jpg"
         cv2.imwrite(os.path.join(frames_path, frame_name), frame)
+
+    def write_dataset_yaml(self):
+        path = os.path.abspath(self.get_path())
+        dataset_yaml = {
+            "path": path,
+            "train": os.path.join("images", "train"),
+            "val": os.path.join("images", "val"),
+            "test": os.path.join("images", "test"),
+            "nc": 1,
+            "names": ["hazmat_plate"],
+        }
+        yaml_path = os.path.join(self.get_path(), "dataset.yaml")
+        with open(yaml_path, "w") as f:
+            yaml.dump(dataset_yaml, f)
