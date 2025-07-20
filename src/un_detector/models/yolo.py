@@ -3,6 +3,7 @@ Custom YOLO class for UN number detection that simplifies initialization and pro
 common functionality for the UN number hazard plate detection project.
 """
 
+import os
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple, Union
 
@@ -143,11 +144,7 @@ class UNNumberYOLO:
         config_path = config_dir / f"{config_name}.yaml"
 
         if not config_path.exists():
-            available_configs = [f.stem for f in config_dir.glob("*.yaml")]
-            raise FileNotFoundError(
-                f"Configuration '{config_name}' not found. "
-                f"Available configurations: {available_configs}"
-            )
+            raise FileNotFoundError(f"Configuration '{config_name}' not found. ")
 
         with open(config_path, "r") as f:
             config = yaml.safe_load(f)
@@ -170,16 +167,13 @@ class UNNumberYOLO:
 
         return [f.stem for f in config_dir.glob("*.yaml")]
 
-    def train(
-        self, data: Union[str, Path], config: Optional[str] = None, **kwargs
-    ) -> Any:
+    def train(self, data_path: str, config_path: Optional[str] = None, **kwargs) -> Any:
         """
         Train the YOLO model with optimized parameters for UN number detection.
 
         Args:
             data: Path to dataset YAML file or dataset directory.
-            config: Name of configuration file to use (optional). If provided,
-                   loads configuration from configs/{config}.yaml
+            config_path: Path to a configuration file (optional).
             **kwargs: Additional training parameters to override defaults or config.
 
         Returns:
@@ -200,15 +194,15 @@ class UNNumberYOLO:
             >>> results = detector.train('data/yolo/dataset.yaml', epochs=20, batch=32)
         """
         # Start with default parameters
-        train_params = self.DEFAULT_TRAIN_PARAMS.copy()
+        train_params = {}
 
         # Load configuration if specified
-        if config is not None:
+        if config_path is not None:
             try:
-                config_params = self.load_config(config)
-                train_params.update(config_params)
+                config_params = self.load_config(config_path)
+                train_params = config_params
                 if self.verbose:
-                    print(f"📋 Loaded configuration: {config}")
+                    print(f"📋 Loaded configuration: {config_path}")
             except FileNotFoundError as e:
                 if self.verbose:
                     print(f"⚠️ Configuration error: {e}")
@@ -218,19 +212,16 @@ class UNNumberYOLO:
         train_params.update(kwargs)
 
         # Set device if not specified
-        if train_params["device"] is None:
+        if train_params.get("device") is None:
             train_params["device"] = self.device
 
         # Ensure data path exists
-        data_path = Path(data)
-        if not data_path.exists():
+        if not os.path.exists(data_path):
             raise FileNotFoundError(f"Dataset file not found: {data_path}")
 
         if self.verbose:
             print(f"🏋️ Starting training with {train_params['epochs']} epochs...")
             print(f"   📊 Dataset: {data_path}")
-            print(f"   🔢 Batch size: {train_params['batch']}")
-            print(f"   📐 Image size: {train_params['imgsz']}")
 
         # Start training
         results = self.model.train(data=str(data_path), **train_params)
