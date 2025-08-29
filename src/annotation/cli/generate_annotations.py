@@ -13,7 +13,7 @@ def generate_annotations(
     output_path="./data/annotations/prorail",
     video_directory="./data/processed/prorail",
     df_prorail_path="./data/labels_dataframe.csv",
-    df_hazmat_path="./data/images_with_boxes.csv",
+    df_haztruck_path="./data/images_with_boxes.csv",
     coco_writer=None,
     yolo_writer=None,
 ):
@@ -33,9 +33,9 @@ def generate_annotations(
         coco_writer=coco_writer,
         yolo_writer=yolo_writer,
     )
-    generate_hazmat_annotations(
+    generate_haztruck_annotations(
         output_path=output_path,
-        df_hazmat_path=df_hazmat_path,
+        df_haztruck_path=df_haztruck_path,
         coco_writer=coco_writer,
         yolo_writer=yolo_writer,
     )
@@ -123,9 +123,9 @@ def generate_prorail_annotations(
     yolo_writer.write_dataset_yaml()
 
 
-def generate_hazmat_annotations(
-    output_path="./data/annotations/hazmat",
-    df_hazmat_path="./data/images_with_boxes.csv",
+def generate_haztruck_annotations(
+    output_path="./data/annotations/haztruck",
+    df_haztruck_path="./data/images_with_boxes.csv",
     coco_writer=None,
     yolo_writer=None,
 ):
@@ -134,30 +134,35 @@ def generate_hazmat_annotations(
     if yolo_writer is None:
         yolo_writer = YOLOConverter(output_path)
 
-    if df_hazmat_path is not None:
-        df_hazmat = pd.read_csv(df_hazmat_path)
-        hazmat_images = df_hazmat["image_name"].unique()
-        with tqdm(total=len(hazmat_images), desc="Hazmat images") as hazmat_pbar:
-            for image_name in hazmat_images:
-                image_info = df_hazmat[df_hazmat["image_name"] == image_name].iloc[0]
-                image_id = coco_writer.add_image(
-                    "val", image_name, image_info["width"], image_info["height"]
-                )
-                for _, row in df_hazmat[
-                    df_hazmat["image_name"] == image_name
+    if df_haztruck_path is not None:
+        df_haztruck = pd.read_csv(df_haztruck_path)
+        haztruck_images = df_haztruck["image_name"].unique()
+        with tqdm(total=len(haztruck_images), desc="Hazmat images") as haztruck_pbar:
+            for image_name in haztruck_images:
+                image_info = df_haztruck[df_haztruck["image_name"] == image_name].iloc[
+                    0
+                ]
+                width, height = map(int, image_info["resolution"].split("x"))
+                image_id = coco_writer.add_image("val", image_name, width, height)
+                for _, row in df_haztruck[
+                    df_haztruck["image_name"] == image_name
                 ].iterrows():
+                    row["xtl"] = row["box_xtl"]
+                    row["ytl"] = row["box_ytl"]
+                    row["xbr"] = row["box_xbr"]
+                    row["ybr"] = row["box_ybr"]
                     coco_writer.add_annotation("val", row, image_id)
                     yolo_writer.add_annotation(
                         "val",
                         image_name,
-                        (image_info["width"], image_info["height"]),
+                        (width, height),
                         row,
                     )
-                hazmat_pbar.update(1)
+                haztruck_pbar.update(1)
         print(
             "\033[93m"
             "WARNING: Annotation files have been created, but the dataset may be incomplete.\n"
-            "Please ensure that all hazmat images are copied to 'coco/val/images' \n"
+            "Please ensure that all haztruck images are copied to 'coco/val/images' \n"
             "and 'yolo/images/val' to finalize the dataset."
             "\033[0m"
         )
