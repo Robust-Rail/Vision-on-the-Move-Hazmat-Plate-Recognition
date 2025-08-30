@@ -1,6 +1,7 @@
 import os
 
 import pandas as pd
+import requests
 from tqdm import tqdm
 
 from annotation.converters.coco_converter import CocoConverter
@@ -144,6 +145,28 @@ def generate_haztruck_annotations(
                 ]
                 width, height = map(int, image_info["resolution"].split("x"))
                 image_id = coco_writer.add_image("val", image_name, width, height)
+                link_to_image = image_info["link"]
+                download_image(
+                    image_name,
+                    link_to_image,
+                    [
+                        os.path.join(
+                            output_path,
+                            coco_writer.subpath,
+                            "val",
+                            "images",
+                            image_name,
+                        ),
+                        os.path.join(
+                            output_path,
+                            yolo_writer.subpath,
+                            "images",
+                            "val",
+                            image_name,
+                        ),
+                    ],
+                )
+
                 for _, row in df_haztruck[
                     df_haztruck["image_name"] == image_name
                 ].iterrows():
@@ -169,3 +192,28 @@ def generate_haztruck_annotations(
 
     coco_writer.write_json()
     yolo_writer.write_dataset_yaml()
+
+
+def download_image(image_name, url, output_paths):
+    if pd.isna(url) or not str(url).strip().startswith(("http://", "https://")):
+        print(f"Invalid URL provided for image {image_name}.")
+        return
+    images_downloaded = 0
+    for output_path in output_paths:
+        if os.path.exists(output_path):
+            images_downloaded += 1
+        else:
+            os.makedirs(os.path.dirname(output_path), exist_ok=True)
+
+    if images_downloaded == len(output_paths):
+        return
+
+    response = requests.get(url)
+    if response.status_code == 200:
+        for output_path in output_paths:
+            with open(output_path, "wb") as f:
+                f.write(response.content)
+    else:
+        print(f"Failed to download image from {url}")
+
+    print(f"Downloaded image from {url}")
