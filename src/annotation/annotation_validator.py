@@ -44,6 +44,12 @@ def display_sample_annotations_yolo(
 
     for image_path in random.sample(images, min(amount, len(images))):
         # read image
+        label_path = (
+            image_path.replace(".jpg", ".txt")
+            .replace(".png", ".txt")
+            .replace("images", "labels")
+        )
+        print(f"Displaying annotations for {image_path} from {label_path}")
         image, image_width, image_height = read_image(image_path)
         if image is None:
             print(f"Image {image_path} could not be read.")
@@ -51,11 +57,14 @@ def display_sample_annotations_yolo(
         plt.figure(figsize=(10, 10))
         plt.imshow(image)
 
-        label_path = image_path.replace(".jpg", ".txt").replace("images", "labels")
+        label_path = (
+            image_path.replace(".jpg", ".txt")
+            .replace(".png", ".txt")
+            .replace("images", "labels")
+        )
         if not os.path.exists(label_path):
             print(f"Label file {label_path} does not exist.")
             continue
-        print(f"Displaying annotations for {image_path} from {label_path}")
         with open(label_path, "r") as f:
             labels = f.readlines()
             for label in labels:
@@ -85,6 +94,7 @@ def display_sample_annotations_yolo(
 def display_sample_annotations_coco(
     annotations_dir: str,
     amount: int = 5,
+    subset: str = None,
 ):
     images = {}
     img_to_anns = {}
@@ -104,17 +114,18 @@ def display_sample_annotations_coco(
 
         for ann in data["annotations"]:
             img_id = ann["image_id"]
-            if img_id not in img_to_anns:
+            if img_id not in img_to_anns_sub:
                 img_to_anns_sub[img_id] = []
             img_to_anns_sub[img_id].append(ann)
 
         img_to_anns[subdir] = img_to_anns_sub
 
-    subdir = random.choice(subdirs)
-    chosen_images = list(images[subdir].keys())
+    if subset is None:
+        subset = random.choice(subdirs)
+    chosen_images = list(images[subset].keys())
 
     for img_id in random.sample(chosen_images, min(amount, len(chosen_images))):
-        img_info = images[subdir][img_id]
+        img_info = images[subset][img_id]
         img_path = os.path.join(img_info["subdir"], img_info["file_name"])
         image, image_width, image_height = read_image(img_path)
         if image is None:
@@ -123,7 +134,7 @@ def display_sample_annotations_coco(
         plt.figure(figsize=(10, 10))
         plt.imshow(image)
 
-        anns = img_to_anns[subdir].get(img_id, [])
+        anns = img_to_anns[subset].get(img_id, [])
         for ann in anns:
             bbox = ann["bbox"]
             x_min = int(bbox[0])
@@ -137,7 +148,7 @@ def display_sample_annotations_coco(
                 predicted_box=None,
                 confidence=None,
             )
-
+        print(f"Displaying annotations for {img_path} from COCO annotations")
         plt.axis("off")
         plt.tight_layout()
         plt.show()

@@ -1,8 +1,10 @@
 import os
 
 import pandas as pd
+import requests
 from tqdm import tqdm
 
+from annotation.cli.webscraping import download_second_image
 from annotation.converters.coco_converter import CocoConverter
 from annotation.converters.yolo_converter import YOLOConverter
 from annotation.utils import get_annotation_file_name, get_rnd_distribution
@@ -10,10 +12,10 @@ from annotation.video_annotator import read_video
 
 
 def generate_annotations(
-    output_path="./data/annotations/prorail",
-    video_directory="./data/processed/prorail",
-    df_prorail_path="./data/labels_dataframe.csv",
-    df_hazmat_path="./data/images_with_boxes.csv",
+    output_path=os.environ["PATH_TO_ANNOTATIONS"],
+    video_directory=os.environ["PATH_TO_PRORAIL_VIDEODATA"],
+    df_prorail_path=os.environ["PATH_TO_PRORAIL_CSV"],
+    df_haztruck_path=os.environ["PATH_TO_HAZTRUCK_CSV"],
     coco_writer=None,
     yolo_writer=None,
 ):
@@ -27,15 +29,15 @@ def generate_annotations(
     os.makedirs(output_path, exist_ok=True)
 
     generate_prorail_annotations(
-        output_path=output_path,
+        output_path=os.path.join(output_path, "prorail"),
         video_directory=video_directory,
         df_prorail_path=df_prorail_path,
         coco_writer=coco_writer,
         yolo_writer=yolo_writer,
     )
-    generate_hazmat_annotations(
-        output_path=output_path,
-        df_hazmat_path=df_hazmat_path,
+    generate_haztruck_annotations(
+        output_path=os.path.join(output_path, "haztruck"),
+        df_haztruck_path=df_haztruck_path,
         coco_writer=coco_writer,
         yolo_writer=yolo_writer,
     )
@@ -44,9 +46,9 @@ def generate_annotations(
 
 
 def generate_prorail_annotations(
-    output_path="./data/annotations/prorail",
-    video_directory="./data/processed/prorail",
-    df_prorail_path="./data/labels_dataframe.csv",
+    output_path=os.environ["PATH_TO_PRORAIL_ANNOTATIONS"],
+    video_directory=os.environ["PATH_TO_PRORAIL_VIDEODATA"],
+    df_prorail_path=os.environ["PATH_TO_PRORAIL_CSV"],
     coco_writer=None,
     yolo_writer=None,
 ):
@@ -123,9 +125,9 @@ def generate_prorail_annotations(
     yolo_writer.write_dataset_yaml()
 
 
-def generate_hazmat_annotations(
-    output_path="./data/annotations/hazmat",
-    df_hazmat_path="./data/images_with_boxes.csv",
+def generate_haztruck_annotations(
+    output_path=os.environ["PATH_TO_HAZTRUCK_ANNOTATIONS"],
+    df_haztruck_path=os.environ["PATH_TO_HAZTRUCK_CSV"],
     coco_writer=None,
     yolo_writer=None,
 ):
@@ -134,33 +136,91 @@ def generate_hazmat_annotations(
     if yolo_writer is None:
         yolo_writer = YOLOConverter(output_path)
 
-    if df_hazmat_path is not None:
-        df_hazmat = pd.read_csv(df_hazmat_path)
-        hazmat_images = df_hazmat["image_name"].unique()
-        with tqdm(total=len(hazmat_images), desc="Hazmat images") as hazmat_pbar:
-            for image_name in hazmat_images:
-                image_info = df_hazmat[df_hazmat["image_name"] == image_name].iloc[0]
-                image_id = coco_writer.add_image(
-                    "val", image_name, image_info["width"], image_info["height"]
+    if df_haztruck_path is not None:
+        df_haztruck = pd.read_csv(df_haztruck_path)
+        haztruck_images = df_haztruck["image_name"].unique()
+        with tqdm(total=len(haztruck_images), desc="Hazmat images") as haztruck_pbar:
+            for image_name in haztruck_images:
+                image_info = df_haztruck[df_haztruck["image_name"] == image_name].iloc[
+                    0
+                ]
+                width, height = map(int, image_info["resolution"].split("x"))
+                image_id = coco_writer.add_image("val", image_name, width, height)
+                link_to_image = image_info["link"]
+                download_image(
+                    image_name,
+                    link_to_image,
+                    [
+                        os.path.join(
+                            output_path,
+                            coco_writer.subpath,
+                            "val",
+                            "images",
+                            image_name,
+                        ),
+                        os.path.join(
+                            output_path,
+                            yolo_writer.subpath,
+                            "images",
+                            "val",
+                            image_name,
+                        ),
+                    ],
                 )
-                for _, row in df_hazmat[
-                    df_hazmat["image_name"] == image_name
+
+                for _, row in df_haztruck[
+                    df_haztruck["image_name"] == image_name
                 ].iterrows():
+                    row["xtl"] = row["box_xtl"]
+                    row["ytl"] = row["box_ytl"]
+                    row["xbr"] = row["box_xbr"]
+                    row["ybr"] = row["box_ybr"]
                     coco_writer.add_annotation("val", row, image_id)
                     yolo_writer.add_annotation(
                         "val",
                         image_name,
-                        (image_info["width"], image_info["height"]),
+                        (width, height),
                         row,
                     )
-                hazmat_pbar.update(1)
+                haztruck_pbar.update(1)
         print(
             "\033[93m"
             "WARNING: Annotation files have been created, but the dataset may be incomplete.\n"
-            "Please ensure that all hazmat images are copied to 'coco/val/images' \n"
+            "Please ensure that all haztruck images are copied to 'coco/val/images' \n"
             "and 'yolo/images/val' to finalize the dataset."
             "\033[0m"
         )
 
     coco_writer.write_json()
     yolo_writer.write_dataset_yaml()
+
+
+def download_image(image_name, url, output_paths):
+    if pd.isna(url) or not str(url).strip().startswith(("http://", "https://")):
+        print(f"Invalid URL provided for image {image_name}.")
+        return
+    images_downloaded = 0
+    for output_path in output_paths:
+        if os.path.exists(output_path):
+            images_downloaded += 1
+        else:
+            os.makedirs(os.path.dirname(output_path), exist_ok=True)
+
+    if images_downloaded == len(output_paths):
+        return
+
+    response = requests.get(url, timeout=30)
+    if response.status_code == 200:
+        # check if response is an image
+        content_type = response.headers.get("Content-Type", "")
+        if "image" not in content_type:
+            download_second_image(url, output_paths)
+            return
+        else:
+            for output_path in output_paths:
+                with open(output_path, "wb") as f:
+                    f.write(response.content)
+    else:
+        print(f"Failed to download image from {url}")
+
+    print(f"Downloaded image from {url}")
