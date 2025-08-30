@@ -4,6 +4,7 @@ import pandas as pd
 import requests
 from tqdm import tqdm
 
+from annotation.cli.webscraping import download_second_image
 from annotation.converters.coco_converter import CocoConverter
 from annotation.converters.yolo_converter import YOLOConverter
 from annotation.utils import get_annotation_file_name, get_rnd_distribution
@@ -11,10 +12,10 @@ from annotation.video_annotator import read_video
 
 
 def generate_annotations(
-    output_path="./data/annotations/prorail",
-    video_directory="./data/processed/prorail",
-    df_prorail_path="./data/labels_dataframe.csv",
-    df_haztruck_path="./data/images_with_boxes.csv",
+    output_path=os.environ["PATH_TO_ANNOTATIONS"],
+    video_directory=os.environ["PATH_TO_PRORAIL_VIDEODATA"],
+    df_prorail_path=os.environ["PATH_TO_PRORAIL_CSV"],
+    df_haztruck_path=os.environ["PATH_TO_HAZTRUCK_CSV"],
     coco_writer=None,
     yolo_writer=None,
 ):
@@ -28,14 +29,14 @@ def generate_annotations(
     os.makedirs(output_path, exist_ok=True)
 
     generate_prorail_annotations(
-        output_path=output_path,
+        output_path=os.path.join(output_path, "prorail"),
         video_directory=video_directory,
         df_prorail_path=df_prorail_path,
         coco_writer=coco_writer,
         yolo_writer=yolo_writer,
     )
     generate_haztruck_annotations(
-        output_path=output_path,
+        output_path=os.path.join(output_path, "haztruck"),
         df_haztruck_path=df_haztruck_path,
         coco_writer=coco_writer,
         yolo_writer=yolo_writer,
@@ -45,9 +46,9 @@ def generate_annotations(
 
 
 def generate_prorail_annotations(
-    output_path="./data/annotations/prorail",
-    video_directory="./data/processed/prorail",
-    df_prorail_path="./data/labels_dataframe.csv",
+    output_path=os.environ["PATH_TO_PRORAIL_ANNOTATIONS"],
+    video_directory=os.environ["PATH_TO_PRORAIL_VIDEODATA"],
+    df_prorail_path=os.environ["PATH_TO_PRORAIL_CSV"],
     coco_writer=None,
     yolo_writer=None,
 ):
@@ -125,8 +126,8 @@ def generate_prorail_annotations(
 
 
 def generate_haztruck_annotations(
-    output_path="./data/annotations/haztruck",
-    df_haztruck_path="./data/images_with_boxes.csv",
+    output_path=os.environ["PATH_TO_HAZTRUCK_ANNOTATIONS"],
+    df_haztruck_path=os.environ["PATH_TO_HAZTRUCK_CSV"],
     coco_writer=None,
     yolo_writer=None,
 ):
@@ -208,11 +209,17 @@ def download_image(image_name, url, output_paths):
     if images_downloaded == len(output_paths):
         return
 
-    response = requests.get(url)
+    response = requests.get(url, timeout=30)
     if response.status_code == 200:
-        for output_path in output_paths:
-            with open(output_path, "wb") as f:
-                f.write(response.content)
+        # check if response is an image
+        content_type = response.headers.get("Content-Type", "")
+        if "image" not in content_type:
+            download_second_image(url, output_paths)
+            return
+        else:
+            for output_path in output_paths:
+                with open(output_path, "wb") as f:
+                    f.write(response.content)
     else:
         print(f"Failed to download image from {url}")
 
