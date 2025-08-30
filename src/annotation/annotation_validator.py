@@ -44,6 +44,12 @@ def display_sample_annotations_yolo(
 
     for image_path in random.sample(images, min(amount, len(images))):
         # read image
+        label_path = (
+            image_path.replace(".jpg", ".txt")
+            .replace(".png", ".txt")
+            .replace("images", "labels")
+        )
+        print(f"Displaying annotations for {image_path} from {label_path}")
         image, image_width, image_height = read_image(image_path)
         if image is None:
             print(f"Image {image_path} could not be read.")
@@ -59,7 +65,6 @@ def display_sample_annotations_yolo(
         if not os.path.exists(label_path):
             print(f"Label file {label_path} does not exist.")
             continue
-        print(f"Displaying annotations for {image_path} from {label_path}")
         with open(label_path, "r") as f:
             labels = f.readlines()
             for label in labels:
