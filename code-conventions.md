@@ -10,7 +10,7 @@ This document outlines the essential coding standards, project structure, and wo
 2.  [Tooling & Automation (Work Smarter, Not Harder)](#2-tooling--automation-work-smarter-not-harder)
 
     - [Linters & Formatters](#linters--formatters)
-    - [Jupyter Notebook Output Stripping (`nbstripout`)](#jupyter-notebook-output-stripping-nbstripout)
+    - [Jupyter Notebook Output Stripping (`nbdev`)](#jupyter-notebook-output-stripping-nbdev)
 
 3.  [Coding Style Guidelines (PEP 8 & Core Readability)](#3-coding-style-guidelines-pep-8--core-readability)
     - [Naming Conventions](#naming-conventions)
@@ -33,7 +33,7 @@ This streamlined structure focuses on what absolutely needs to be in Git. Large 
 ```
 UN-NUMBER-DETECTION/
 ├── .git/                         # Git's internal directory; tracks repository history.
-├── .gitattributes                # Defines Git behaviors, including nbstripout filter for notebooks.
+├── .gitattributes                # Defines Git behaviors, including nbdev filter for notebooks.
 ├── .gitignore                    # Specifies intentionally untracked files and directories (crucial for excluding large data/outputs).
 ├── .venv/                        # Python virtual environment; isolated dependencies for the project (always gitignored).
 ├── .pre-commit-config.yaml       # Configuration file for the pre-commit hook framework.
@@ -111,16 +111,16 @@ UN-NUMBER-DETECTION/
 │       ├── config_utils.py       # Utilities for loading and parsing configuration files (YAML).
 │       ├── logging_utils.py      # Standardized logging setup and helper functions.
 │       └── vis_utils.py          # Utilities for creating plots and visualizations.
-├── annotation/                   # Dedicated module for handling annotation logic (multiple sources/formats)
-│   ├── __init__.py               # Makes `annotation` a Python package.
-│   ├── image_annotator.py        # Functions/classes for annotating static image datasets.
-│   ├── video_annotator.py        # Extracts frames from videos and prepares them for annotation.
-│   ├── utils.py                  # Shared utilities for annotation (e.g., filename mapping, ID correction).
-│   ├── converters/               # Modules for converting raw annotations into specific formats.
-│   │   ├── __init__.py           # Marks `converters` as a sub-package.
-│   │   ├── coco_converter.py     # Converts annotations into COCO format (JSON).
-│   │   ├── yolo_converter.py     # Converts annotations into YOLO format (TXT).
-│   │   └── labelstudio_parser.py # Parses annotations exported from Label Studio (optional).
+│   ├── annotation/                   # Dedicated module for handling annotation logic (multiple sources/formats)
+│       ├── __init__.py               # Makes `annotation` a Python package.
+│       ├── image_annotator.py        # Functions/classes for annotating static image datasets.
+│       ├── video_annotator.py        # Extracts frames from videos and prepares them for annotation.
+│       ├── utils.py                  # Shared utilities for annotation (e.g., filename mapping, ID correction).
+│       ├── converters/               # Modules for converting raw annotations into specific formats.
+│   │       ├── __init__.py           # Marks `converters` as a sub-package.
+│   │       ├── coco_converter.py     # Converts annotations into COCO format (JSON).
+│   │       ├── yolo_converter.py     # Converts annotations into YOLO format (TXT).
+│   │       └── labelstudio_parser.py # Parses annotations exported from Label Studio (optional).
 │   └── cli/                      # CLI interface to run annotation pipelines.
 │       └── generate_annotations.py # Scriptable entry point to orchestrate annotation workflow from CLI.
 ├── .env                          # Local environment variables (e.g., API keys); **this file is gitignored**.
@@ -159,30 +159,30 @@ Set these up once, and they'll handle formatting automatically.
     ```
 2.  **Integration:** Set up your IDE (VS Code, PyCharm) to run Black on save. Run Flake8 and isort manually or as pre-commit hooks (optional, but good for "lazy" consistency).
 
-### Jupyter Notebook Output Stripping (`nbstripout`)
+### Jupyter Notebook Output Stripping (`nbdev`)
 
 This is **ESSENTIAL** for keeping notebooks lightweight in Git. It automatically removes all cell outputs (including large images) from `.ipynb` files.
 
 **How it handles large notebooks and prevents "LFS territory":**
-The core problem with notebooks in Git is not just their total file size, but the embedded outputs (like base64 encoded images or large text outputs) that make Git diffs unreadable and history bloated. `nbstripout` acts as a Git `clean` filter. This means that when you `git add` an `.ipynb` file, `nbstripout` **automatically processes and strips all outputs from it first**. The version of the notebook that is then staged in Git's index (ready for commit) is already clean and significantly smaller, containing only the code and markdown. This ensures that notebooks themselves never grow into "LFS territory" due to their outputs, and their diffs remain clean.
+The core problem with notebooks in Git is not just their total file size, but the embedded outputs (like base64 encoded images or large text outputs) that make Git diffs unreadable and history bloated. `nbdev` acts as a Git `clean` filter. This means that when you `git add` an `.ipynb` file, `nbdev` **automatically processes and strips all outputs from it first**. The version of the notebook that is then staged in Git's index (ready for commit) is already clean and significantly smaller, containing only the code and markdown. This ensures that notebooks themselves never grow into "LFS territory" due to their outputs, and their diffs remain clean.
 
 **Setup:**
 
 1.  **Installation:**
     ```bash
-    pip install nbstripout
+    pip install nbdev
     ```
 2.  **Configure Git (from project root):**
     ```bash
-    nbstripout --install
+    nbdev --install
     ```
     This adds a Git filter so outputs are automatically stripped on `git add`.
 3.  **Commit `.gitattributes`:**
     `bash
 git add .gitattributes
-git commit -m "Configure nbstripout for Jupyter notebooks"
+git commit -m "Configure nbdev for Jupyter notebooks"
 `
-    **All team members must run `nbstripout --install` once per clone** to ensure consistency.
+    **All team members must run `nbdev --install` once per clone** to ensure consistency.
 
 ## 3. Coding Style Guidelines
 
@@ -196,7 +196,7 @@ We adhere to the core principles of [PEP 8](https://www.python.org/dev/peps/pep-
 
 ### Line Length
 
-- **Follow Black:** Black will handle line wrapping. Generally aims for around 88 characters.
+- **Follow Black:** Black will handle line length wrapping. Generally aims for around 100 characters.
 
 ### Imports
 
@@ -224,7 +224,7 @@ Notebooks are for interactive work, not for storing large data or production cod
 ### Purpose of Notebooks
 
 - **Quick Exploration:** Data analysis, prototyping new ideas.
-- **Visualization:** Generating temporary plots (which are then stripped by `nbstripout`).
+- **Visualization:** Generating temporary plots (which are then stripped by `nbdev`).
 - **Analysis & Reporting:** Presenting results and findings in a narrative format.
 
 ### Refactoring Code from Notebooks
@@ -250,20 +250,20 @@ Notebooks are for interactive work, not for storing large data or production cod
 1.  **Set Up:**
     - Create your virtual environment (`python -m venv .venv`).
     - Install dependencies (`pip install -r requirements.txt`).
-    - Install and configure `nbstripout` (`nbstripout --install`).
+    - Install and configure `nbdev` (`nbdev --install`).
     - Install and set up `pre-commit` hooks (`pip install pre-commit && pre-commit install`).
     - Download required data to the `data/` folder as described in `README.md`.
 2.  **Develop in Notebooks:** Use notebooks for initial ideas and interactive development.
 3.  **Refactor Code:** As soon as a piece of code becomes stable, reusable, or part of the core logic, **move it to `src/`**.
 4.  **Create Scripts:** Develop standalone scripts in `scripts/` that orchestrate the main tasks (data prep, training, evaluation, full pipeline) by importing functions from `src/`. This allows for easy, reproducible runs without a notebook environment.
-5.  **Run Tools:** Regularly run `black` and `isort` (or configure your IDE to do it automatically). `nbstripout` will run on `git add`. The `pre-commit` hooks will run automatically on `git commit`.
+5.  **Run Tools:** Regularly run `black` and `isort` (or configure your IDE to do it automatically). `nbdev` will run on `git add`. The `pre-commit` hooks will run automatically on `git commit`.
 
 ---
 
 ## 6. Git & Version Control
 
 - **No Git LFS:** Git LFS is strictly forbidden for this project. Large files must be managed externally and added to `.gitignore`.
-- **Branching:** Work on feature branches (`feature/your-feature-name`, `bugfix/issue-description`) off of `main`.
+- **Branching:** Work on feature branches (`feature/your-feature-name`, `bugfix/issue-description`) off of `main` and `dev`.
 - **Commit Messages:** Write clear, concise, and descriptive commit messages.
 - **Pull Requests (PRs):** Create PRs for all changes. Ensure your code adheres to these conventions, and that the PR description is clear.
-- **Code Reviews:** All code should be reviewed before merging into `main`.
+- **Code Reviews:** All code should be reviewed before merging into `main` and `dev`.
