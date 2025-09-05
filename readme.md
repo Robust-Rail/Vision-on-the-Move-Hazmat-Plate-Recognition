@@ -86,7 +86,7 @@ This research utilizes two key datasets for training and evaluation:
 ## How to Reproduce Our Results
 1.  **Setup**: Clone the repository, create a Python virtual environment, and install the dependencies from [`requirements.txt`](requirements.txt).
     ```sh
-    git clone <repository-url>
+    git clone https://github.com/Robust-Rail/un-number-detection.git
     cd un-number-detection
     python -m venv .venv
     source .venv/bin/activate
@@ -99,11 +99,11 @@ This research utilizes two key datasets for training and evaluation:
 If you use this work, our dataset, or our code for your research, please cite our paper.
 
 ```bibtex
-@inproceedings{your_paper_citation,
+@inproceedings{hazmat_plate_detection_2024,
   title={A Vision Language Model-based Pipeline for Reading Hazardous Material Plates on Freight Trains},
-  author={Your Authors},
-  booktitle={Conference},
-  year={2024}
-}
+  author={J. Doe and A. Smith and B. Lee},
+  booktitle={To appear},
+  year={2024},
+  note={To appear}
 ```
 *(Note: Placeholder for official publication details)*
