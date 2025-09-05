@@ -238,3 +238,7 @@ __pycache__/
 # IDE files
 .vscode/
 .idea/
+
+# archived notebooks
+notebooks/archive/
+notebooks/data/

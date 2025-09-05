@@ -1,144 +1,109 @@
-# UN number detection
+# Automated Hazardous Plate Detection in Freight Transport
 
-## Business Understanding
-For this project, we have been tasked with developing a machine learning model capable of recognizing UN number hazard plates. These plates, commonly displayed on freight train wagons, indicate the types of hazardous materials being transported. The successful implementation of this model will contribute to a more efficient and secure railway system across the EU.
+This repository contains the official implementation and research artifacts for the paper **"A Vision Language Model-based Pipeline for Reading Hazardous Material Plates on Freight Trains"**. Developed as part of a research initiative at the University of Twente, this project presents a complete pipeline for the automatic detection and recognition of UN number hazard plates on freight wagons.
+
+This work is part of the broader **TRANS4M-R (Flagship Project 5)** initiative, which aims to establish rail freight as the backbone of a resilient, low-emission European logistics chain.
 
 <img src="images/hazard_plate.jpg" alt="Hazard Plate" width="500"/>
 
-The hazard plates play a crucial role in ensuring the safety of transportation by providing essential information about the nature of the substances on board, such as flammability, toxicity, or corrosiveness. By automating the recognition process with machine learning, the handling and tracking of these hazardous materials can be streamlined, reducing manual labor and minimizing potential human errors.
- Determine business objectives
+## Table of Contents
+1.  [Abstract](#abstract)
+2.  [The Detection Pipeline](#the-detection-pipeline)
+3.  [Performance & Results](#performance--results)
+4.  [Research Workflow & Notebooks](#research-workflow--notebooks)
+5.  [Datasets](#datasets)
+6.  [How to Reproduce Our Results](#how-to-reproduce-our-results)
+7.  [Citing Our Work](#citing-our-work)
 
-### Determine business objectives
-#### Background
-The specific expectations and objectives of the EU for this project are not yet fully defined, but the initiative's roots are clear. This project is spearheaded by the University of Twente, with researcher Mellisa Tijink serving as our supervisor. Our team, composed of pre-master's Computer Science students, has been tasked with developing the machine learning model. Mellisa Tijink plays a pivotal role as the intermediary between our team and major stakeholders, including ProRail, the EU, and other experts in the field.
+## Abstract
+We propose a novel, two-stage pipeline for automatically detecting and reading hazardous material (hazmat) codes from real-world videos of moving freight trains. This setting presents significant challenges, including motion blur, variable lighting, and adverse weather. Our solution integrates a state-of-the-art object detector (YOLOv11x) for placard detection and a powerful Vision Language Model (Idefics2) for Optical Character Recognition (OCR). We introduce **HazTruck**, a new public benchmark dataset to foster further research. Our results demonstrate that this VLM-based approach is highly effective, achieving over 90% accuracy on private rail data and serving as a strong baseline for future work in automated hazmat monitoring.
 
-This project is part of a broader initiative aimed at enhancing rail freight operations within Europe, aligning with the EU’s goals for improved efficiency and safety. More information on the initiative can be found on the official project site: [EU Rail FP5](https://projects.rail-research.europa.eu/eurail-fp5/).
+## The Detection Pipeline
+Our methodology consists of two primary components designed to work in sequence:
 
-Flagship Project 5: *TRANS4M-R aims to establish rail freight as the backbone of a low-emission, resilient European logistics chain that meets end-user needs. It focuses on two main technological clusters: 'Full Digital Freight Train Operation' and 'Seamless Freight Operation', which will develop and demonstrate solutions to increase rail capacity, efficiency, and cross-border coordination. By integrating Digital Automatic Coupler (DAC) solutions with software-defined systems, the project seeks to optimize network management and enhance cooperation among infrastructure managers. The ultimate goal is to create an EU-wide, interoperable rail freight framework with unified technologies and seamless operations across borders and various stakeholders, boosting the EU transport and logistics sector.*
+1.  **Placard Detection**: An object detection model identifies and localizes the rectangular hazard plate in an image. We evaluated two architectures:
+    *   **YOLOv11x**: A fast and efficient single-shot detector.
+    *   **Faster R-CNN**: A highly accurate region-based detector with a ResNet-101 backbone.
 
-#### Business objectives
+2.  **Optical Character Recognition (OCR)**: The detected plate is cropped and passed to a Vision Language Model (VLM) for text extraction.
+    *   **Idefics2-8b**: A state-of-the-art VLM that demonstrated superior performance in reading text from challenging, real-world images compared to traditional OCR engines.
 
-**Primary Objective:** Develop an object detection model for UN number hazard plates on freight wagons.
+## Performance & Results
+Our comprehensive evaluation confirms the effectiveness of the proposed pipeline. The final configuration, combining **YOLOv11x** and **Idefics2**, yielded the best balance of accuracy and generalization.
 
-**Sub-objectives:**
-1. Detect and identify UN number hazard plates: Ensure the model can accurately locate hazard plates on freight wagons. 
-2. Read and interpret the UN numbers: Implement recognition capabilities to accurately read the numbers on the detected plates.
-3. Ensure model robustness and accuracy: Train the model to achieve high accuracy and reliability under various conditions (e.g., different lighting, weather).
-4. Optimize model for speed: Make sure the model runs efficiently and in real-time to function on moving trains.
-5. Adapt the model for moving environments: Design and test the model to handle the unique challenges of detecting and reading plates on trains in motion. 
-### Assess Situation
+#### Placard Detection (mAP@.50-.95)
+YOLOv11x demonstrated superior generalization to the unseen HazTruck dataset, making it our detector of choice.
 
-#### Inventory of resources
+| Model | ProRail (mAP) | HazTruck (mAP) |
+| :--- | :---: | :---: |
+| **YOLOv11x** | 56.46% | **62.43%** |
+| **Faster R-CNN** | **61.67%** | 53.89% |
 
-**Business Experts:** Our team currently lacks extensive expertise in this area. We can consult Melissa for some questions, and we have an upcoming interview with a Swedish expert in the field of UN number hazard plates.
+#### OCR Performance (Character Error Rate)
+Idefics2 significantly outperformed traditional OCR methods, establishing it as the superior choice for this task.
 
-**Data Mining Team:** 
-- Melissa Tijink (Researcher in Data Management & Biometrics/Electrical Engineering, Mathematics, and Computer Science)
-- Ewaldo Nieuwenhuis (Pre-master student in Computer Science)
-- Stanislav Levendeev (Pre-master student in Computer Science)
+| Model | ProRail  (CER) | HazTruck (CER) |
+| :--- | :---: | :---: |
+| Tesseract | 56.3% | 45.88% |
+| EasyOCR | 29.99% | 44.46% |
+| **Idefics2** | **4.85%** | **13.28%** |
 
-**Data:**
-1. **Video Data of Freight Trains:** This consists of video footage of moving freight trains, where the freight wagons should display the UN numbers.
-2. **Line Scan Camera Pictures:** These are high-resolution images of the train, but they are very spread out. It is still uncertain if these will be useful.
-3. **Photos of ADR Warning Signs:** These are images of ADR signs on freight trains. However, this is not exactly what we need since our objective is to build a model that recognizes UN numbers.
+#### End-to-End Pipeline Accuracy
+The final pipeline achieves high accuracy on the private test set and demonstrates strong potential on the more varied public dataset.
 
-**Computing Resources:** We have access to a cluster from the University of Twente, which we can use to train or fine-tune our model.
+| Dataset | Accuracy (IoU > 0.5) |
+| :--- | :---: |
+| ProRail-Test | **90.3%** |
+| HazTruck | **63.5%** |
 
-**Software:** We will use Python, Jupyter Notebook, Keras, PyTorch, and TensorFlow for analyzing, cleaning, preparing the data, and modeling. For data labeling, we will use [CVAT](https://www.cvat.ai/).
-### Requirements, assumptions, and constraints
+## Research Workflow & Notebooks
+Our research process is documented in a series of Jupyter notebooks, allowing for full transparency and reproducibility. Each notebook corresponds to a specific stage of the project.
 
-##### Requirements
-- Object detection capability for UN number hazard plates.
-- Text recognition to read and extract UN numbers.
-- High accuracy and precision in detection and recognition.
-- Robust performance under varying conditions (weather, lighting, speed).
-- Speed optimization for fast processing with minimal lag
-- Real-time processing for operation on moving trains.
+1.  **Data Exploration & Understanding** ([`notebooks/01_data_exploration.ipynb`](notebooks/01_data_exploration.ipynb))
+    *   Initial analysis of the private (ProRail) and public (HazTruck) datasets.
+    *   Visualization of image properties, label distributions, and annotation formats.
 
-##### Assumptions
-- Consistent access to a high-performance computational cluster for model training and testing.
-- The high-performance cluster is necessary due to the heavy processing demands of deep learning models.
-- Local machines are not sufficient for the required high computational tasks.
-- Project-specific data, including images and videos of freight trains with hazard plates, will be provided as planned.
-- Data will include varied conditions (different lighting and weather) to ensure robustness.
-- Access to diverse data is essential for creating a model that generalizes well to real-world scenarios.
-- If the planned data is unavailable, additional time will be needed to source and prepare alternative public datasets.
-- Sourcing alternative datasets may affect the project timeline and the quality of the final outcomes.
-- The stakeholders will provide timely feedback to guide any changes or adaptations needed in the project.
+2.  **Data Preprocessing & Annotation** ([`notebooks/02_data_preprocessing_prorail.ipynb`](notebooks/02_data_preprocessing_prorail.ipynb))
+    *   Conversion of raw video frames and labels into standardized COCO and YOLO formats.
+    *   Generation of `train`/`val`/`test` splits for model training.
 
-##### Constraints
-- The team has restricted experience with advanced object detection methods, which may impact the initial development and refinement of the model.
-- Most of the available data is not labeled, presenting a challenge for training supervised machine learning models. Some labeled data exists but belongs to another researcher, and access to it is uncertain.
-- The project must be completed within a short, 9-week period, which constrains the depth and breadth of potential research and model development.
-- The dataset may be skewed with an overrepresentation of specific UN numbers from certain wagons, which could limit the model's ability to generalize across different scenarios.
-- The size of the dataset makes it difficult to filter out specific wagons or relevant segments efficiently, posing a challenge for data processing and targeted training
-#### Risks and Contingencies
+3.  **Model Training & Experimentation**
+    *   **Data Augmentation Experiments** ([`notebooks/04_data_augmentation_experiments.ipynb`](notebooks/04_data_augmentation_experiments.ipynb)): Investigating various augmentation strategies to improve model robustness.
+    *   **Faster R-CNN Training** ([`notebooks/05_train_faster_rcnn.ipynb`](notebooks/05_train_faster_rcnn.ipynb)): Training the Faster R-CNN detector.
+    *   **YOLO Training** ([`notebooks/06_train_yolo.ipynb`](notebooks/06_train_yolo.ipynb)): Systematic experiments to find the optimal YOLOv11x model, including a baseline, early stopping, and hyperparameter tuning.
 
-**1. Lack of Data Access:**  
-*Risk:* Currently, we do not have access to the necessary video or linescan data, and there is a risk that we may never obtain it.  
-*Contingency Action:* Search for publicly available open-source datasets containing UN codes to proceed with model training and development.
+4.  **Component & Pipeline Evaluation**
+    *   **Detector Evaluation** ([`notebooks/07_evaluate_faster_rcnn.ipynb`](notebooks/07_evaluate_faster_rcnn.ipynb) & [`notebooks/08_evaluate_yolo.ipynb`](notebooks/08_evaluate_yolo.ipynb)): Evaluating detector performance using mAP metrics.
+    *   **OCR Evaluation** ([`notebooks/09_evaluate_ocr_models.ipynb`](notebooks/09_evaluate_ocr_models.ipynb)): Comparative analysis of Idefics2, Tesseract, and EasyOCR.
+    *   **Full Pipeline Analysis** ([`notebooks/10_full_pipeline_analysis.ipynb`](notebooks/10_full_pipeline_analysis.ipynb)): End-to-end evaluation of the final, integrated pipeline.
 
-**2. Loss of Access to the Computational Cluster:**  
-*Risk:* While we currently have access to a high-performance cluster for training, loading, and fine-tuning models, there is a chance of losing this access due to technical failures or maintenance issues.  
-*Contingency Action:* Prepare to train, load, and fine-tune a smaller version of the model locally on personal computers.
+## Datasets
+This research utilizes two key datasets for training and evaluation:
 
-**3. Unavailability of Labeling Software:**  
-*Risk:* We plan to label the data with the help of our supervisor, Melissa, which is essential for fine-tuning and evaluating the model. If this step is delayed or cannot occur, it will impede progress.  
-*Contingency Action:* Learn how to use CVAT (Computer Vision Annotation Tool) and set it up on personal laptops to carry out data labeling independently.
+1.  **ProRail Dataset**: A large internal dataset containing over 9,500 annotated frames extracted from videos of passing freight trains. This data was used to train and validate the object detection models.
+2.  **HazTruck Dataset**: A novel public benchmark dataset created for this project. It consists of 210 images with 238 plates gathered from public sources, featuring a wide variety of real-world conditions. The datasets are available [here](https://github.com/Robust-Rail/Datasets).
 
-**4. Inaccessibility of Personal Laptops:**  
-*Risk:* Access to our laptops is crucial for development, data handling, and connecting to the cluster. If our laptops become unusable due to malfunction, our work will be disrupted.  
-*Contingency Action:* Use backup laptops that are ready for project work to ensure continuity.
-#### Terminology
+## How to Reproduce Our Results
+1.  **Setup**: Clone the repository, create a Python virtual environment, and install the dependencies from [`requirements.txt`](requirements.txt).
+    ```sh
+    git clone https://github.com/Robust-Rail/un-number-detection.git
+    cd un-number-detection
+    python -m venv .venv
+    source .venv/bin/activate
+    pip install -r requirements.txt
+    ```
+2.  **Download Data**: Place the necessary datasets into the `data/` directory as specified in the notebooks.
+3.  **Run Notebooks**: Execute the Jupyter notebooks in the `notebooks/` directory in numerical order (01 to 10) to replicate the entire research workflow from data exploration to final pipeline analysis.
 
-**Business Terminology:**
-- **UN Number Hazard Plates**: Identification plates with UN numbers that indicate the nature of hazardous materials, improving safety during transport.
-- **Freight Trains**: Trains used for transporting goods, especially relevant when carrying hazardous materials.
-- **Flagship Project 5**: A project within the European "Europe’s Rail" initiative, focused on applying technologies to enhance rail transport safety.
-- **ADR (European Agreement concerning the International Carriage of Dangerous Goods by Road)**: International regulations governing the transport of hazardous goods.
-- **ProRail**: The Dutch railway network manager responsible for maintaining the railways.
-- **Line-Scan Camera**: A camera that captures images one line at a time for capturing objects like fast-moving trains.
+## Citing Our Work
+If you use this work, our dataset, or our code for your research, please cite our paper.
 
-**Data Mining Terminology:**
-- **CRISP-DM (Cross-Industry Standard Process for Data Mining)**: A widely used methodology for managing data mining projects, consisting of six phases:
-  - **Business Understanding**: Defining objectives from a business perspective.
-  - **Data Understanding**: Collecting and analyzing data to gain insights.
-  - **Data Preparation**: Preparing data, such as annotating and normalizing, for model training.
-  - **Modeling**: Selecting and training models for the desired task.
-  - **Evaluation**: Assessing model performance using specific metrics.
-  - **Deployment**: Implementing the model in real-world applications.
-
-- **Object Detection**: Identifying specific objects (e.g., hazard plates) within images or videos.
-- **Optical Character Recognition (OCR)**: Extracting text from images, used here to read numbers on hazard plates.
-- **YOLO (You Only Look Once)**: A fast object detection model ideal for real-time applications.
-- **Faster R-CNN**: A more accurate but slightly slower object detection model, suitable for complex environments.
-- **Annotation**: Marking data (e.g., video frames) with labels like bounding boxes to create ground truth for model training.
-- **Bounding Boxes**: Rectangular boxes used in image processing to define regions of interest around an object.
-- **Normalization**: Adjusting data to a standard scale to ensure consistency in model input.
-- **Augmentation**: Enhancing training data through techniques like contrast adjustment to improve model robustness.
-- **Average Precision (AP)**: A metric for evaluating the accuracy of object detection models.
-- **Tesseract**: A commonly used OCR tool for extracting alphanumeric text from images.
-- **HOG (Histogram of Oriented Gradients)**: A feature descriptor used in object detection, especially for detecting shapes or text.
-- **Saliency Detection**: An algorithmic technique to identify key areas within images for focused analysis.
-- **Support Vector Regression (SVR)**: A machine learning algorithm for regression tasks, sometimes used to create likelihood maps for image processing.
-
-### Determine Data Mining Goals
-
-#### Data Mining Goals
-**Primary Data Mining Goal:** Create and train an object detection model capable of identifying and interpreting UN number hazard plates on freight wagons in real-time.
-
-**Specific Data Mining Goals:**
-1. **Object Detection and Localization**: Develop a model that achieves a high AP score for accurately detecting and localizing hazard plates on freight wagons within each video frame.
-
-2. **OCR for UN Number Extraction:** Use Tesseract to apply Optical Character Recognition (OCR) for accurately reading UN numbers on detected plates, aiming to optimize precision and minimize errors in text recognition.
-
-3. **Robustness Across Variable Conditions**: Enhance the model’s robustness by training it on datasets representing diverse lighting and weather conditions, with a goal to maintain high AP scores across these environments.
-
-4. **Optimization for Real-Time Processing**: Implement real-time object detection and OCR capabilities to ensure the model operates at a frame rate suitable for analyzing images from moving trains.
-
-#### Data Mining Success Criteria
-
-- **Object Detection AP**: Achieve an Mean Average Precision (mAP) of at least 0.70 for detecting and localizing hazard plates across varied conditions.
-- **OCR Precision for UN Numbers**: Ensure the Tesseract OCR module achieves high accuracy in reading UN numbers, even under challenging conditions, with a target precision score above 0.95.
-- **Processing Speed**: Ensure the model achieves a processing time per frame under 100 milliseconds to maintain real-time functionality.
-- **Environmental Robustness**: Maintain consistent mAP scores across different lighting and weather conditions.
+```bibtex
+@inproceedings{hazmat_plate_detection_2024,
+  title={A Vision Language Model-based Pipeline for Reading Hazardous Material Plates on Freight Trains},
+  author={J. Doe and A. Smith and B. Lee},
+  booktitle={To appear},
+  year={2024},
+  note={To appear}
+```
+*(Note: Placeholder for official publication details)*
