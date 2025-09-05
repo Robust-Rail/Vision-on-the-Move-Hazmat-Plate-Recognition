@@ -56,7 +56,7 @@ def head_content_length(url: str) -> int | None:
     return None
 
 
-def download_file(url: str, outdirs: list[str]) -> None:
+def download_file(url: str, outdirs: [str]) -> None:
     for outdir in outdirs:
         ensure_outdir(os.path.dirname(outdir))
 
@@ -163,7 +163,7 @@ def download_image(url: str, outdir: str = "downloads", suggested_name: str | No
     return download_file(url, outdir, suggested_name)
 
 
-def download_second_image(page_url: str, outdirs: list[str]) -> str:
+def download_second_image(page_url: str, outdirs: [str]) -> str:
     """Convenience function: find candidate images on `page_url`, select the second one ([1]),
     download it into `outdir` with the provided `filename`, and return the saved path.
 

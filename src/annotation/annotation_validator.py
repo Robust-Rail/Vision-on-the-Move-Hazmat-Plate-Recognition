@@ -387,7 +387,7 @@ def visualize_annotations_from_links(df: pd.DataFrame, num_samples: int = 3):
                     display_codes = (str(row["code"]), "N/A")
 
                 # Call for side effects; do not assign the return.
-                draw_box(image=image_np, ground_truth=box, codes=display_codes, ax=ax)
+                draw_box(image=image_np, ground_truth=box, codes=display_codes)
 
             plt.tight_layout()
             plt.show()
