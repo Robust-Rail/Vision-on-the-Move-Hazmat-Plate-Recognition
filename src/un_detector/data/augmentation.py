@@ -86,9 +86,7 @@ class RandomRotate(object):
 
         # Convert back to tensor if needed
         image = (
-            F.to_tensor(image_pil_rotated)
-            if isinstance(image, torch.Tensor)
-            else image_pil_rotated
+            F.to_tensor(image_pil_rotated) if isinstance(image, torch.Tensor) else image_pil_rotated
         )
 
         # Rotate bounding boxes
@@ -109,9 +107,7 @@ class RandomRotate(object):
                 [0, original_height],
             ]
         )
-        corners_rotated = self._rotate_points(
-            corners_original, -angle, (cx_orig, cy_orig)
-        )
+        corners_rotated = self._rotate_points(corners_original, -angle, (cx_orig, cy_orig))
         min_x = corners_rotated[:, 0].min()
         min_y = corners_rotated[:, 1].min()
 
@@ -196,12 +192,8 @@ class RandomZoom(object):
             image = image.crop((int(crop_x1), int(crop_y1), int(crop_x2), int(crop_y2)))
             target["boxes"][:, [0, 2]] -= crop_x1
             target["boxes"][:, [1, 3]] -= crop_y1
-            target["boxes"][:, [0, 2]] = target["boxes"][:, [0, 2]].clamp(
-                0, crop_x2 - crop_x1
-            )
-            target["boxes"][:, [1, 3]] = target["boxes"][:, [1, 3]].clamp(
-                0, crop_y2 - crop_y1
-            )
+            target["boxes"][:, [0, 2]] = target["boxes"][:, [0, 2]].clamp(0, crop_x2 - crop_x1)
+            target["boxes"][:, [1, 3]] = target["boxes"][:, [1, 3]].clamp(0, crop_y2 - crop_y1)
 
         return image, target
 
@@ -216,9 +208,7 @@ def get_augmented_transform(train):
         # Applies a series of data augmentations specifically for the training set
         transforms.extend(
             [
-                RandomHorizontalFlip(
-                    0.5
-                ),  # Horizontally flips the image with a 50% probability
+                RandomHorizontalFlip(0.5),  # Horizontally flips the image with a 50% probability
                 # Adjusts brightness, contrast, saturation, and hue with specified ranges
                 RandomBrightnessCont(
                     brightness=0.3,
@@ -229,13 +219,13 @@ def get_augmented_transform(train):
                 ),
                 RandomBlur(
                     kernel_size=3, p=0.5
-                ),  # Applies Gaussian blur with a kernel size of 3, 30% chance
+                ),  # Applies Gaussian blur with a kernel size of 3, 50% chance
                 RandomRotate(
                     angle_range=50, p=0.5
-                ),  # Rotates the image by -10 to +10 degrees, 30% chance
+                ),  # Rotates the image by -10 to +10 degrees, 50% chance
                 RandomZoom(
                     zoom_range=(0.05, 0.99), p=1
-                ),  # Zooms the image by a factor between 0.05 and 0.9, 60% chance
+                ),  # Zooms the image by a factor between 0.05 and 0.99, 100% chance
             ]
         )
 
@@ -329,8 +319,7 @@ def generate_named_augmented_image(
         augmented = transform(image=image)["image"]
         if augmented is None:
             raise ValueError(
-                "Augmentation returned None. Check the input image and augmentation "
-                "parameters."
+                "Augmentation returned None. Check the input image and augmentation " "parameters."
             )
         # Use the user-provided filename
         output_filename = f"{output_filename_base}.jpg"
@@ -369,9 +358,7 @@ def visualize_weather_augmentations(
         file_extension_augmentation (str): File extension for the augmented images. Default is ".jpg
     """
     # Get all image files in the directory
-    image_files = [
-        f for f in os.listdir(input_dir) if f.endswith((".jpg", ".png", ".jpeg"))
-    ]
+    image_files = [f for f in os.listdir(input_dir) if f.endswith((".jpg", ".png", ".jpeg"))]
     # Limit to num_images
     image_files = image_files[:num_images]
     possible_augmentations = ["rain", "sun_flare", "shadow", "fog"]

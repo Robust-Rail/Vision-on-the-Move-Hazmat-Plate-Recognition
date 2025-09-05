@@ -12,13 +12,45 @@ from annotation.video_annotator import read_video
 
 
 def generate_annotations(
-    output_path=os.environ["PATH_TO_ANNOTATIONS"],
-    video_directory=os.environ["PATH_TO_PRORAIL_VIDEODATA"],
-    df_prorail_path=os.environ["PATH_TO_PRORAIL_CSV"],
-    df_haztruck_path=os.environ["PATH_TO_HAZTRUCK_CSV"],
+    output_path=None,
+    video_directory=None,
+    df_prorail_path=None,
+    df_haztruck_path=None,
     coco_writer=None,
     yolo_writer=None,
 ):
+    if output_path is None:
+        output_path = os.environ.get("PATH_TO_ANNOTATIONS")
+        if output_path is None:
+            raise ValueError(
+                "output_path must be provided or PATH_TO_ANNOTATIONS "
+                + "environment variable must be set"
+            )
+
+    if video_directory is None:
+        video_directory = os.environ.get("PATH_TO_PRORAIL_VIDEODATA")
+        if video_directory is None:
+            raise ValueError(
+                "video_directory must be provided or PATH_TO_PRORAIL_VIDEODATA "
+                + "environment variable must be set"
+            )
+
+    if df_prorail_path is None:
+        df_prorail_path = os.environ.get("PATH_TO_PRORAIL_CSV")
+        if df_prorail_path is None:
+            raise ValueError(
+                "df_prorail_path must be provided or PATH_TO_PRORAIL_CSV "
+                + "environment variable must be set"
+            )
+
+    if df_haztruck_path is None:
+        df_haztruck_path = os.environ.get("PATH_TO_HAZTRUCK_CSV")
+        if df_haztruck_path is None:
+            raise ValueError(
+                "df_haztruck_path must be provided or PATH_TO_HAZTRUCK_CSV "
+                + "environment variable must be set"
+            )
+
     if coco_writer is None:
         coco_writer = CocoConverter(output_path)
     if yolo_writer is None:
@@ -71,9 +103,7 @@ def generate_prorail_annotations(
 
         with tqdm(total=total_frames) as pbar:
             for video in available_videos:
-                cap, video_name, video_w, video_h, frames_count = read_video(
-                    video_directory, video
-                )
+                cap, video_name, video_w, video_h, frames_count = read_video(video_directory, video)
                 frame_num = 0
 
                 pbar.set_description(f"Processing {video_name}")
@@ -87,9 +117,7 @@ def generate_prorail_annotations(
                         & (df_prorail["relative_frame"] == frame_num)
                     ]
                     if not annotations.empty:
-                        dist = get_rnd_distribution(
-                            total_frames, coco_writer.annotations_count
-                        )[0]
+                        dist = get_rnd_distribution(total_frames, coco_writer.annotations_count)[0]
 
                         coco_writer.save_frame(video_name, frame_num, frame, dist)
                         yolo_writer.save_frame(video_name, frame_num, frame, dist)
@@ -141,9 +169,7 @@ def generate_haztruck_annotations(
         haztruck_images = df_haztruck["image_name"].unique()
         with tqdm(total=len(haztruck_images), desc="Hazmat images") as haztruck_pbar:
             for image_name in haztruck_images:
-                image_info = df_haztruck[df_haztruck["image_name"] == image_name].iloc[
-                    0
-                ]
+                image_info = df_haztruck[df_haztruck["image_name"] == image_name].iloc[0]
                 width, height = map(int, image_info["resolution"].split("x"))
                 image_id = coco_writer.add_image("val", image_name, width, height)
                 link_to_image = image_info["link"]
@@ -168,9 +194,7 @@ def generate_haztruck_annotations(
                     ],
                 )
 
-                for _, row in df_haztruck[
-                    df_haztruck["image_name"] == image_name
-                ].iterrows():
+                for _, row in df_haztruck[df_haztruck["image_name"] == image_name].iterrows():
                     row["xtl"] = row["box_xtl"]
                     row["ytl"] = row["box_ytl"]
                     row["xbr"] = row["box_xbr"]

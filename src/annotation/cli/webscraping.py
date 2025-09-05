@@ -46,9 +46,7 @@ def sanitize_filename(name: str) -> str:
 
 def head_content_length(url: str) -> int | None:
     try:
-        r = requests.head(
-            url, headers=DEFAULT_HEADERS, allow_redirects=True, timeout=10
-        )
+        r = requests.head(url, headers=DEFAULT_HEADERS, allow_redirects=True, timeout=10)
         if r.status_code == 200:
             ct = r.headers.get("Content-Length")
             if ct and ct.isdigit():
@@ -58,7 +56,7 @@ def head_content_length(url: str) -> int | None:
     return None
 
 
-def download_file(url: str, outdirs: [str]) -> None:
+def download_file(url: str, outdirs: list[str]) -> None:
     for outdir in outdirs:
         ensure_outdir(os.path.dirname(outdir))
 
@@ -71,8 +69,8 @@ def download_file(url: str, outdirs: [str]) -> None:
 
 def extract_all_image_candidates(page_url: str, base_url: str | None = None) -> list:
     """Return a list of candidate image dicts found on the page.
-
-    Each dict contains: url (absolute), attrs (dict of HTML attrs), estimated size_bytes (from HEAD if available), and filename hint.
+    Each dict contains: url (absolute), attrs (dict of HTML attrs), estimated size_bytes
+    (from HEAD if available), and filename hint.
     """
     resp = requests.get(page_url, headers=DEFAULT_HEADERS, timeout=30)
     resp.raise_for_status()
@@ -85,9 +83,7 @@ def extract_all_image_candidates(page_url: str, base_url: str | None = None) -> 
     # 1) Meta tags (og:image, twitter:image, itemprop image)
     for prop in ("og:image", "twitter:image", "twitter:image:src"):
         # meta may be name= or property=
-        meta = soup.find("meta", property=prop) or soup.find(
-            "meta", attrs={"name": prop}
-        )
+        meta = soup.find("meta", property=prop) or soup.find("meta", attrs={"name": prop})
         if meta and meta.get("content"):
             url = urljoin(base, meta["content"].strip())
             if url not in seen:
@@ -162,14 +158,12 @@ def list_images(page_url: str) -> list:
     return extract_all_image_candidates(page_url)
 
 
-def download_image(
-    url: str, outdir: str = "downloads", suggested_name: str | None = None
-) -> str:
+def download_image(url: str, outdir: str = "downloads", suggested_name: str | None = None) -> str:
     """Download a single image URL to outdir and return the path."""
     return download_file(url, outdir, suggested_name)
 
 
-def download_second_image(page_url: str, outdirs: [str]) -> str:
+def download_second_image(page_url: str, outdirs: list[str]) -> str:
     """Convenience function: find candidate images on `page_url`, select the second one ([1]),
     download it into `outdir` with the provided `filename`, and return the saved path.
 
@@ -191,19 +185,13 @@ def _cli():
         description="List or download image candidates from a page (preview-only)."
     )
     parser.add_argument("--url", required=True, help="Page URL to fetch images from")
-    parser.add_argument(
-        "--outdir", default="downloads", help="Directory to save images"
-    )
+    parser.add_argument("--outdir", default="downloads", help="Directory to save images")
     group = parser.add_mutually_exclusive_group(required=True)
-    group.add_argument(
-        "--list", action="store_true", help="List candidate images and exit"
-    )
+    group.add_argument("--list", action="store_true", help="List candidate images and exit")
     group.add_argument(
         "--download", type=int, help="Download one image by its listed index (0-based)"
     )
-    group.add_argument(
-        "--download-all", action="store_true", help="Download all candidate images"
-    )
+    group.add_argument("--download-all", action="store_true", help="Download all candidate images")
 
     args = parser.parse_args()
 
@@ -246,12 +234,10 @@ def _cli():
 
 
 if __name__ == "__main__":
-    if (
-        sys.argv[0].endswith(("ipykernel_launcher.py", "__main__.py"))
-        and "--url" not in sys.argv
-    ):
+    if sys.argv[0].endswith(("ipykernel_launcher.py", "__main__.py")) and "--url" not in sys.argv:
         print(
-            "This module is Jupyter-friendly. Use list_images(url) or download_second_image(url, ...) instead of CLI."
+            "This module is Jupyter-friendly. "
+            + "Use list_images(url) or download_second_image(url, ...) instead of CLI."
         )
     else:
         _cli()
