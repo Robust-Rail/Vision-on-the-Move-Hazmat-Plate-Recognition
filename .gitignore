@@ -240,5 +240,5 @@ __pycache__/
 .idea/
 
 # archived notebooks
-notebooks/archive/*
+notebooks/archive/
 notebooks/data/*
