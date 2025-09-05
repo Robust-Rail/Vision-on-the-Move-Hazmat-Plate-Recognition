@@ -12,10 +12,7 @@ from IPython.display import Image as Ipy_Image
 from IPython.display import display
 from PIL import Image
 
-# The '..' means "go up one directory first (to src/), then find the draw module"
 from ..draw.utils import draw_box
-
-# The '.' means "from the same directory as this file"
 from .image_annotator import read_image
 
 subdirs = ["train", "test", "val"]
@@ -330,6 +327,8 @@ def find_missing_labels(yolo_base_dir: Path):
 def visualize_annotations_from_links(df: pd.DataFrame, num_samples: int = 3):
     """
     Fetches images from URLs in the DataFrame and draws their bounding boxes.
+    This function filters out images from "Adobe Stock" and randomly selects
+    a specified number of unique links to visualize.
     Args:
         df (pd.DataFrame): The haztruck_dataset DataFrame.
         num_samples (int): The maximum number of images to visualize.
@@ -346,15 +345,16 @@ def visualize_annotations_from_links(df: pd.DataFrame, num_samples: int = 3):
     links_to_show = random.sample(list(unique_links), k=min(num_samples, len(unique_links)))
 
     # 3. Iterate through each selected link, fetch the image, and draw boxes
+    from io import BytesIO
+
     for link in links_to_show:
         print(f"\nProcessing image from: {link}")
         try:
             # Fetch image data from the URL
-            response = requests.get(link, stream=True, timeout=10)
-            response.raise_for_status()  # Raise an exception for bad status codes (4xx or 5xx)
+            with requests.get(link, timeout=10) as response:
+                response.raise_for_status()
+                image = Image.open(BytesIO(response.content)).convert("RGB")
 
-            # Open image from the response content
-            image = Image.open(response.raw).convert("RGB")
             image_np = np.array(image)
 
             # Set up the plot
@@ -364,7 +364,16 @@ def visualize_annotations_from_links(df: pd.DataFrame, num_samples: int = 3):
 
             # Get all annotations for this specific image
             annotations = df_filtered[df_filtered["link"] == link]
+
+            if annotations.empty:
+                ax.set_title("No annotations found for this image", fontsize=16)
+                plt.tight_layout()
+                plt.show()
+                plt.close(fig)
+                continue
+
             ax.set_title(f"Annotations for {annotations['image_name'].iloc[0]}", fontsize=16)
+
             # Draw each bounding box
             for _, row in annotations.iterrows():
                 # Extract bounding box coordinates
@@ -375,16 +384,15 @@ def visualize_annotations_from_links(df: pd.DataFrame, num_samples: int = 3):
                 if len(code_parts) == 2:
                     display_codes = (code_parts[0], code_parts[1])
                 else:
-                    # Fallback if the code format is unexpected
                     display_codes = (str(row["code"]), "N/A")
-                print(f"Drawing box: {box} with codes: {display_codes}")
-                # Use the provided draw_box function.
-                # We use 'predicted_box' to leverage the 'codes' parameter for display.
-                draw_box(image=image_np, ground_truth=box, codes=display_codes)
 
+                # Call for side effects; do not assign the return.
+                draw_box(image=image_np, ground_truth=box, codes=display_codes, ax=ax)
+
+            plt.tight_layout()
             plt.show()
 
         except requests.exceptions.RequestException as e:
             print(f"❌ Error fetching image: {e}")
         except Exception as e:
-            print(f"❌ An unexpected error occurred: {e}")
+            print(f"❌ An error occurred while processing the image: {e}, for link: {link}")
