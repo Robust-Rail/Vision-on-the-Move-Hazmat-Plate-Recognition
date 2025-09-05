@@ -1,0 +1,286 @@
+<!DOCTYPE html><html><head>
+      <title>code-conventions</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="file:///c:\Users\ewald\.vscode\extensions\shd101wyy.markdown-preview-enhanced-0.8.18\crossnote\dependencies\katex\katex.min.css">
+      
+      
+      
+      
+      
+      <style>
+      code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-family:Consolas,"Liberation Mono",Menlo,Courier,monospace;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.4;-moz-tab-size:8;-o-tab-size:8;tab-size:8;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none}pre[class*=language-]{padding:.8em;overflow:auto;border-radius:3px;background:#f5f5f5}:not(pre)>code[class*=language-]{padding:.1em;border-radius:.3em;white-space:normal;background:#f5f5f5}.token.blockquote,.token.comment{color:#969896}.token.cdata{color:#183691}.token.doctype,.token.macro.property,.token.punctuation,.token.variable{color:#333}.token.builtin,.token.important,.token.keyword,.token.operator,.token.rule{color:#a71d5d}.token.attr-value,.token.regex,.token.string,.token.url{color:#183691}.token.atrule,.token.boolean,.token.code,.token.command,.token.constant,.token.entity,.token.number,.token.property,.token.symbol{color:#0086b3}.token.prolog,.token.selector,.token.tag{color:#63a35c}.token.attr-name,.token.class,.token.class-name,.token.function,.token.id,.token.namespace,.token.pseudo-class,.token.pseudo-element,.token.url-reference .token.variable{color:#795da3}.token.entity{cursor:help}.token.title,.token.title .token.punctuation{font-weight:700;color:#1d3e81}.token.list{color:#ed6a43}.token.inserted{background-color:#eaffea;color:#55a532}.token.deleted{background-color:#ffecec;color:#bd2c00}.token.bold{font-weight:700}.token.italic{font-style:italic}.language-json .token.property{color:#183691}.language-markup .token.tag .token.punctuation{color:#333}.language-css .token.function,code.language-css{color:#0086b3}.language-yaml .token.atrule{color:#63a35c}code.language-yaml{color:#183691}.language-ruby .token.function{color:#333}.language-markdown .token.url{color:#795da3}.language-makefile .token.symbol{color:#795da3}.language-makefile .token.variable{color:#183691}.language-makefile .token.builtin{color:#0086b3}.language-bash .token.keyword{color:#0086b3}pre[data-line]{position:relative;padding:1em 0 1em 3em}pre[data-line] .line-highlight-wrapper{position:absolute;top:0;left:0;background-color:transparent;display:block;width:100%}pre[data-line] .line-highlight{position:absolute;left:0;right:0;padding:inherit 0;margin-top:1em;background:hsla(24,20%,50%,.08);background:linear-gradient(to right,hsla(24,20%,50%,.1) 70%,hsla(24,20%,50%,0));pointer-events:none;line-height:inherit;white-space:pre}pre[data-line] .line-highlight:before,pre[data-line] .line-highlight[data-end]:after{content:attr(data-start);position:absolute;top:.4em;left:.6em;min-width:1em;padding:0 .5em;background-color:hsla(24,20%,50%,.4);color:#f4f1ef;font:bold 65%/1.5 sans-serif;text-align:center;vertical-align:.3em;border-radius:999px;text-shadow:none;box-shadow:0 1px #fff}pre[data-line] .line-highlight[data-end]:after{content:attr(data-end);top:auto;bottom:.4em}html body{font-family:'Helvetica Neue',Helvetica,'Segoe UI',Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ol,html body>ul{margin-bottom:16px}html body ol,html body ul{padding-left:2em}html body ol.no-list,html body ul.no-list{padding:0;list-style-type:none}html body ol ol,html body ol ul,html body ul ol,html body ul ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:700;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:700}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::after,html body code::before{letter-spacing:-.2em;content:'\00a0'}html body pre>code{padding:0;margin:0;word-break:normal;white-space:pre;background:0 0;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:after,html body pre code:before,html body pre tt:after,html body pre tt:before{content:normal}html body blockquote,html body dl,html body ol,html body p,html body pre,html body ul{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body code,html body pre{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview ul{list-style:disc}.markdown-preview ul ul{list-style:circle}.markdown-preview ul ul ul{list-style:square}.markdown-preview ol{list-style:decimal}.markdown-preview ol ol,.markdown-preview ul ol{list-style-type:lower-roman}.markdown-preview ol ol ol,.markdown-preview ol ul ol,.markdown-preview ul ol ol,.markdown-preview ul ul ol{list-style-type:lower-alpha}.markdown-preview .newpage,.markdown-preview .pagebreak{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center!important}.markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .status{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .output-div{margin-bottom:16px}.markdown-preview .md-toc{padding:0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}.markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0;min-height:100vh}@media screen and (min-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{font-size:14px!important;padding:1em}}@media print{html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc{padding:0 16px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% - 300px);padding:2em calc(50% - 457px - 300px / 2);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+      </style>
+      <!-- The content below will be included at the end of the <head> element. --><script type="text/javascript">
+  document.addEventListener("DOMContentLoaded", function () {
+    // your code here
+  });
+</script></head><body for="html-export">
+    
+    
+      <div class="crossnote markdown-preview  ">
+      
+<h1 id="code-conventions-un-number-detection-project">Code Conventions: UN-Number Detection Project </h1>
+<p>This document outlines the essential coding standards, project structure, and workflow conventions for the <code>UN-NUMBER-DETECTION</code> project. Our goal is to maintain a <strong>clean, efficient Git repository</strong> that's easy to collaborate on, while minimizing unnecessary overhead.</p>
+<p><strong>The core principle: If it's big or can be easily regenerated, it doesn't belong in Git.</strong></p>
+<h2 id="table-of-contents">Table of Contents </h2>
+<ol>
+<li>
+<p><a href="#1-project-structure-the-essentials">Project Structure (The Essentials)</a></p>
+</li>
+<li>
+<p><a href="#2-tooling--automation-work-smarter-not-harder">Tooling &amp; Automation (Work Smarter, Not Harder)</a></p>
+<ul>
+<li><a href="#linters--formatters">Linters &amp; Formatters</a></li>
+<li><a href="#jupyter-notebook-output-stripping-nbstripout">Jupyter Notebook Output Stripping (<code>nbstripout</code>)</a></li>
+</ul>
+</li>
+<li>
+<p><a href="#3-coding-style-guidelines-pep-8--core-readability">Coding Style Guidelines (PEP 8 &amp; Core Readability)</a></p>
+<ul>
+<li><a href="#naming-conventions">Naming Conventions</a></li>
+<li><a href="#line-length">Line Length</a></li>
+<li><a href="#imports">Imports</a></li>
+<li><a href="#whitespace">Whitespace</a></li>
+<li><a href="#comments--docstrings">Comments &amp; Docstrings</a></li>
+</ul>
+</li>
+<li>
+<p><a href="#4-jupyter-notebook-workflow-for-exploration-not-storage">Jupyter Notebook Workflow (For Exploration, Not Storage)</a></p>
+<ul>
+<li><a href="#purpose-of-notebooks">Purpose of Notebooks</a></li>
+<li><a href="#refactoring-code-from-notebooks">Refactoring Code from Notebooks</a></li>
+</ul>
+</li>
+<li>
+<p><a href="#5-general-project-workflow-streamlined">General Project Workflow (Streamlined)</a></p>
+</li>
+<li>
+<p><a href="#6-git--version-control-keep-it-clean">Git &amp; Version Control (Keep it Clean)</a></p>
+</li>
+</ol>
+<hr>
+<h2 id="1-project-structure-the-essentials">1. Project Structure (The Essentials) </h2>
+<p>This streamlined structure focuses on what absolutely needs to be in Git. Large data and generated outputs are explicitly kept out. Each folder and file's purpose is described below.</p>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>UN-NUMBER-DETECTION/
+├── .git/                         # Git's internal directory; tracks repository history.
+├── .gitattributes                # Defines Git behaviors, including nbstripout filter for notebooks.
+├── .gitignore                    # Specifies intentionally untracked files and directories (crucial for excluding large data/outputs).
+├── .venv/                        # Python virtual environment; isolated dependencies for the project (always gitignored).
+├── .pre-commit-config.yaml       # Configuration file for the pre-commit hook framework.
+├── configs/                      # Stores configuration files for models, training, and data paths.
+│   ├── base_config.yaml          # General, shared project configurations and default settings.
+│   ├── faster_rcnn_config.yaml   # Specific configuration parameters for the Faster R-CNN model.
+│   ├── yolo_config.yaml          # Specific configuration parameters for the YOLO model.
+│   └── ocr_config.yaml           # Specific configuration parameters for OCR models.
+├── data/                         # **All data files (THIS DIRECTORY IS GITIGNORED)**; contains raw and processed datasets.
+│   ├── raw/                      # Original, immutable datasets as initially received.
+│   │   ├── prorail_dataset/      # Raw image/data files specific to the Prorail dataset.
+│   │   └── haztruck_dataset/     # Raw image/data files specific to the Haztruck dataset.
+│   ├── processed/                # Datasets after cleaning, transformation, and splitting (e.g., converted to COCO format).
+│   │   ├── prorail_coco_format/  # Processed data for Prorail, formatted for model training (e.g., COCO JSONs, resized images).
+│   │   └── haztruck_coco_format/ # Processed data for Haztruck, formatted for model training.
+│   └── annotations/              # Stores annotation files that may be separate from images (e.g., large COCO JSONs).
+│       ├── prorail_train_annotations.json # Training annotations for the Prorail dataset.
+│       └── ...                   # Other annotation files.
+├── notebooks/                    # Jupyter notebooks for interactive exploration, visualization, and reporting.
+│   ├── 01_data_exploration.ipynb # Notebook for initial data loading, statistics, and sanity checks.
+│   ├── 02_data_preprocessing_prorail.ipynb # Interactive steps for preprocessing the Prorail dataset.
+│   ├── 03_data_preprocessing_haztruck.ipynb # Interactive steps for preprocessing the Haztruck dataset.
+│   ├── 04_data_augmentation_experiments.ipynb # Notebooks for experimenting with various data augmentation techniques.
+│   ├── 05_train_faster_rcnn.ipynb # Interactive notebook for fine-tuning or experimenting with Faster R-CNN training.
+│   ├── 06_train_yolo.ipynb       # Interactive notebook for fine-tuning or experimenting with YOLO training.
+│   ├── 07_evaluate_faster_rcnn.ipynb # Notebook to evaluate the Faster R-CNN model performance.
+│   ├── 08_evaluate_yolo.ipynb    # Notebook to evaluate the YOLO model performance.
+│   ├── 09_evaluate_ocr_models.ipynb # Notebook to evaluate various OCR model performances.
+│   ├── 10_full_pipeline_analysis.ipynb # Notebook for holistic analysis of the integrated detection + OCR pipeline.
+│   └── archive/                  # Contains older, deprecated, or experimental notebooks not actively used.
+├── outputs/                      # **Generated outputs (THIS DIRECTORY IS GITIGNORED)**; stores results, models, and predictions.
+│   ├── models/                   # Stores trained model weights and checkpoints.
+│   │   ├── faster_rcnn/          # Saved model states for the Faster R-CNN detector.
+│   │   │   └── best_model.pth    # The best performing Faster R-CNN model checkpoint.
+│   │   ├── yolo/                 # Saved model states for the YOLO detector.
+│   │   │   └── best_model.pt     # The best performing YOLO model checkpoint.
+│   │   └── ocr/                  # Saved model states for OCR models.
+│   │       └── best_model.pt     # The best performing OCR model checkpoint.
+│   ├── results/                  # Stores evaluation metrics, logs, and plots.
+│   │   ├── evaluation_faster_rcnn.json # JSON file containing detailed Faster R-CNN evaluation results.
+│   │   ├── evaluation_yolo.json  # JSON file containing detailed YOLO evaluation results.
+│   │   ├── evaluation_ocr.csv    # CSV file containing detailed OCR evaluation results.
+│   │   └── plots/                # Generated plots and figures from analyses.
+│   └── predictions/              # Stores example images with predictions (e.g., bounding boxes, detected text).
+├── scripts/                      # Standalone Python scripts for repeatable, non-interactive tasks.
+│   ├── prepare_data.py           # Script to run the entire data preprocessing pipeline.
+│   ├── train.py                  # Main script to initiate model training (e.g., `python train.py --model yolo`).
+│   ├── evaluate.py               # Main script to run model evaluations and generate reports.
+│   └── run_pipeline.py           # Script to execute the full detection + OCR pipeline on new data.
+├── src/un_detector/              # Core source code for the project, structured as a Python package.
+│   ├── __init__.py               # Marks `un_detector` as a Python package, allowing imports.
+│   ├── data/                     # Modules for data loading, processing, and augmentation.
+│   │   ├── __init__.py           # Marks `data` as a sub-package.
+│   │   ├── datasets.py           # Defines PyTorch Dataset classes for loading specific data formats.
+│   │   ├── augmentation.py       # Functions and classes for applying data augmentation techniques.
+│   │   └── preprocessing.py      # Functions for cleaning, transforming, and preparing raw data.
+│   ├── models/                   # Model definitions, architectures, and wrappers for different detector/OCR types.
+│   │   ├── __init__.py           # Marks `models` as a sub-package.
+│   │   ├── faster_rcnn_detector.py # Implements or wraps the Faster R-CNN model logic.
+│   │   ├── yolo_detector.py        # Implements or wraps the YOLO model logic.
+│   │   └── ocr_reader.py           # Wrapper for integrating and using OCR models (e.g., Idefics2).
+│   ├── pipeline/                 # Code to orchestrate the full detection &amp; OCR workflow.
+│   │   ├── __init__.py           # Marks `pipeline` as a sub-package.
+│   │   └── main_pipeline.py      # Contains the main logic for running the end-to-end detection and OCR pipeline.
+│   ├── training/                 # Modules related to model training loops and utilities.
+│   │   ├── __init__.py           # Marks `training` as a sub-package.
+│   │   ├── train_utils.py        # Generic utilities for training (e.g., logging, checkpointing, early stopping).
+│   │   └── trainers.py           # Specific trainer classes for different models (e.g., `FasterRCNNTrainer`).
+│   ├── evaluation/               # Modules for evaluating model performance.
+│   │   ├── __init__.py           # Marks `evaluation` as a sub-package.
+│   │   └── metrics.py            # Implementations of various evaluation metrics (e.g., mAP, accuracy).
+│   └── utils/                    # General utility functions used across the project.
+│       ├── __init__.py           # Marks `utils` as a sub-package.
+│       ├── config_utils.py       # Utilities for loading and parsing configuration files (YAML).
+│       ├── logging_utils.py      # Standardized logging setup and helper functions.
+│       └── vis_utils.py          # Utilities for creating plots and visualizations.
+├── .env                          # Local environment variables (e.g., API keys); **this file is gitignored**.
+├── .env.example                  # Example file for `.env`, showing required environment variables (committed for reference).
+├── README.md                     # Main project overview, setup instructions, and usage guide (essential for onboarding).
+└── requirements.txt              # Lists all Python package dependencies required for the project.
+</code></pre><p><strong>What we're omitting from Git (and how we handle it):</strong></p>
+<ul>
+<li><strong><code>data/</code>:</strong> <strong>This is explicitly gitignored.</strong> All raw and processed datasets are too large for Git. We will share these via a dedicated cloud storage solution (e.g., university shared drive, Google Drive) and provide clear download instructions in the <code>README.md</code>.</li>
+<li><strong><code>outputs/</code>:</strong> <strong>This is explicitly gitignored.</strong> All trained models, evaluation results, and generated plots are large and can be regenerated from code and data. These should also be managed via external storage or simply regenerated locally as needed.</li>
+<li><strong><code>docs/</code>:</strong> <strong>This entire folder is OPTIONAL.</strong> If you don't need extensive documentation beyond the <code>README.md</code> (e.g., formal design documents, API references), you can omit this directory.</li>
+<li><strong><code>LICENSE</code>:</strong> <strong>This file is OPTIONAL.</strong> For small, internal, or university projects, a formal license might not be necessary unless specifically required.</li>
+<li><strong>Virtual Environment (<code>.venv/</code>):</strong> Already handled by <code>.gitignore</code>. You create it locally, but it's never committed.</li>
+</ul>
+<hr>
+<h2 id="2-tooling--automation-work-smarter-not-harder">2. Tooling &amp; Automation (Work Smarter, Not Harder) </h2>
+<p>These tools automate tedious tasks, making it easier to keep the repository clean and consistent without manual effort.</p>
+<h3 id="linters--formatters">Linters &amp; Formatters </h3>
+<p>Set these up once, and they'll handle formatting automatically.</p>
+<ul>
+<li><strong>Black:</strong> An uncompromising code formatter. Just run it, and your code is formatted consistently.</li>
+<li><strong>Flake8:</strong> Catches common errors and enforces style guidelines.</li>
+<li><strong>isort:</strong> Automatically sorts imports.</li>
+</ul>
+<p><strong>Setup and Usage:</strong></p>
+<ol>
+<li><strong>Installation:</strong><pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>pip <span class="token function">install</span> black flake8 isort
+</code></pre></li>
+<li><strong>Integration:</strong> Set up your IDE (VS Code, PyCharm) to run Black on save. Run Flake8 and isort manually or as pre-commit hooks (optional, but good for "lazy" consistency).</li>
+</ol>
+<h3 id="jupyter-notebook-output-stripping-nbstripout">Jupyter Notebook Output Stripping (<code>nbstripout</code>) </h3>
+<p>This is <strong>ESSENTIAL</strong> for keeping notebooks lightweight in Git. It automatically removes all cell outputs (including large images) from <code>.ipynb</code> files.</p>
+<p><strong>How it handles large notebooks and prevents "LFS territory":</strong><br>
+The core problem with notebooks in Git is not just their total file size, but the embedded outputs (like base64 encoded images or large text outputs) that make Git diffs unreadable and history bloated. <code>nbstripout</code> acts as a Git <code>clean</code> filter. This means that when you <code>git add</code> an <code>.ipynb</code> file, <code>nbstripout</code> <strong>automatically processes and strips all outputs from it first</strong>. The version of the notebook that is then staged in Git's index (ready for commit) is already clean and significantly smaller, containing only the code and markdown. This ensures that notebooks themselves never grow into "LFS territory" due to their outputs, and their diffs remain clean.</p>
+<p><strong>Setup:</strong></p>
+<ol>
+<li><strong>Installation:</strong><pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>pip <span class="token function">install</span> nbstripout
+</code></pre></li>
+<li><strong>Configure Git (from project root):</strong><pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code>nbstripout <span class="token parameter variable">--install</span>
+</code></pre>This adds a Git filter so outputs are automatically stripped on <code>git add</code>.</li>
+<li><strong>Commit <code>.gitattributes</code>:</strong><pre data-role="codeBlock" data-info="bash" class="language-bash bash"><code><span class="token function">git</span> <span class="token function">add</span> .gitattributes
+<span class="token function">git</span> commit <span class="token parameter variable">-m</span> <span class="token string">"Configure nbstripout for Jupyter notebooks"</span>
+</code></pre></li>
+</ol>
+<p><strong>All team members must run <code>nbstripout --install</code> once per clone</strong> to ensure consistency.</p>
+<h2 id="3-coding-style-guidelines-pep-8--core-readability">3. Coding Style Guidelines (PEP 8 &amp; Core Readability) </h2>
+<p>We adhere to the core principles of <a href="https://www.python.org/dev/peps/pep-0008/">PEP 8</a> for Python code. Black will enforce most of these automatically.</p>
+<h3 id="naming-conventions">Naming Conventions </h3>
+<ul>
+<li><strong>Variables, Functions, Methods, Modules:</strong> <code>lowercase_with_underscores</code>.</li>
+<li><strong>Constants:</strong> <code>UPPERCASE_WITH_UNDERSCORES</code>.</li>
+<li><strong>Classes:</strong> <code>PascalCase</code>.</li>
+</ul>
+<h3 id="line-length">Line Length </h3>
+<ul>
+<li><strong>Follow Black:</strong> Black will handle line wrapping. Generally aims for around 88 characters.</li>
+</ul>
+<h3 id="imports">Imports </h3>
+<ul>
+<li><strong>One Import Per Line.</strong></li>
+<li><strong>Grouping Order:</strong> <code>isort</code> will handle this automatically:
+<ol>
+<li>Standard library imports</li>
+<li>Third-party library imports</li>
+<li>Local application/library specific imports<br>
+<em>(Run <code>isort</code> regularly or integrate into IDE.)</em></li>
+</ol>
+</li>
+</ul>
+<h3 id="whitespace">Whitespace </h3>
+<ul>
+<li><strong>Follow Black:</strong> Black will automatically ensure consistent spacing around operators and commas.</li>
+</ul>
+<h3 id="comments--docstrings">Comments &amp; Docstrings </h3>
+<ul>
+<li><strong>Comments:</strong> Use sparingly to clarify non-obvious code.</li>
+<li><strong>Docstrings:</strong> Aim for clear docstrings for all <strong>public functions and classes</strong>. This is crucial for understanding how to use parts of the codebase. You don't need extensive academic docstrings, but a brief explanation of purpose, arguments, and return values is very helpful.
+<ul>
+<li><em>(Tools don't automatically generate these, so this requires conscious effort, but it pays off in reduced "figuring things out" time.)</em></li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="4-jupyter-notebook-workflow-for-exploration-not-storage">4. Jupyter Notebook Workflow (For Exploration, Not Storage) </h2>
+<p>Notebooks are for interactive work, not for storing large data or production code.</p>
+<h3 id="purpose-of-notebooks">Purpose of Notebooks </h3>
+<ul>
+<li><strong>Quick Exploration:</strong> Data analysis, prototyping new ideas.</li>
+<li><strong>Visualization:</strong> Generating temporary plots (which are then stripped by <code>nbstripout</code>).</li>
+<li><strong>Analysis &amp; Reporting:</strong> Presenting results and findings in a narrative format.</li>
+</ul>
+<h3 id="refactoring-code-from-notebooks">Refactoring Code from Notebooks </h3>
+<ul>
+<li><strong>Move Reusable Code to <code>src/</code>:</strong> Any functions or classes that you find yourself reusing, or that represent core logic (data preprocessing, model definitions, evaluation), <strong>must</strong> be moved from notebooks into <code>.py</code> files within the <code>src/un_detector/</code> package.</li>
+<li><strong>Import in Notebooks:</strong> Once moved, import these functions/classes into your notebooks.<pre data-role="codeBlock" data-info="python" class="language-python python"><code><span class="token keyword keyword-import">import</span> sys
+sys<span class="token punctuation">.</span>path<span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token string">'../src'</span><span class="token punctuation">)</span> <span class="token comment"># If notebooks are not running from the root</span>
+
+<span class="token keyword keyword-from">from</span> un_detector<span class="token punctuation">.</span>data<span class="token punctuation">.</span>preprocessing <span class="token keyword keyword-import">import</span> clean_text
+<span class="token keyword keyword-from">from</span> un_detector<span class="token punctuation">.</span>models<span class="token punctuation">.</span>yolo_detector <span class="token keyword keyword-import">import</span> YOLOModel
+<span class="token comment"># ... use them here ...</span>
+</code></pre></li>
+<li><strong>Handle Large Outputs:</strong> Instead of embedding plots or large data in notebooks, <strong>save them to the <code>outputs/</code> directory</strong> (which is gitignored). You can then reference them in the notebook if needed, but the main file lives outside Git.</li>
+</ul>
+<hr>
+<h2 id="5-general-project-workflow-streamlined">5. General Project Workflow (Streamlined) </h2>
+<ol>
+<li><strong>Set Up:</strong>
+<ul>
+<li>Create your virtual environment (<code>python -m venv .venv</code>).</li>
+<li>Install dependencies (<code>pip install -r requirements.txt</code>).</li>
+<li>Install and configure <code>nbstripout</code> (<code>nbstripout --install</code>).</li>
+<li>Install and set up <code>pre-commit</code> hooks (<code>pip install pre-commit &amp;&amp; pre-commit install</code>).</li>
+<li>Download required data to the <code>data/</code> folder as described in <code>README.md</code>.</li>
+</ul>
+</li>
+<li><strong>Develop in Notebooks:</strong> Use notebooks for initial ideas and interactive development.</li>
+<li><strong>Refactor Code:</strong> As soon as a piece of code becomes stable, reusable, or part of the core logic, <strong>move it to <code>src/</code></strong>.</li>
+<li><strong>Create Scripts:</strong> Develop standalone scripts in <code>scripts/</code> that orchestrate the main tasks (data prep, training, evaluation, full pipeline) by importing functions from <code>src/</code>. This allows for easy, reproducible runs without a notebook environment.</li>
+<li><strong>Run Tools:</strong> Regularly run <code>black</code> and <code>isort</code> (or configure your IDE to do it automatically). <code>nbstripout</code> will run on <code>git add</code>. The <code>pre-commit</code> hooks will run automatically on <code>git commit</code>.</li>
+</ol>
+<hr>
+<h2 id="6-git--version-control-keep-it-clean">6. Git &amp; Version Control (Keep it Clean) </h2>
+<ul>
+<li><strong>No Git LFS:</strong> Git LFS is strictly forbidden for this project. Large files must be managed externally and added to <code>.gitignore</code>.</li>
+<li><strong>Branching:</strong> Work on feature branches (<code>feature/your-feature-name</code>, <code>bugfix/issue-description</code>) off of <code>main</code>.</li>
+<li><strong>Commit Messages:</strong> Write clear, concise, and descriptive commit messages.</li>
+<li><strong>Pull Requests (PRs):</strong> Create PRs for all changes. Ensure your code adheres to these conventions, and that the PR description is clear.</li>
+<li><strong>Code Reviews:</strong> All code should be reviewed before merging into <code>main</code>.</li>
+</ul>
+
+      </div>
+      
+      
+    
+    
+    
+    
+    
+    
+  
+    </body></html>

@@ -135,7 +135,6 @@ celerybeat.pid
 *.sage.py
 
 # Environments
-.env
 .venv
 env/
 venv/
@@ -200,7 +199,14 @@ data/cvat-for-video-dataset-hazmat-codes/
 data/hazmat-detection.zip
 data/yolo/
 data/augmented_images/
-
+images/stock
+images/hazmat_codes_working
+images/hazmat_codes_not_working
+images/false_positives
+images/true_positives
+images/true_negatives
+images/false_negatives
+images/augmented
 # Checkpoints
 /checkpoints
 
@@ -212,4 +218,27 @@ data/augmented_images/
 data/frames_videos
 data/models
 data/un_numbers/un/
+output/
+images/stock
+images/
 checkpoints
+/data/*
+!/data/haztruck_dataset.csv
+# Environments
+.venv/
+.env
+
+# Data and Outputs (MUST be ignored)
+outputs/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# IDE files
+.vscode/
+.idea/
+
+# archived notebooks
+notebooks/archive/
+notebooks/data/*
