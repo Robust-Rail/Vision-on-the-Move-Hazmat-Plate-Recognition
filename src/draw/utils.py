@@ -10,8 +10,8 @@ GROUND_TRUTH_COLOR = "#0072B2"  # Color for ground truth bounding box
 
 def draw_box(
     image,
-    predicted_box: tuple[float, float, float, float],
-    ground_truth: tuple[float, float, float, float],
+    predicted_box: tuple[float, float, float, float] = None,
+    ground_truth: tuple[float, float, float, float] = None,
     codes=(0, 0),
     confidence: float = None,
 ):
