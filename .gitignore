@@ -242,3 +242,6 @@ __pycache__/
 # archived notebooks
 notebooks/archive/
 notebooks/data/*
+
+# developer notes
+devdocs/
