@@ -101,7 +101,7 @@ If you use this work, our dataset, or our code for your research, please cite ou
 **"Vision on the Move: Automated Hazardous Material Plate Detection in Freight Transport"**  
 *Melissa Tijink, Stanislav Levendeev, Ewaldo Nieuwenhuis, Luuk Spreeuwers, Nicola Strisciuglio, and Estefanía Talavera*  
 Published in: *Computer Analysis of Images and Patterns* (CAIP), 2025.  
-[Springer Link](https://www.springerprofessional.de/en/vision-on-the-move-automated-hazardous-material-plate-detection-/51453702)
+[Springer Link](https://link.springer.com/chapter/10.1007/978-3-032-04968-1_22)
 
 ```bibtex
 @inproceedings{tijink2025vision,
