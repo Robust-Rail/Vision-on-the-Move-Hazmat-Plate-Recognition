@@ -223,13 +223,13 @@ images/stock
 images/
 checkpoints
 /data/*
-!/data/haztruck_dataset.csv
 # Environments
 .venv/
 .env
 
 # Data and Outputs (MUST be ignored)
 outputs/
+evaluation.json
 
 # Python cache
 __pycache__/
