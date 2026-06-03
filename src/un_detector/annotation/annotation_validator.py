@@ -12,7 +12,7 @@ from IPython.display import Image as Ipy_Image
 from IPython.display import display
 from PIL import Image
 
-from ..draw.utils import draw_box
+from un_detector.utils.vis_utils import draw_box
 from .image_annotator import read_image
 
 subdirs = ["train", "test", "val"]
