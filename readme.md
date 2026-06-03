@@ -96,14 +96,20 @@ This research utilizes two key datasets for training and evaluation:
 3.  **Run Notebooks**: Execute the Jupyter notebooks in the `notebooks/` directory in numerical order (01 to 10) to replicate the entire research workflow from data exploration to final pipeline analysis.
 
 ## Citing Our Work
-If you use this work, our dataset, or our code for your research, please cite our paper.
+If you use this work, our dataset, or our code for your research, please cite our paper:
+
+**"Vision on the Move: Automated Hazardous Material Plate Detection in Freight Transport"**  
+*Melissa Tijink, Stanislav Levendeev, Ewaldo Nieuwenhuis, Luuk Spreeuwers, Nicola Strisciuglio, and Estefanía Talavera*  
+Published in: *Computer Analysis of Images and Patterns* (CAIP), 2025.  
+[Springer Link](https://link.springer.com/chapter/10.1007/978-3-032-04968-1_22)
 
 ```bibtex
-@inproceedings{hazmat_plate_detection_2024,
-  title={A Vision Language Model-based Pipeline for Reading Hazardous Material Plates on Freight Trains},
-  author={J. Doe and A. Smith and B. Lee},
-  booktitle={To appear},
-  year={2024},
-  note={To appear}
+@inproceedings{tijink2025vision,
+  title={Vision on the Move: Automated Hazardous Material Plate Detection in Freight Transport},
+  author={Tijink, Melissa and Levendeev, Stanislav and Nieuwenhuis, Ewaldo and Spreeuwers, Luuk and Strisciuglio, Nicola and {Talavera}, Estefan{\'i}a},
+  booktitle={Computer Analysis of Images and Patterns},
+  year={2025},
+  publisher={Springer},
+  doi={10.1007/978-3-032-04968-1_22}
+}
 ```
-*(Note: Placeholder for official publication details)*
