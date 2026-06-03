@@ -230,6 +230,7 @@ checkpoints
 # Data and Outputs (MUST be ignored)
 outputs/
 evaluation.json
+kaggle_dataset/
 
 # Python cache
 __pycache__/

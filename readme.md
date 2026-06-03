@@ -83,6 +83,10 @@ This research utilizes two key datasets for training and evaluation:
 1.  **ProRail Dataset**: A large internal dataset containing over 9,500 annotated frames extracted from videos of passing freight trains. This data was used to train and validate the object detection models.
 2.  **HazTruck Dataset**: A novel public benchmark dataset created for this project. It consists of 210 images with 238 plates gathered from public sources, featuring a wide variety of real-world conditions. The datasets are available [here](https://github.com/Robust-Rail/Datasets).
 
+For ease of access, the public benchmark datasets, evaluation outputs, and training logs are also published on Kaggle:
+👉 **[Kaggle Dataset: Hazmat Plate Recognition & UN-Number Detection](https://www.kaggle.com/datasets/myso21/hazmat-plate-recognition-and-un-number-detection/)**
+
+
 ## How to Reproduce Our Results
 1.  **Setup**: Clone the repository, create a Python virtual environment, and install the dependencies from [`requirements.txt`](requirements.txt).
     ```sh

@@ -3,7 +3,7 @@ import os
 import cv2
 import yaml
 
-from annotation.utils import get_annotation_file_name
+from un_detector.annotation.utils import get_annotation_file_name
 
 
 class YOLOConverter:

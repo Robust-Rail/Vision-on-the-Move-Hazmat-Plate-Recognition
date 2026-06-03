@@ -4,11 +4,11 @@ import pandas as pd
 import requests
 from tqdm import tqdm
 
-from annotation.cli.webscraping import download_second_image
-from annotation.converters.coco_converter import CocoConverter
-from annotation.converters.yolo_converter import YOLOConverter
-from annotation.utils import get_annotation_file_name, get_rnd_distribution
-from annotation.video_annotator import read_video
+from un_detector.cli.webscraping import download_second_image
+from un_detector.annotation.converters.coco_converter import CocoConverter
+from un_detector.annotation.converters.yolo_converter import YOLOConverter
+from un_detector.annotation.utils import get_annotation_file_name, get_rnd_distribution
+from un_detector.annotation.video_annotator import read_video
 
 
 def generate_annotations(
